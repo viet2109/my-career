@@ -1,0 +1,11 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 240px;
+    border-radius: 0 0 5px 5px;
+    background: var(--white);
+    box-shadow: 0 10px 10px 0 rgba(153,153,153,.45);
+    overflow: hidden;
+}

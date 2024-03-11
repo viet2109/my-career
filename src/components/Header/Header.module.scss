@@ -1,0 +1,128 @@
+.wrapper {
+  border-bottom: 2px solid #fbd1d5;
+  position: relative;
+
+  .nav {
+    margin: 0 auto;
+    height: 50px;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      max-width: 230px;
+      width: 150px;
+      img {
+        width: 100%;
+      }
+    }
+
+    .menu {
+      display: none;
+      flex-wrap: wrap;
+      > .item {
+        position: relative;
+        font-weight: 600;
+        > a {
+          padding: 25px 10px;
+          display: block;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0px;
+          background-color: #ea1e32;
+          z-index: -1;
+        }
+        &:hover {
+          &::after {
+            height: 3px;
+          }
+        }
+      }
+    }
+
+    .sub-menu {
+      > .sub-item {
+        padding: 0 10px;
+        height: 38px;
+        line-height: 38px;
+        border-bottom: 1px solid #ccc;
+        > a {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+
+        &:hover {
+          background-color: var(--red);
+          a {
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    .user-login {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        margin-left: 4px;
+        color: var(--red);
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .wrapper {
+    .nav {
+      max-width: 540px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    .nav {
+      max-width: 720px;
+      padding: 0;
+      height: auto;
+      .logo {
+        width: auto;
+      }
+      .menu {
+        display: flex;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .wrapper {
+    .nav {
+      max-width: 960px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    .nav {
+      max-width: 1140px;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .wrapper {
+    .nav {
+      max-width: 1320px;
+    }
+  }
+}

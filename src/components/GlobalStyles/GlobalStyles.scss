@@ -1,0 +1,77 @@
+@import "normalize.css";
+
+@font-face {
+  font-family: TTNormsPro-Normal;
+  src: url(../../assets/fonts/TT-Norms-Pro-Normal.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: TTNormsPro-Medium;
+  src: url(../../assets/fonts/TT-Norms-Pro-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: TTNormsPro-Bold;
+  src: url(../../assets/fonts/TT-Norms-Pro-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: TTNormsPro-DemiBold;
+  src: url(../../assets/fonts/TT-Norms-Pro-DemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: TTNormsPro-MediumItalic;
+  src: url(../../assets/fonts/TT-Norms-Pro-Medium-Italic.ttf) format("truetype");
+}
+
+:root {
+  --red: #ec1b30;
+  --black: #313131;
+  --white: #fff;
+  --blue: #53c5e8;
+  --grey: #666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: TTNormsPro-Normal;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+button,
+input,
+[tabindex] {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+a[href] {
+  text-decoration: none;
+  color: var(--black);
+}
+
+img, svg {
+  vertical-align: middle;
+}
