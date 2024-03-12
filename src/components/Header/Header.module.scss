@@ -2,10 +2,15 @@
   border-bottom: 2px solid #fbd1d5;
   position: relative;
 
-  .nav {
+  .nav-wrapper {
     margin: 0 auto;
     height: 50px;
-    padding: 8px 20px;
+    position: relative;
+  }
+
+  .nav {
+    
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,10 +29,6 @@
       > .item {
         position: relative;
         font-weight: 600;
-        > a {
-          padding: 25px 10px;
-          display: block;
-        }
         &::after {
           content: "";
           position: absolute;
@@ -38,11 +39,23 @@
           background-color: #ea1e32;
           z-index: -1;
         }
+        > a {
+          padding: 25px 10px;
+          display: block;
+          
+        }
+        &:has(.active) {
+          &::after {
+            height: 3px;
+          }
+        }
+        
         &:hover {
           &::after {
             height: 3px;
           }
         }
+        
       }
     }
 
@@ -77,11 +90,36 @@
       }
     }
   }
+
+
+  .menu-mobile {
+    
+
+    a {
+      padding: 10px;
+      width: 100%;
+      display: block;
+      height: 100%;
+      font-size: 16px;
+      border-bottom: 1px solid #ccc;
+      &:hover {
+        background-color: var(--red);
+        color: var(--white);
+      }
+
+    }
+    .sub-item-mobile {
+      a {
+        padding-left: 25px;
+      }
+    }
+  }
+
 }
 
 @media (min-width: 576px) {
   .wrapper {
-    .nav {
+    .nav-wrapper {
       max-width: 540px;
     }
   }
@@ -89,15 +127,24 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    .nav {
+    .nav-wrapper {
       max-width: 720px;
       padding: 0;
       height: auto;
+
+      .menu-button-wrapper {
+        display: none;
+      }
+      
       .logo {
         width: auto;
       }
       .menu {
         display: flex;
+      }
+
+      .menu-mobile {
+        display: none;
       }
     }
   }
@@ -105,7 +152,7 @@
 
 @media (min-width: 992px) {
   .wrapper {
-    .nav {
+    .nav-wrapper {
       max-width: 960px;
     }
   }
@@ -113,7 +160,7 @@
 
 @media (min-width: 1200px) {
   .wrapper {
-    .nav {
+    .nav-wrapper {
       max-width: 1140px;
     }
   }
@@ -121,7 +168,7 @@
 
 @media (min-width: 1400px) {
   .wrapper {
-    .nav {
+    .nav-wrapper {
       max-width: 1320px;
     }
   }
