@@ -31,11 +31,13 @@ function Header({ className }) {
           onMount={(instance) => {instance.popper.style.margin ="0 auto";instance.popper.style.width = "100%";}}
           placement="bottom-start"
           trigger={"click"}
-          arrow={<Fragment></Fragment>}
+          arrow={false}
           animation="perspective"
           offset={[0, 0]}
           triggerTarget={menuButton.current}
           interactive
+          
+          hideOnClick='toggle'
           content={
             <Popper>
               <ul className={cx("menu-mobile")}>
@@ -102,12 +104,12 @@ function Header({ className }) {
                 </li>
 
                 <li className={cx("item-mobile")}>
-                  <a
+                  <HashLink
                     className={(nav) => cx({ active: nav.isActive })}
                     to={"#"}
                   >
                     Trắc nghiệm bản thân
-                  </a>
+                  </HashLink>
                   <ul className={cx("sub-menu-mobile")}>
                     <li className={cx("sub-item-mobile")}>
                       <NavLink
@@ -207,9 +209,10 @@ function Header({ className }) {
             <ul className={cx("menu")}>
               <li className={cx("item")}>
                 <Tippy
+                  hideOnClick={false}
                   offset={[0, 0]}
                   animation="perspective"
-                  arrow={<Fragment></Fragment>}
+                  arrow={false}
                   content={
                     <Popper>
                       <ul className={cx("sub-menu")}>
@@ -244,9 +247,10 @@ function Header({ className }) {
               </li>
               <li className={cx("item")}>
                 <Tippy
+                hideOnClick={false}
                   offset={[0, 0]}
                   animation="perspective"
-                  arrow={<Fragment></Fragment>}
+                  arrow={false}
                   content={
                     <Popper>
                       <ul className={cx("sub-menu")}>
@@ -290,9 +294,10 @@ function Header({ className }) {
               </li>
               <li className={cx("item")}>
                 <Tippy
+                hideOnClick={false}
                   offset={[0, 0]}
                   animation="perspective"
-                  arrow={<Fragment></Fragment>}
+                  arrow={false}
                   content={
                     <Popper>
                       <ul className={cx("sub-menu")}>
@@ -328,9 +333,10 @@ function Header({ className }) {
               </li>
               <li className={cx("item")}>
                 <Tippy
+                hideOnClick={false}
                   offset={[0, 0]}
                   animation="perspective"
-                  arrow={<Fragment></Fragment>}
+                  arrow={false}
                   content={
                     <Popper>
                       <ul className={cx("sub-menu")}>
@@ -373,9 +379,10 @@ function Header({ className }) {
               </li>
               <li className={cx("item")}>
                 <Tippy
+                hideOnClick={false}
                   offset={[0, 0]}
                   animation="perspective"
-                  arrow={<Fragment></Fragment>}
+                  arrow={false}
                   content={
                     <Popper>
                       <ul className={cx("sub-menu")}>
