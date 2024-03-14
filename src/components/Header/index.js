@@ -1,204 +1,100 @@
+import Tippy, { tippy } from "@tippyjs/react";
 import classNames from "classnames/bind";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import { Link, useLocation } from "react-router-dom";
 import "tippy.js/animations/perspective.css";
+import "tippy.js/dist/tippy.css";
 import images from "~/assets/images";
 import routes from "~/config/routes";
 import MenuButton from "../MenuButton";
-import styles from "./Header.module.scss";
 import Popper from "../Popper";
-import { Fragment, useRef } from "react";
-import { HashLink } from "react-router-hash-link";
+import styles from "./Header.module.scss";
+import { NavLink } from "react-router-dom";
 
 Header.propTypes = {};
 
 const cx = classNames.bind(styles);
 
 function Header({ className }) {
-  const handleClickMenuButton = (e) => {};
+  const handleClickMenuButton = (e) => {
+
+  };
   const user = useSelector((state) => state.auth.login.currentUser);
   const nav = useRef(null);
   const menuButton = useRef(null);
-  console.log(useLocation().pathname);
+  const handleOnclick = (e) => {
+  
+    menuButton.current.firstChild.click();
+  }
 
+  
   return (
     <header className={cx("wrapper")}>
-      <div className={cx('nav-wrapper')}>
+      <div className={cx("nav-wrapper")}>
         <Tippy
           maxWidth={""}
-          onMount={(instance) => {instance.popper.style.margin ="0 auto";instance.popper.style.width = "100%";}}
+          onMount={(instance) => {
+            instance.popper.style.margin = "0 auto";
+            instance.popper.style.width = "100%";
+          }}
+          
           placement="bottom-start"
           trigger={"click"}
           arrow={false}
           animation="perspective"
-          offset={[0, 0]}
-          triggerTarget={menuButton.current}
+          offset={[0, 7]}
+          reference={menuButton}
           interactive
-          
           hideOnClick='toggle'
+          onClickOutside={handleOnclick}
           content={
             <Popper>
               <ul className={cx("menu-mobile")}>
-                <li className={cx("item-mobile")}>
+                <li className={cx("item-mobile")} onClick={handleOnclick}>
                   <NavLink
-                    to={routes["about-us"].index}
+                    to={routes["about-us"]}
                     className={(nav) => cx({ active: nav.isActive })}
                   >
                     Về chúng tôi
                   </NavLink>
-                  <ul className={cx("sub-menu-mobile")}>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes["about-us"].misson}
-                      >
-                        Sứ mệnh RightPath
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes["about-us"].team}
-                      >
-                        Đội ngũ cố vấn
-                      </NavLink>
-                    </li>
-                  </ul>
                 </li>
 
-                <li className={cx("item-mobile")}>
-                  <HashLink
+                <li className={cx("item-mobile")} onClick={handleOnclick}>
+                  <NavLink
                     className={(nav) => cx({ active: nav.isActive })}
-                    to={"#"}
-                  >
-                    Khóa học
-                  </HashLink>
-                  <ul className={cx("sub-menu-mobile")}>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.course.pupil}
-                      >
-                        Học sinh
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.course.student}
-                      >
-                        Sinh viên
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.course.graduate}
-                      >
-                        Cử nhân/kĩ sư
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
-
-                <li className={cx("item-mobile")}>
-                  <HashLink
-                    className={(nav) => cx({ active: nav.isActive })}
-                    to={"#"}
+                    to={routes.quiz}
                   >
                     Trắc nghiệm bản thân
-                  </HashLink>
-                  <ul className={cx("sub-menu-mobile")}>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.quiz.holland}
-                      >
-                        Trăc nghiệm sở thích Holland
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.quiz.disc}
-                      >
-                        Trắc nghiệm tính cách DISC
-                      </NavLink>
-                    </li>
-                  </ul>
+                  </NavLink>
                 </li>
 
-                <li className={cx("item-mobile")}>
+                <li className={cx("item-mobile")} onClick={handleOnclick}>
                   <NavLink
                     className={(nav) => cx({ active: nav.isActive })}
-                    to={routes.career.index}
+                    to={routes.advise}
                   >
-                    360º ngành nghề
+                    Tư vấn chuyên gia
                   </NavLink>
-                  <ul className={cx("sub-menu-mobile")}>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.career.major}
-                      >
-                        Ngành học
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.career.school}
-                      >
-                        Trường học
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.career.team}
-                      >
-                        Đội ngũ chuyên gia
-                      </NavLink>
-                    </li>
-                  </ul>
                 </li>
 
-                <li className={cx("item-mobile")}>
+                <li className={cx("item-mobile")} onClick={handleOnclick}>
                   <NavLink
                     className={(nav) => cx({ active: nav.isActive })}
-                    to="#"
+                    to={routes.experience}
                   >
-                    Sự kiện
+                    Trải nghiệm nghề nghiệp
                   </NavLink>
-                  <ul className={cx("sub-menu-mobile")}>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.event.schedule}
-                      >
-                        Lịch trình sự kiện
-                      </NavLink>
-                    </li>
-                    <li className={cx("sub-item-mobile")}>
-                      <NavLink
-                        className={(nav) => cx({ active: nav.isActive })}
-                        to={routes.event.book}
-                      >
-                        Đặt lịch tư vấn
-                      </NavLink>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </Popper>
           }
         >
           <nav ref={nav} className={cx("nav", className)}>
-            <div className={cx('menu-button-wrapper')} ref={menuButton}>
+            <div className={cx("menu-button-wrapper")} ref={menuButton} >
               <MenuButton
-                ref={menuButton}
+
+                
                 className={cx("menu-button")}
                 onClick={handleClickMenuButton}
               ></MenuButton>
@@ -206,216 +102,45 @@ function Header({ className }) {
             <Link to={routes.home} className={cx("logo")}>
               <img src={images.logo} alt="logo" />
             </Link>
+
             <ul className={cx("menu")}>
               <li className={cx("item")}>
-                <Tippy
-                  hideOnClick={false}
-                  offset={[0, 0]}
-                  animation="perspective"
-                  arrow={false}
-                  content={
-                    <Popper>
-                      <ul className={cx("sub-menu")}>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes["about-us"].misson}
-                          >
-                            Sứ mệnh RightPath
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes["about-us"].team}
-                          >
-                            Đội ngũ cố vấn
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </Popper>
-                  }
-                  interactive
+                <NavLink
+                  to={routes["about-us"]}
+                  className={(nav) => cx({ active: nav.isActive })}
                 >
-                  <NavLink
-                    to={routes["about-us"].index}
-                    className={(nav) => cx({ active: nav.isActive })}
-                  >
-                    Về chúng tôi
-                  </NavLink>
-                </Tippy>
+                  <span>Về chúng tôi</span>
+                </NavLink>
               </li>
-              <li className={cx("item")}>
-                <Tippy
-                hideOnClick={false}
-                  offset={[0, 0]}
-                  animation="perspective"
-                  arrow={false}
-                  content={
-                    <Popper>
-                      <ul className={cx("sub-menu")}>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.course.pupil}
-                          >
-                            Học sinh
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.course.student}
-                          >
-                            Sinh viên
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.course.graduate}
-                          >
-                            Cử nhân/kĩ sư
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </Popper>
-                  }
-                  interactive
-                >
-                  <HashLink
-                    
-                    className={(nav) => cx({ active: nav.isActive })}
-                    to={"#"}
-                  >
-                    Khóa học
-                  </HashLink>
-                </Tippy>
-              </li>
-              <li className={cx("item")}>
-                <Tippy
-                hideOnClick={false}
-                  offset={[0, 0]}
-                  animation="perspective"
-                  arrow={false}
-                  content={
-                    <Popper>
-                      <ul className={cx("sub-menu")}>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.quiz.holland}
-                          >
-                            Trăc nghiệm sở thích Holland
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.quiz.disc}
-                          >
-                            Trắc nghiệm tính cách DISC
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </Popper>
-                  }
-                  interactive
-                >
-                  <HashLink
 
-                    className={(nav) => cx({ active: nav.isActive })}
-                    to={"#"}
-                  >
-                    Trắc nghiệm bản thân
-                  </HashLink>
-                </Tippy>
-              </li>
               <li className={cx("item")}>
-                <Tippy
-                hideOnClick={false}
-                  offset={[0, 0]}
-                  animation="perspective"
-                  arrow={false}
-                  content={
-                    <Popper>
-                      <ul className={cx("sub-menu")}>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.career.major}
-                          >
-                            Ngành học
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.career.school}
-                          >
-                            Trường học
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.career.team}
-                          >
-                            Đội ngũ chuyên gia
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </Popper>
-                  }
-                  interactive
+                <NavLink
+                  className={(nav) => cx({ active: nav.isActive })}
+                  to={routes.quiz}
                 >
-                  <NavLink
-                    className={(nav) => cx({ active: nav.isActive })}
-                    to={routes.career.index}
-                  >
-                    360º ngành nghề
-                  </NavLink>
-                </Tippy>
+                  <span>Trắc nghiệm bản thân</span>
+                </NavLink>
               </li>
+
               <li className={cx("item")}>
-                <Tippy
-                hideOnClick={false}
-                  offset={[0, 0]}
-                  animation="perspective"
-                  arrow={false}
-                  content={
-                    <Popper>
-                      <ul className={cx("sub-menu")}>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.event.schedule}
-                          >
-                            Lịch trình sự kiện
-                          </NavLink>
-                        </li>
-                        <li className={cx("sub-item")}>
-                          <NavLink
-                            className={(nav) => cx({ active: nav.isActive })}
-                            to={routes.event.book}
-                          >
-                            Đặt lịch tư vấn
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </Popper>
-                  }
-                  interactive
+                <NavLink
+                  className={(nav) => cx({ active: nav.isActive })}
+                  to={routes.advise}
                 >
-                  <HashLink
-                    className={(nav) => cx({ active: nav.isActive })}
-                    to={"#"}
-                  >
-                    Sự kiện
-                  </HashLink>
-                </Tippy>
+                  <span>Tư vấn chuyên gia</span>
+                </NavLink>
+              </li>
+
+              <li className={cx("item")}>
+                <NavLink
+                  className={(nav) => cx({ active: nav.isActive })}
+                  to={routes.experience}
+                >
+                  <span>Trải nghiệm nghề nghiệp</span>
+                </NavLink>
               </li>
             </ul>
+
             <Link to={user ? "/" : routes.signin} className={cx("user-login")}>
               <img src={images["user-avatar"]} alt="avatar" />
               {user ? <span>Hồ sơ</span> : <span>Đăng nhập</span>}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./QuizHolland.module.scss";
 import Button from "~/components/Button";
+import FormQuiz from "~/components/FormQuiz";
 
 QuizHolland.propTypes = {};
 
@@ -152,13 +153,8 @@ function QuizHolland(props) {
               <li className={cx("help-item")}>Click Nộp bài để xem kết quả</li>
             </ul>
           </div>
-          <div className={cx("progress-bar")}>
-            <progress className={cx("bar")} value={1} max={10}></progress>
-            <span className={cx("label")}>
-              Tác giả câu hỏi trắc nghiệm: Th.S Trần Thị Thúy Lan và C.N Lê Thị
-              Hương Giang Đại Học RMIT Việt Nam
-            </span>
-          </div>
+          <FormQuiz></FormQuiz>
+          
         </div>
       </div>
     </section>

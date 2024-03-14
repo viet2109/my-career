@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-AboutUsMission.propTypes = {
+Advise.propTypes = {
     
 };
 
-function AboutUsMission(props) {
+function Advise(props) {
     return (
         <div>
-            AboutUsMission
+            Advise
         </div>
     );
 }
 
-export default AboutUsMission;
+export default Advise;
