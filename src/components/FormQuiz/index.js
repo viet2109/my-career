@@ -62,7 +62,7 @@ function FormQuiz(props) {
         name={"form"}
       >
         <Swiper
-          allowTouchMove
+          allowTouchMove={false}
           slidesPerView={1}
           centeredSlides
           navigation={{
@@ -151,11 +151,11 @@ function FormQuiz(props) {
           Hương Giang Đại Học RMIT Việt Nam
         </span>
       </div>
-      {currentQuiz === questionList.length && (
-        <div className={cx("submit-button")} onClick={handleClick}>
+      
+        <div className={cx("submit-button", {disabled: currentQuiz < questionList.length})} onClick={handleClick}>
           <Button>Nộp bài</Button>
         </div>
-      )}
+      
     </div>
   );
 }
