@@ -85,17 +85,13 @@
     justify-content: space-between;
     
     margin-bottom: 25px;
-    button {
+    
+    .prev-btn,
+    .next-btn {
+      cursor: pointer;
       display: flex;
       column-gap: 10px;
       align-items: center;
-      svg {
-        width: fit-content;
-      }
-     
-    }
-    .prev-btn,
-    .next-btn {
       padding: 10px 14px;
       color: var(--white);
       background-color: #1f2356;
@@ -103,7 +99,9 @@
       font-size: 16px;
       font-weight: 400;
       font-family: TTNormsPro-Bold;
-      
+      svg {
+        width: fit-content;
+      }
       &:disabled {
         visibility: hidden;
       }
@@ -136,7 +134,7 @@
     .label {
     }
   }
-  .button {
+  .submit-button {
     margin: 12px auto;
     width: fit-content;
     a {

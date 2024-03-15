@@ -1,13 +1,12 @@
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import "swiper/scss/free-mode";
 import "swiper/scss/navigation";
-import "swiper/scss/thumbs";
+
 import Button from "../Button";
 import styles from "./FormQuiz.module.scss";
 
@@ -20,7 +19,15 @@ function FormQuiz(props) {
   const formRef = useRef(null);
   const questionList = require("~/api/fakeQuizAPI.json");
   const submitBtn = useRef(null);
-  const [pageDisabled, setPageDisabled] = useState({});
+  const initData = useCallback(() => {
+    const initialPageDisabled = {};
+    questionList.forEach((question, index) => {
+      initialPageDisabled[index + 1] = true;
+    });
+    return initialPageDisabled;
+  }, []);
+
+  const [pageDisabled, setPageDisabled] = useState(initData());
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const inputRef = questionList.map(() => useRef(null));
 
@@ -38,13 +45,8 @@ function FormQuiz(props) {
     });
     console.log(data);
   };
-  useEffect(() => {
-    const initialPageDisabled = {};
-    questionList.forEach((question, index) => {
-      initialPageDisabled[index + 1] = true;
-    });
-    setPageDisabled(initialPageDisabled);
-  }, []);
+
+
   useEffect(() => {}, [currentQuiz, pageDisabled]);
 
   const handleClick = (e) => {
@@ -123,18 +125,18 @@ function FormQuiz(props) {
       </form>
 
       <div className={cx("paginate")}>
-        <div className={cx({ disabled: pageDisabled[currentQuiz - 1] })}>
-          <button className={cx("prev-btn")}>
+        <div className={cx({ disabled: currentQuiz <= 1 })}>
+          <div className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
             Câu hỏi trước
-          </button>
+          </div>
         </div>
 
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
-          <button className={cx("next-btn")}>
+          <div className={cx("next-btn")}>
             Câu hỏi tiếp theo
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
-          </button>
+          </div>
         </div>
       </div>
       <div className={cx("progress-bar")}>
@@ -149,7 +151,7 @@ function FormQuiz(props) {
         </span>
       </div>
       {currentQuiz === questionList.length && (
-        <div className={cx("button")} onClick={handleClick}>
+        <div className={cx("submit-button")} onClick={handleClick}>
           <Button>Nộp bài</Button>
         </div>
       )}
