@@ -67,7 +67,7 @@ function FormQuiz(props) {
           centeredSlides
           navigation={{
             prevEl: `.${cx("prev-btn")}`,
-            nextEl: `.${cx("next-btn")}`,
+            nextEl: `.${cx("test")}`,
           }}
           modules={[Navigation]}
           onSlideChange={(e) => {
@@ -131,7 +131,8 @@ function FormQuiz(props) {
             Câu hỏi trước
           </div>
         </div>
-
+        
+        <p className={cx('test',{ disabled: pageDisabled[currentQuiz] })}>Next btn</p>
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
           <div className={cx("next-btn")}>
             Câu hỏi tiếp theo
