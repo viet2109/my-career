@@ -62,17 +62,17 @@ function FormQuiz(props) {
         name={"form"}
       >
         <Swiper
-          onSlideChange={(e) => {
-            setCurrentQuiz(e.realIndex + 1);
-          }}
+          allowTouchMove
           slidesPerView={1}
-          allowTouchMove={false}
           centeredSlides
           navigation={{
             prevEl: `.${cx("prev-btn")}`,
             nextEl: `.${cx("next-btn")}`,
           }}
           modules={[Navigation]}
+          onSlideChange={(e) => {
+            setCurrentQuiz(e.realIndex + 1);
+          }}
         >
           {questionList.map((ques, index) => {
             return (
