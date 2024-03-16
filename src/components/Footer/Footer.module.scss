@@ -33,7 +33,9 @@
         flex-wrap: wrap;
         width: 100%;
         svg {
-          width: 23px;
+          width: 13px;
+          height: 13px;
+          
           border: 1px solid #acacac;
           border-radius: 50%;
           justify-content: center;
@@ -42,7 +44,7 @@
           color: #acacac;
           margin-right: 8px;
           padding: 4.5px;
-          max-width: 23px;
+          
         }
         .email,
         .phone {
