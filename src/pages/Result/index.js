@@ -201,8 +201,8 @@ function Result(props) {
 
                     <span>
                       Dựa trên Mật mã Holland của bạn, bạn có thể tìm kiếm các
-                      ngành phù hợp theo 2 hoặc 3 nhóm Holland tại 1 trong trang
-                      web sau:
+                      ngành phù hợp theo 2 hoặc 3 nhóm Holland tại trang
+                      web này
                     </span>
                   </p>
                 </div>

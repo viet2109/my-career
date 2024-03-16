@@ -70,7 +70,7 @@
           img {
             padding: 35px;
             padding-bottom: 0;
-            background-color: #ccc;
+            background: linear-gradient(0deg, var(--color-from) 0%, var(--color-to) 100%);
             border-radius: 30px;
             height: 100%;
             object-fit: cover;

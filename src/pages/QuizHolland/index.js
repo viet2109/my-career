@@ -106,8 +106,7 @@ function QuizHolland(props) {
             <li className={cx("title")}>CÁC BƯỚC LÀM TRẮC NGHIỆM</li>
             <li className={cx("step")}>
               <strong>Bước 1:</strong> Trả lời bộ câu hỏi để xác Bạn là ai, Bạn
-              có thể làm gì, Bạn thích gì (Không có câu trả lời đúng sai, chỉ có
-              câu các câu mô tả giống bạn nhất)
+              có thể làm gì, Bạn thích gì
             </li>
             <li className={cx("step")}>
               <strong>Bước 2:</strong> Nhận kết quả Holland. Bạn chọn và xem 2 -
@@ -117,7 +116,7 @@ function QuizHolland(props) {
             </li>
             <li className={cx("step")}>
               <strong>Bước 3:</strong> Tìm hiểu các ngành và cân nhắc ngành phù
-              hợp theo 2-3 nhóm Holland tại 1 trong trang web sau:
+              hợp theo 2-3 nhóm Holland tại trang web này
             </li>
           </ul>
           <div onClick={handleStartDoExBtn} className={cx("button-wrapper")}>
@@ -136,7 +135,7 @@ function QuizHolland(props) {
               <li className={cx("help-item")}>
                 Click chọn câu mô tả đặc điểm phù hợp với mình
               </li>
-              <li className={cx("help-item")}>Bạn có thể chọn nhiều đáp án</li>
+              <li className={cx("help-item")}>Bạn chỉ có thể chọn một đáp án</li>
               <li className={cx("help-item")}>
                 Không cần suy nghĩ quá nhiều khi lựa chọn câu trả lời
               </li>

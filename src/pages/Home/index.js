@@ -61,19 +61,19 @@ function Home(props) {
 
           <ul className={cx("adviser-list")}>
             <li className={cx("adviser")}>
-              <img src={images["adviser-tuan"]} alt="avatar" />
+              <img style={{"--color-from": "rgba(171, 119, 231, 0.5)", '--color-to': 'rgba(171, 119, 231, 0.75)'}} src={images["adviser-tuan"]} alt="avatar" />
               <p>Ths Lê Anh Tuấn</p>
             </li>
             <li className={cx("adviser")}>
-              <img src={images["adviser-hoa"]} alt="avatar" />
+              <img style={{"--color-from": "rgba(230,161,166, 0.5)", '--color-to': 'rgba(230,161,166, 0.75)'}} src={images["adviser-hoa"]} alt="avatar" />
               <p>Mr Nguyễn Hữu Thái Hòa</p>
             </li>
             <li className={cx("adviser")}>
-              <img src={images["adviser-thien"]} alt="avatar" />
+              <img style={{"--color-from": "rgba(255,18,18, 0.5)", '--color-to': 'rgba(255,18,18, 0.75)'}} src={images["adviser-thien"]} alt="avatar" />
               <p>Mr Nguyễn Hoàng Thiện</p>
             </li>
             <li className={cx("adviser")}>
-              <img src={images["adviser-hanh"]} alt="avatar" />
+              <img style={{"--color-from": "rgba(13,110,253, 0.5)", '--color-to': 'rgba(13,110,253, 0.75)'}} src={images["adviser-hanh"]} alt="avatar" />
               <p>Mr Ninh Gia Hanh</p>
             </li>
           </ul>
