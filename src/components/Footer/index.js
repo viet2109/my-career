@@ -17,25 +17,26 @@ function Footer({ className }) {
         <div className={cx("left")}>
           <img className={cx("logo")} src={images.logo} alt="logo" />
           <div className={cx("address")}>
-            <strong>Địa chỉ: </strong> 16TT35, Khu đô thị Văn Phú, Hà Đông, Hà Nội
+            <strong>Địa chỉ: </strong> 16TT35, Khu đô thị Văn Phú, Hà Đông, Hà
+            Nội
           </div>
 
-          <div className={cx('contact')}>
-              <a href="tel:+84917225055" className={cx("email")}>
+          <div className={cx("contact")}>
+            <a href="tel:+84917225055" className={cx("phone")}>
               <FontAwesomeIcon className="phone-icon" icon={faPhone} />
-                0917 225 055
-              </a>
-              <a href="mailto:huongnghiep.mycareer@gmail.com" className={cx("email")}>
-                <FontAwesomeIcon className="email-icon" icon={faEnvelope} />
-                huongnghiep.mycareer@gmail.com
-              </a>
+              0917 225 055
+            </a>
+            <a
+              href="mailto:huongnghiep.mycareer@gmail.com"
+              className={cx("email")}
+            >
+              <FontAwesomeIcon className="email-icon" icon={faEnvelope} />
+              huongnghiep.mycareer@gmail.com
+            </a>
           </div>
         </div>
-        
       </div>
-      <div className={cx("line-copyright")}>
-        Copyright © 2024 MyCareer 
-      </div>
+      <div className={cx("line-copyright")}>Copyright © 2024 MyCareer</div>
     </footer>
   );
 }

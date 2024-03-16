@@ -34,7 +34,6 @@
         width: 100%;
         svg {
           width: fit-content;
-          display: inline-flex;
           border: 1px solid #acacac;
           border-radius: 50%;
           justify-content: center;
@@ -43,6 +42,7 @@
           color: #acacac;
           margin-right: 8px;
           padding: 4.5px;
+          max-width: fit-content;
         }
         .email,
         .phone {
@@ -73,7 +73,7 @@
           width: fit-content;
         }
         .contact {
-          .email, .address {
+          .email, .phone {
             flex: 1;
           }
         }
