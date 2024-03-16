@@ -3,7 +3,7 @@
   line-height: 1.6;
 
   .container {
-    padding: 100px 15px 15px;
+    padding: 45px 15px 15px;
     margin: 0 auto;
     > .title {
       margin-bottom: 24px;
@@ -28,8 +28,7 @@
     .intro {
       display: flex;
       flex-wrap: wrap;
-      .des {
-      }
+     
       img {
         width: 100%;
       }
@@ -51,8 +50,7 @@
         font-weight: 700;
         margin-bottom: 6px;
       }
-      .step {
-      }
+      
     }
 
     .button-wrapper {
@@ -61,8 +59,8 @@
       .button {
         min-width: 120px;
         width: fit-content;
-
-        font-size: 16px;
+        padding: 8px 16px;
+        font-size: 14px;
         margin: 24px auto 0;
         &:hover {
           scale: 1.05;
@@ -84,8 +82,6 @@
       }
     }
   }
-
-  
 }
 
 .disabled {
@@ -113,6 +109,7 @@
       .intro {
         flex-wrap: nowrap;
         gap: 10px;
+        margin-bottom: 45px;
         .des {
           flex: 3;
         }
@@ -132,10 +129,6 @@
       .intro {
         flex-wrap: nowrap;
         gap: 10px;
-        .des {
-        }
-        img {
-        }
       }
     }
   }
@@ -149,10 +142,6 @@
       .intro {
         flex-wrap: nowrap;
         gap: 10px;
-        .des {
-        }
-        img {
-        }
       }
     }
   }

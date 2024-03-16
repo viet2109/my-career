@@ -9,11 +9,13 @@ import DefaultLayout from "~/layouts/DefaultLayout";
 import config from "~/config";
 import Advise from "~/pages/Advise";
 import Experience from "~/pages/Experience";
+import Result from "~/pages/Result";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: DefaultLayout },
   { path: config.routes["about-us"], component: AboutUs, layout: DefaultLayout },
   { path: config.routes.quiz, component: QuizHolland, layout: DefaultLayout },
+  { path: config.routes.result, component: Result, layout: DefaultLayout },
   { path: config.routes.experience, component: Experience, layout: DefaultLayout },
   { path: config.routes.advise, component: Advise, layout: DefaultLayout },
   { path: config.routes.signin, component: SignIn, layout: DefaultLayout },

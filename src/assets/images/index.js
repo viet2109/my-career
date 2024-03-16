@@ -7,6 +7,7 @@ const images = {
     'adviser-tuan': require('./tuan.png'),
     'adviser-hanh': require('./hanh.png'),
     'student-woman': require('./young-student-woman.png'),
+    "realistic-banner": require('./realistic_banner.png'),
     
 }
 

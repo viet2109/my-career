@@ -28,8 +28,8 @@
           cursor: pointer;
           input {
             padding: 0;
-            height: initial;
-            width: initial;
+            height: 1px;
+            width: 1px;
             margin-bottom: 0;
 
             position: relative;
@@ -55,7 +55,7 @@
                 content: "";
                 position: absolute;
                 left: 5px;
-                top: 1px;
+                top: -5px;
                 transform: rotate(45deg);
                 -webkit-transform: rotate(45deg);
                 -moz-transform: rotate(45deg);
@@ -74,7 +74,7 @@
           label {
             width: 100%;
             cursor: pointer;
-            padding-left: 10px;
+            padding-left: 24px;
           }
         }
       }

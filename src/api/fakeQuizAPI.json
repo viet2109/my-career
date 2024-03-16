@@ -35,7 +35,7 @@
                 "point": 0
             }
         ],
-        "group": "investigative"
+        "group": "investigate"
     },
     {
         "id": 3,
@@ -130,6 +130,6 @@
                 "point": 0
             }
         ],
-        "group": "investigative"
+        "group": "investigate"
     }
 ]

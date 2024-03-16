@@ -7,6 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { quizCal } from "~/redux/request";
 import Button from "../Button";
 import styles from "./FormQuiz.module.scss";
 
@@ -15,16 +18,21 @@ FormQuiz.propTypes = {};
 const cx = classNames.bind(styles);
 
 function FormQuiz(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [currentQuiz, setCurrentQuiz] = useState(1);
   const formRef = useRef(null);
   const questionList = require("~/api/fakeQuizAPI.json");
   const submitBtn = useRef(null);
+  const [isDisabledSubmit, setIsDisabledsubmit] = useState(true);
   const initData = useCallback(() => {
     const initialPageDisabled = {};
     questionList.forEach((question, index) => {
       initialPageDisabled[index + 1] = true;
     });
+
     return initialPageDisabled;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [pageDisabled, setPageDisabled] = useState(initData());
@@ -34,18 +42,18 @@ function FormQuiz(props) {
   const handleSubmit = (e) => {
     // eslint-disable-next-line no-restricted-globals
     e.preventDefault();
-    // Lấy giá trị của form
+
     const data = {};
     inputRef.forEach((input) => {
       if (!(input.current.name in data)) {
         data[input.current.name] = [];
       }
 
-      data[input.current.name].push(input.current.value);
+      data[input.current.name].push(parseInt(input.current.value));
     });
-    console.log(data);
-  };
 
+    quizCal(data, dispatch, navigate);
+  };
 
   useEffect(() => {}, [currentQuiz, pageDisabled]);
 
@@ -100,11 +108,16 @@ function FormQuiz(props) {
                             value={ans.point}
                             onChange={(e) => {
                               inputRef[index].current.value = e.target.value;
+                              if (currentQuiz === questionList.length) {
+                                setIsDisabledsubmit(false);
+                              }
 
                               setPageDisabled((prev) => {
                                 const newObj = {
                                   ...prev,
-                                  [currentQuiz]: false,
+                                  [currentQuiz]:
+                                    currentQuiz === questionList.length ||
+                                    false,
                                 };
 
                                 return newObj;
@@ -131,8 +144,7 @@ function FormQuiz(props) {
             Câu hỏi trước
           </div>
         </div>
-        
-        
+
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
           <div className={cx("next-button")}>
             Câu hỏi tiếp theo
@@ -151,11 +163,15 @@ function FormQuiz(props) {
           Hương Giang Đại Học RMIT Việt Nam
         </span>
       </div>
-      
-        <div className={cx("submit-button", {disabled: currentQuiz < questionList.length})} onClick={handleClick}>
-          <Button>Nộp bài</Button>
-        </div>
-      
+
+      <div
+        className={cx("submit-button", {
+          disabled: isDisabledSubmit,
+        })}
+        onClick={handleClick}
+      >
+        <Button>Nộp bài</Button>
+      </div>
     </div>
   );
 }

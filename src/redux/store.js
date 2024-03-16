@@ -4,13 +4,9 @@ import {
 } from "@reduxjs/toolkit";
 
 import authReducer from "./authSlice";
+import quizHollandReducer from "./quizHollandSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-const rootPersistConfig = {
-  key: "root",
-  storage,
-};
 
 const authPersistConfig = {
   key: "auth",
@@ -18,8 +14,14 @@ const authPersistConfig = {
   blacklist: ["isFetching", "error", "success"],
 };
 
+const quizHollandPersistConfig = {
+  key: "quiz",
+  storage: storage,
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  quiz: persistReducer(quizHollandPersistConfig, quizHollandReducer),
 });
 
 const store = createStore(rootReducer);

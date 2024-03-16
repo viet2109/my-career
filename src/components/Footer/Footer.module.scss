@@ -15,7 +15,7 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      min-width: 395px;
+
       .logo {
         width: 200px;
         margin-bottom: 24px;
@@ -24,11 +24,13 @@
 
       .address {
         margin-bottom: 20px;
+        width: 100%;
       }
 
       .contact {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         width: 100%;
         svg {
           width: fit-content;
@@ -44,6 +46,7 @@
         }
         .email,
         .phone {
+          width: 100%;
           display: flex;
           align-items: center;
           margin-bottom: 10px;
@@ -58,5 +61,23 @@
     background-color: var(--red);
     color: var(--white);
     margin-top: 30px;
+  }
+}
+
+@media (min-width: 576px) {
+  .wrapper {
+    .container{
+      .left {
+        min-width: 395px;
+        .address {
+          width: fit-content;
+        }
+        .contact {
+          .email, .address {
+            flex: 1;
+          }
+        }
+      }
+    }
   }
 }
