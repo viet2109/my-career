@@ -7,6 +7,7 @@ const routes = {
   advise: "/tu-van-chuyen-gia",
   signin: "/dang-nhap",
   signup: "/dang-ki",
+  'page-not-found': "*"
 };
 
 export default routes;

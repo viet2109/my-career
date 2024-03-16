@@ -213,10 +213,22 @@
           }
           .feature {
             margin-bottom: 24px;
+            
             .item {
+              margin: 0 auto;
               margin-bottom: 20px;
+              display: flex;
+             
+              p {
+                padding: 14px;
+              }
               span {
                 display: none;
+                font-size: 60px;
+                color: #198754;
+                font-weight: bold;
+                min-width: 35px;
+                text-align: center;
               }
             }
           }
@@ -268,6 +280,9 @@
                   > .content {
                     background-image: url("https://rightpath.edu.vn/images/bg-custom-removebg-preview.png");
                     background-repeat: no-repeat;
+                    background-size: contain;
+                    object-fit: contain;
+                    background-position: bottom left;
                     > * {
                       width: calc(100% - 100px);
                     }
@@ -354,9 +369,10 @@
               padding: 24px;
               margin-bottom: 72px;
               object-fit: cover;
+              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
               background-size: contain;
               background-position: bottom right;
-              background-image: url('https://rightpath.edu.vn/images/bg-custom-end-removebg.png');
+              background-image: url("https://rightpath.edu.vn/images/bg-custom-end-removebg.png");
               background-repeat: no-repeat;
               .list {
                 .title {
@@ -371,7 +387,6 @@
                   font-family: TTNormsPro-Bold;
                 }
                 .item-wrapper {
-
                   .item {
                     margin-bottom: 3px;
                   }
@@ -470,13 +485,27 @@
               padding-top: 80px;
               width: 50%;
               flex: 1;
+              .item {
+                .title,
+                .content {
+                  font-size: 18px;
+                }
+              }
             }
             img {
               width: 50%;
             }
           }
-        }
 
+          .feature {
+            .item {
+              width: 83.333%;
+              span {
+                display: block!important;
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -139,12 +139,12 @@ function Result(props) {
                               <div
                                 style={{
                                   "--width": `${
-                                    (skill.value / skill.maxValue) * 100
+                                    Math.round((skill.value / skill.maxValue) * 100)
                                   }%`,
                                 }}
                                 className={cx("per")}
                               >
-                                {(skill.value / skill.maxValue) * 100}%
+                                {Math.round((skill.value / skill.maxValue) * 100)}%
                               </div>
                             )}
                             <ul className={cx("percent")}>

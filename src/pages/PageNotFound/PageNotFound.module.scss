@@ -1,0 +1,73 @@
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'TTNormsPro-Bold';
+  .not-found {
+    background: url("https://colorlib.com/etc/404/colorlib-error-404-10/img/bg.jpg")
+      no-repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-size: cover;
+    background-position: center;
+    font-size: 112px;
+    font-weight: 900;
+    height: 142px;
+    margin-bottom: 15px;
+    &::selection {
+      -webkit-text-fill-color: var(--white);
+      background-color: var(--red);
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    &::selection {
+        -webkit-text-fill-color: var(--white);
+        background-color: var(--red);
+      }
+  }
+
+  .des {
+    font-size: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 410px;
+    font-family: TTNormsPro-Medium;
+    &::selection {
+        -webkit-text-fill-color: var(--white);
+        background-color: var(--red);
+      }
+  }
+
+  .home-button {
+    border-radius: 90px;
+    width: fit-content;
+    font-size: 16px;
+    box-shadow: 0 4px 15px -5px var(--red);
+    text-transform: uppercase;
+    padding: 15px 30px;
+    &::selection {
+        -webkit-text-fill-color: var(--white);
+        background-color: var(--red);
+      }
+  }
+}
+
+@media screen and (min-width: 744px) {
+  .wrapper {
+    .not-found {
+      font-size: 230px;
+      height: 280px;
+    }
+  }
+}

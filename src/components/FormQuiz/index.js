@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { quizCal } from "~/redux/request";
 import Button from "../Button";
 import styles from "./FormQuiz.module.scss";
+import quiz from "~/api/fakeQuizAPI";
 
 FormQuiz.propTypes = {};
 
@@ -22,7 +23,7 @@ function FormQuiz(props) {
   const navigate = useNavigate();
   const [currentQuiz, setCurrentQuiz] = useState(1);
   const formRef = useRef(null);
-  const questionList = require("~/api/fakeQuizAPI.json");
+  const questionList = quiz;
   const submitBtn = useRef(null);
   const [isDisabledSubmit, setIsDisabledsubmit] = useState(true);
   const initData = useCallback(() => {
