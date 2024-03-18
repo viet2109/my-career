@@ -27,28 +27,27 @@ function QuizHolland(props) {
         <div ref={tutorial}>
           <div className={cx("intro")}>
             <p className={cx("des")}>
-              “Làm những gì bạn yêu thích và bạn sẽ không bao giờ phải làm việc
-              trong cuộc đời của mình” - đó là bản chất của Trắc nghiệm Holland.
+              <strong>TRƯỚC</strong> khi thực hiện, người thực hiện cần:
+              <br></br>• Tự nguyện làm công cụ này.
+              <br></br>• Lắng đọng tinh thần 5 phút để nhẹ nhàng.
+              <br></br>• Hiểu đây là công cụ tự đánh giá, do đó sẽ vô dụng nếu
+              người thực hiện cố gắng trả lời vì muốn có một hình ảnh tốt đẹp
+              nào đó.
+              <br></br>• Sẵn sàng tâm trí để là chính mình thật nhất có thể khi
+              làm công cụ này - đừng tự đánh giá, đừng tự chê, đừng tự khen,
+              đừng cố gắng giống ai.
+              <br></br>• Hoàn thành chỉ tối đa trong 20 phút.
               <br></br>
-              Lý thuyết lựa chọn nghề nghiệp Holland xuất hiện lần đầu tiên vào
-              năm 1959. Đây là công trình của Tiến sỹ Tâm lý người Mỹ John L.
-              Holland (1919-2008). Theo lý thuyết, được chọn công việc hoặc môi
-              trường có chương trình giáo dục phù hợp, hoặc tương đồng với sở
-              thích và tính cách của bạn, rất có thể giúp bạn cảm thấy hài lòng
-              trong công việc và thành công trong sự nghiệp. Việc này có nghĩa
-              là nếu bạn có thể làm việc mình thích, và còn được làm việc với
-              những người cùng chí hướng, thì đó là môi trường lý tưởng để bạn
-              trau dồi đam mê và phát triển tài năng của bạn.
               <br></br>
-              Trắc nghiệm Holland có thể giúp bạn không chỉ chú ý hơn đến các
-              đặc điểm tính cách và môi trường làm việc tương ứng mà còn có thể
-              liệt kê một loạt các nghề nghiệp mà trước đây bạn có thể chưa nghĩ
-              đến. Hơn nữa, trắc nghiệm này cũng có thể giúp bạn xác định một số
-              đặc điểm phẩm chất còn tiềm ẩn mà bạn chưa khám phá ra.
-              <br></br>
-              Lý thuyết lựa chọn nghề nghiệp Holland chia con người ra 6 loại
-              tính cách-viết tắt là RIASEC, tương ứng với 6 loại ngành nghề phù
-              hợp:
+              <strong>TRONG</strong> Chọn câu trả lời này đến với mình nhanh và
+              tự nhiên nhất. Càng suy nghĩ thì càng không tốt vì lúc ấy người
+              thực hiện đang suy tính và dùng lý trí để trả lời.
+              <br></br> 
+              Nắm bắt các lựa chọn trong từng câu mô tả bao gồm:
+              <br></br>• Có: Tôi "có" sở thích ở câu mô tả này
+              <br></br>• Không: Tôi "không" có sở thích ở câu mô tả này.
+              <br></br>•  Không rõ: Tôi "không hiểu" câu mô tả này.
+              
             </p>
             <div className={cx("logo")}>
               <img
@@ -57,51 +56,7 @@ function QuizHolland(props) {
               />
             </div>
           </div>
-          <ul className={cx("explaine")}>
-            <li className={cx("item")}>
-              • <strong>Thực tế (R)</strong> - Quan tâm đến các lĩnh vực khoa
-              học hoặc máy móc và các hoạt động đòi hỏi sự phối hợp vận động, kỹ
-              năng và sức mạnh thể chất. Nhóm Thực tế quan tâm đến công việc
-              truyền thống, thực tế, làm việc trong các lĩnh vực như sửa chữa,
-              xây dựng hoặc nông nghiệp. Họ sử dụng các công cụ và máy móc, và
-              làm việc bằng tay của họ.
-            </li>
-            <li className={cx("item")}>
-              • <strong>Nghiên cứu (I)</strong> - Thích suy nghĩ hơn là hành
-              động, tổ chức và thấu hiểu hơn là thuyết phục. Họ thích làm những
-              việc liên quan đến lý thuyết, nghiên cứu và tìm hiểu trí tuệ.
-            </li>
-            <li className={cx("item")}>
-              • <strong> Nghệ thuật (A)</strong> - Thích tìm kiếm những ý tưởng
-              mới và sáng tạo. Người Nghệ thuật coi trọng sự thể hiện bản thân
-              và không thích làm việc theo khuôn mẫu. Họ dễ bộc lộ cảm xúc hơn
-              những người khác.
-            </li>
-            <li className={cx("item")}>
-              • <strong>Xã hội (S)</strong> - Quan tâm cao đến người khác, thích
-              giúp đỡ người khác, hiểu người khác và có khả năng giảng dạy. Con
-              người xã hội coi trọng các hoạt động xã hội, các vấn đề xã hội và
-              giữa các cá nhân. Họ có khả năng về ngôn ngữ.
-            </li>
-            <li className={cx("item")}>
-              • <strong>Quản lý (E)</strong> - Có kỹ năng xã hội xuất sắc và
-              giỏi thuyết phục người khác - thường được mô tả là có thể “bán đá
-              cho người Eskimo”.
-            </li>
-            <li className={cx("item")}>
-              • <strong>Nghiệp vụ (C)</strong> - Có tổ chức, chính xác và bài
-              bản. Họ thích mọi thứ được hoàn thành đúng giờ và họ tuân thủ
-              nghiêm ngặt các quy tắc và quy định.
-            </li>
-            <li className={cx("item")}>
-              Tuy nhiên, không phải tất cả ngành nghề đều sẽ phù hợp với bạn vì
-              có những nghề là sự kết hợp các nhóm sở thích khác nhau. Do đó nếu
-              bạn chỉ căn cứ vào kết quả cao nhất để chọn ngành nghề thì rất dễ
-              chọn sai. Thực tế là chúng ta thường sẽ có hơn 2 tính cách nổi
-              bật. Bạn nên xem xét, tìm hiểu nghề nghiệp theo nhóm tính cách nổi
-              bật để chọn nghề phù hợp nhất.
-            </li>
-          </ul>
+          
           <ul className={cx("tutorial")}>
             <li className={cx("title")}>CÁC BƯỚC LÀM TRẮC NGHIỆM</li>
             <li className={cx("step")}>
@@ -130,12 +85,14 @@ function QuizHolland(props) {
             <strong>Hướng dẫn</strong>
             <ul className={cx("help-list")}>
               <li className={cx("help-item")}>
-                Thời gian hoàn thành dự kiến: 10 - 15 phút
+                Thời gian hoàn thành dự kiến: 15 - 20 phút
               </li>
               <li className={cx("help-item")}>
                 Click chọn câu mô tả đặc điểm phù hợp với mình
               </li>
-              <li className={cx("help-item")}>Bạn chỉ có thể chọn một đáp án</li>
+              <li className={cx("help-item")}>
+                Bạn chỉ có thể chọn một đáp án
+              </li>
               <li className={cx("help-item")}>
                 Không cần suy nghĩ quá nhiều khi lựa chọn câu trả lời
               </li>

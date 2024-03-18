@@ -132,16 +132,17 @@ const total = {
   conventional,
 };
 const quiz = Object.entries(total).reduce((acc, [key, value]) => {
+  const obj = {name: key};
   const array = value.map((item) => {
     return {
       id: index++,
       ques: item,
-      ansList: [...answer],
-      group: key,
+      ansList: [...answer]
     };
   });
+  obj.quesList = array;
 
-  return [...acc, ...array];
+  return [...acc, obj];
 }, []);
 
 export default quiz;

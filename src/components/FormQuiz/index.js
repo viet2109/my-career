@@ -25,6 +25,7 @@ function FormQuiz(props) {
   const formRef = useRef(null);
   const questionList = quiz;
   const submitBtn = useRef(null);
+
   const [isDisabledSubmit, setIsDisabledsubmit] = useState(true);
   const initData = useCallback(() => {
     const initialPageDisabled = {};
@@ -38,7 +39,18 @@ function FormQuiz(props) {
 
   const [pageDisabled, setPageDisabled] = useState(initData());
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const inputRef = questionList.map(() => useRef(null));
+  const initInput = useCallback(() => {
+    const result = [];
+    questionList.forEach((ques) => {
+      ques.quesList.forEach(() => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        result.push(useRef(null));
+      });
+    });
+    return result;
+  }, [questionList]);
+
+  const [inputRef, setInputRef] = useState(initInput());
 
   const handleSubmit = (e) => {
     // eslint-disable-next-line no-restricted-globals
@@ -86,51 +98,74 @@ function FormQuiz(props) {
           {questionList.map((ques, index) => {
             return (
               <SwiperSlide key={index}>
-                <div className={cx("form-group")}>
-                  <p className={cx("ques")}>
-                    <strong>
-                      <span>Câu {index + 1}:</span>&nbsp;{ques.ques}
-                    </strong>
-                  </p>
-                  <input
-                    ref={inputRef[index]}
-                    type="hidden"
-                    name={ques.group}
-                  />
+                {ques.quesList.map((q, i, orgArr) => {
+                  return (
+                    <div key={i}>
+                      <div className={cx("form-group")}>
+                        <input
+                          ref={inputRef[index * orgArr.length + i]}
+                          type="hidden"
+                          name={ques.name}
+                          id={`${index}-${i}`}
+                        />
+                        <p className={cx("ques")}>
+                          <strong>
+                            <span>Câu {index * orgArr.length + i + 1}:</span>
+                            &nbsp;
+                            {q.ques} <span style={{color: '#ec1b30', textDecoration: 'none'}}>*</span>
+                          </strong>
+                        </p>
 
-                  <div className={cx("input-wrapper")}>
-                    {ques.ansList?.map((ans, i) => {
-                      return (
-                        <div key={i} className={cx("input")}>
-                          <input
-                            id={index + "-" + i}
-                            name={ques.group + "-" + index}
-                            type="radio"
-                            value={ans.point}
-                            onChange={(e) => {
-                              inputRef[index].current.value = e.target.value;
-                              if (currentQuiz === questionList.length) {
-                                setIsDisabledsubmit(false);
-                              }
+                        <div className={cx("input-wrapper")}>
+                          {q.ansList?.map((ans, ansI) => {
+                            return (
+                              <div key={ansI} className={cx("input")}>
+                                <input
+                                  id={`${index}-${i}-${ansI}`}
+                                  name={`${index}-${i}`}
+                                  type="radio"
+                                  value={ans.point}
+                                  onChange={(e) => {
+                                    inputRef[
+                                      index * orgArr.length + i
+                                    ].current.value = e.target.value;
 
-                              setPageDisabled((prev) => {
-                                const newObj = {
-                                  ...prev,
-                                  [currentQuiz]:
-                                    currentQuiz === questionList.length ||
-                                    false,
-                                };
+                                    if (currentQuiz === questionList.length) {
+                                      setIsDisabledsubmit(false);
+                                    }
 
-                                return newObj;
-                              });
-                            }}
-                          />
-                          <label htmlFor={index + "-" + i}>{ans.ans}</label>
+                                    setPageDisabled((prev) => {
+                                      const newObj = {
+                                        ...prev,
+                                        [currentQuiz]:
+                                          currentQuiz === questionList.length ||
+                                          inputRef
+                                            .slice(
+                                              index * orgArr.length,
+                                              index * orgArr.length +
+                                                orgArr.length
+                                            )
+                                            .some(
+                                              (value) => !value.current.value
+                                            ),
+                                      };
+
+                                      return newObj;
+                                    });
+                                  }}
+                                />
+                                <label htmlFor={`${index}-${i}-${ansI}`}>
+                                  {ans.ans}
+                                </label>
+                              </div>
+                            );
+                          })}
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                      </div>
+                      { i === orgArr.length -1 ||  <br></br>}
+                    </div>
+                  );
+                })}
               </SwiperSlide>
             );
           })}

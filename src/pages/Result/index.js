@@ -127,6 +127,7 @@ function Result(props) {
                             {jugeResult[skill.name].group} (
                             {skill.name.charAt(0).toUpperCase()})
                           </label>
+                          {`${skill.value}/ ${skill.maxValue}`}
                           <div className={cx("progress")}>
                             <progress
                               style={{
@@ -135,18 +136,7 @@ function Result(props) {
                               value={skill.value}
                               max={skill.maxValue}
                             ></progress>
-                            {skill.value === 0 || (
-                              <div
-                                style={{
-                                  "--width": `${
-                                    Math.round((skill.value / skill.maxValue) * 100)
-                                  }%`,
-                                }}
-                                className={cx("per")}
-                              >
-                                {Math.round((skill.value / skill.maxValue) * 100)}%
-                              </div>
-                            )}
+                            
                             <ul className={cx("percent")}>
                               <li>0%</li>
                               <li>25%</li>
