@@ -79,6 +79,12 @@
         }
       }
     }
+
+    .title-group {
+      text-transform: capitalize;
+      margin: 10px 0 13px ;
+      font-size: 17px;
+    }
   }
   .paginate {
     display: flex;

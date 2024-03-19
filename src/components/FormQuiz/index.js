@@ -13,6 +13,7 @@ import { quizCal } from "~/redux/request";
 import Button from "../Button";
 import styles from "./FormQuiz.module.scss";
 import quiz from "~/api/fakeQuizAPI";
+import { jugeResult } from "~/api/jugeResultHolland";
 
 FormQuiz.propTypes = {};
 
@@ -98,72 +99,87 @@ function FormQuiz(props) {
           {questionList.map((ques, index) => {
             return (
               <SwiperSlide key={index}>
+                <h4 className={cx("title-group")}>{`Nhóm ${
+                  jugeResult[ques.name].group
+                } (${ques.name} - ${ques.name.charAt(0)})`}</h4>
+
                 {ques.quesList.map((q, i, orgArr) => {
                   return (
-                    <div key={i}>
-                      <div className={cx("form-group")}>
-                        <input
-                          ref={inputRef[index * orgArr.length + i]}
-                          type="hidden"
-                          name={ques.name}
-                          id={`${index}-${i}`}
-                        />
-                        <p className={cx("ques")}>
-                          <strong>
-                            <span>Câu {index * orgArr.length + i + 1}:</span>
-                            &nbsp;
-                            {q.ques} <span style={{color: '#ec1b30', textDecoration: 'none'}}>*</span>
-                          </strong>
-                        </p>
+                    <>
+                      <div key={i}>
+                        <div className={cx("form-group")}>
+                          <input
+                            ref={inputRef[index * orgArr.length + i]}
+                            type="hidden"
+                            name={ques.name}
+                            id={`${index}-${i}`}
+                          />
+                          <p className={cx("ques")}>
+                            <strong>
+                              <span>Câu {index * orgArr.length + i + 1}:</span>
+                              &nbsp;
+                              {q.ques}{" "}
+                              <span
+                                style={{
+                                  color: "#ec1b30",
+                                  textDecoration: "none",
+                                }}
+                              >
+                                *
+                              </span>
+                            </strong>
+                          </p>
 
-                        <div className={cx("input-wrapper")}>
-                          {q.ansList?.map((ans, ansI) => {
-                            return (
-                              <div key={ansI} className={cx("input")}>
-                                <input
-                                  id={`${index}-${i}-${ansI}`}
-                                  name={`${index}-${i}`}
-                                  type="radio"
-                                  value={ans.point}
-                                  onChange={(e) => {
-                                    inputRef[
-                                      index * orgArr.length + i
-                                    ].current.value = e.target.value;
+                          <div className={cx("input-wrapper")}>
+                            {q.ansList?.map((ans, ansI) => {
+                              return (
+                                <div key={ansI} className={cx("input")}>
+                                  <input
+                                    id={`${index}-${i}-${ansI}`}
+                                    name={`${index}-${i}`}
+                                    type="radio"
+                                    value={ans.point}
+                                    onChange={(e) => {
+                                      inputRef[
+                                        index * orgArr.length + i
+                                      ].current.value = e.target.value;
 
-                                    if (currentQuiz === questionList.length) {
-                                      setIsDisabledsubmit(false);
-                                    }
+                                      if (currentQuiz === questionList.length) {
+                                        setIsDisabledsubmit(false);
+                                      }
 
-                                    setPageDisabled((prev) => {
-                                      const newObj = {
-                                        ...prev,
-                                        [currentQuiz]:
-                                          currentQuiz === questionList.length ||
-                                          inputRef
-                                            .slice(
-                                              index * orgArr.length,
-                                              index * orgArr.length +
-                                                orgArr.length
-                                            )
-                                            .some(
-                                              (value) => !value.current.value
-                                            ),
-                                      };
+                                      setPageDisabled((prev) => {
+                                        const newObj = {
+                                          ...prev,
+                                          [currentQuiz]:
+                                            currentQuiz ===
+                                              questionList.length ||
+                                            inputRef
+                                              .slice(
+                                                index * orgArr.length,
+                                                index * orgArr.length +
+                                                  orgArr.length
+                                              )
+                                              .some(
+                                                (value) => !value.current.value
+                                              ),
+                                        };
 
-                                      return newObj;
-                                    });
-                                  }}
-                                />
-                                <label htmlFor={`${index}-${i}-${ansI}`}>
-                                  {ans.ans}
-                                </label>
-                              </div>
-                            );
-                          })}
+                                        return newObj;
+                                      });
+                                    }}
+                                  />
+                                  <label htmlFor={`${index}-${i}-${ansI}`}>
+                                    {ans.ans}
+                                  </label>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
+                        {i === orgArr.length - 1 || <br></br>}
                       </div>
-                      { i === orgArr.length -1 ||  <br></br>}
-                    </div>
+                    </>
                   );
                 })}
               </SwiperSlide>
@@ -195,8 +211,7 @@ function FormQuiz(props) {
           max={questionList.length}
         ></progress>
         <span className={cx("label")}>
-          Tác giả câu hỏi trắc nghiệm: Th.S Trần Thị Thúy Lan và C.N Lê Thị
-          Hương Giang Đại Học RMIT Việt Nam
+          Tiến độ làm bài: {`${currentQuiz}/${quiz.length}`}
         </span>
       </div>
 
