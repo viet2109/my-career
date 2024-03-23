@@ -9,10 +9,15 @@ Button.propTypes = {
 const cx = classNames.bind(styles);
 
 function Button({children, to, className}) {
+
+    let Component = 'button';
+    if (to) {
+        Component = Link;
+    }
     return (
-        <Link className={cx('wrapper', className)} to={to}>
+        <Component className={cx('wrapper', className)} to={to}>
             {children}
-        </Link>
+        </Component>
     );
 }
 

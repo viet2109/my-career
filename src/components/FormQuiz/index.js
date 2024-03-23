@@ -75,6 +75,12 @@ function FormQuiz(props) {
     submitBtn.current?.click();
   };
 
+  const  swiperRef  = useRef(null);
+
+  const handleSwipperScroll = () => {
+    console.log(swiperRef.current);
+  }
+
   return (
     <div className={cx("wrapper")}>
       <form
@@ -86,6 +92,7 @@ function FormQuiz(props) {
         <Swiper
           allowTouchMove={false}
           slidesPerView={1}
+          ref={swiperRef}
           centeredSlides
           navigation={{
             prevEl: `.${cx("prev-btn")}`,
@@ -198,7 +205,7 @@ function FormQuiz(props) {
         </div>
 
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
-          <div className={cx("next-button")}>
+          <div className={cx("next-button")} onClick={handleSwipperScroll} >
             Câu hỏi tiếp theo
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
           </div>
