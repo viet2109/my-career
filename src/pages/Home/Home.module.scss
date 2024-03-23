@@ -283,7 +283,7 @@
             
 
             img {
-              scale: 0.7;
+              scale: 0.9;
             }
           }
         }
@@ -321,6 +321,20 @@
     .section-wrapper {
       section {
         max-width: 1320px;
+      }
+      .advise {
+        .adviser-list {
+          .adviser {
+            
+
+            img {
+              scale: 0.7;
+            }
+          }
+        }
+        .button {
+          width: 50%;
+        }
       }
       .quiz {
         .content {
