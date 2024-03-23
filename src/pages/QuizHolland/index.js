@@ -1,8 +1,10 @@
 import classNames from "classnames/bind";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "~/components/Button";
 import FormQuiz from "~/components/FormQuiz";
 import styles from "./QuizHolland.module.scss";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 QuizHolland.propTypes = {};
 
@@ -11,11 +13,18 @@ const cx = classNames.bind(styles);
 function QuizHolland(props) {
   const form = useRef(null);
   const tutorial = useRef(null);
+  const user = useSelector((state) => state.auth.login.currentUser);
+  const navigate = useNavigate();
 
   const handleStartDoExBtn = () => {
+    if (user === null) {
+      navigate("/dang-nhap");
+      return;
+    }
     tutorial.current?.classList.add(cx("disabled"));
     form.current?.classList.add(cx("enabled"));
   };
+
   return (
     <section className={cx("wrapper")}>
       <div className={cx("container")}>
@@ -42,12 +51,11 @@ function QuizHolland(props) {
               <strong>TRONG</strong> Chọn câu trả lời này đến với mình nhanh và
               tự nhiên nhất. Càng suy nghĩ thì càng không tốt vì lúc ấy người
               thực hiện đang suy tính và dùng lý trí để trả lời.
-              <br></br> 
+              <br></br>
               Nắm bắt các lựa chọn trong từng câu mô tả bao gồm:
               <br></br>• Có: Tôi "có" sở thích ở câu mô tả này
               <br></br>• Không: Tôi "không" có sở thích ở câu mô tả này.
-              <br></br>•  Không rõ: Tôi "không hiểu" câu mô tả này.
-              
+              <br></br>• Không rõ: Tôi "không hiểu" câu mô tả này.
             </p>
             <div className={cx("logo")}>
               <img
@@ -56,7 +64,7 @@ function QuizHolland(props) {
               />
             </div>
           </div>
-          
+
           <ul className={cx("tutorial")}>
             <li className={cx("title")}>CÁC BƯỚC LÀM TRẮC NGHIỆM</li>
             <li className={cx("step")}>

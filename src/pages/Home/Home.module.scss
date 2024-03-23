@@ -58,22 +58,33 @@
       .adviser-list {
         display: flex;
         flex-wrap: wrap;
-        padding: 0 35px;
+        justify-content: center;
+ 
+   
         row-gap: 60px;
         .adviser {
           position: relative;
-          width: 100%;
+          width: 260px;
+          height: 380px;
           display: flex;
           flex-direction: column;
+          justify-content: flex-end;
           align-items: center;
+          background: linear-gradient(
+            0deg,
+            var(--color-from) 0%,
+            var(--color-to) 100%
+          );
+          border-radius: 30px;
+        
+    
 
           img {
-            padding: 35px;
-            padding-bottom: 0;
-            background: linear-gradient(0deg, var(--color-from) 0%, var(--color-to) 100%);
-            border-radius: 30px;
-            height: 100%;
-            object-fit: cover;
+            
+       
+            scale: 0.7;
+            transform-origin: bottom;
+            
           }
           p {
             color: var(--red);
@@ -179,12 +190,14 @@
       .advise {
         .adviser-list {
           padding: 0;
+         
+         column-gap: 18px;
           .adviser {
-            width: 50%;
+            width: 48%;
             padding: 0 20px;
             img {
-              padding: 30px;
-              padding-bottom: 0;
+       
+             scale: 1;
             }
             p {
               font-size: 18px;
@@ -202,6 +215,18 @@
       section {
         max-width: 740px;
       }
+      .advise {
+        .adviser-list {
+          .adviser {
+           
+
+            img {
+              scale: 0.7;
+            }
+          }
+        }
+       
+      }
     }
   }
 }
@@ -215,9 +240,10 @@
       .advise {
         .adviser-list {
           .adviser {
-            width: 25%;
+            width: 23%;
 
             img {
+              scale: 1;
             }
           }
         }
@@ -250,6 +276,20 @@
         max-width: 1140px;
         padding-top: 50px;
         padding-bottom: 50px;
+      }
+      .advise {
+        .adviser-list {
+          .adviser {
+            
+
+            img {
+              scale: 0.7;
+            }
+          }
+        }
+        .button {
+          width: 50%;
+        }
       }
       .quiz {
         flex-direction: row;
