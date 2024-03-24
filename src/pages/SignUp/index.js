@@ -9,6 +9,7 @@ import AuthForm from "~/components/AuthForm";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button";
+import Loading from "~/components/Loading";
 
 SignUp.propTypes = {};
 
@@ -42,8 +43,10 @@ function SignUp(props) {
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error)
   const isFetching = useSelector(state => state.auth.isFetching)
+  console.log(isFetching)
   return (
     <>
+    <Loading text="Đang đăng kí..." isLoading={isFetching}/>
       <AuthForm>
         <Formik
           initialValues={{
@@ -59,6 +62,7 @@ function SignUp(props) {
               name: values.name,
               email: values.email,
               password: values.password,
+              phoneNumber: values.tel,
             };
             registerNewUser(userInfo, dispatch, navigate);
           }}

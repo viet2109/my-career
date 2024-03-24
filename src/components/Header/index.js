@@ -1,14 +1,15 @@
 import Tippy, { tippy } from "@tippyjs/react";
 import classNames from "classnames/bind";
 import { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "tippy.js/animations/perspective.css";
 import "tippy.js/dist/tippy.css";
 import images from "~/assets/images";
 import routes from "~/config/routes";
 import MenuButton from "../MenuButton";
 import Popper from "../Popper";
+import { logOutUser } from "~/redux/request";
 import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
 
@@ -23,9 +24,15 @@ function Header({ className }) {
   const user = useSelector((state) => state.auth.login.currentUser);
   const nav = useRef(null);
   const menuButton = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleOnclick = (e) => {
   
     menuButton.current.firstChild.click();
+  }
+
+  const handleLogout = () => {
+    logOutUser(user.token, dispatch, navigate);
   }
 
   
@@ -141,9 +148,9 @@ function Header({ className }) {
               </li>
             </ul>
 
-            <Link to={user ? "/" : routes.signin} className={cx("user-login")}>
+            <Link to={user ? "/" : routes.signin} className={cx("user-login")} >
               <img src={images["user-avatar"]} alt="avatar" />
-              {user ? <span>Hồ sơ</span> : <span>Đăng nhập</span>}
+              {user ? <span onClick={handleLogout}>Đăng xuất</span> : <span>Đăng nhập</span>}
             </Link>
           </nav>
         </Tippy>

@@ -2,12 +2,14 @@ import classNames from "classnames/bind";
 import * as yup from "yup";
 import AuthForm from "~/components/AuthForm";
 import styles from "./SignIn.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "~/redux/request";
 import { Form, Formik, FastField } from "formik";
 import InputField from "~/components/InputField";
 import Button from "~/components/Button";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "~/components/Loading";
 
 SignIn.propTypes = {};
 
@@ -18,10 +20,13 @@ const LoginSchema = yup.object().shape({
   password: yup.string().required("Bạn cần nhập mật khẩu"),
 });
 function SignIn(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error)
   const isFetching = useSelector(state => state.auth.isFetching)
   return (
     <>
+    <Loading text="Đang đăng nhập..." isLoading={isFetching}/>
       <AuthForm>
         <Formik
           initialValues={{
@@ -29,7 +34,13 @@ function SignIn(props) {
             password: "",
           }}
           validationSchema={LoginSchema}
-          onSubmit={(user) => {}}
+          onSubmit={(values) => {
+            const userInfo = {
+              email: values.email,
+              password: values.password,
+            };
+            loginUser(userInfo, dispatch, navigate);
+          }}
         >
           {({ errors, touched }) => (
             <Form className={cx("form-login", classNames)}>
