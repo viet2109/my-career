@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button";
 import Loading from "~/components/Loading";
+import config from "~/config";
 
 SignUp.propTypes = {};
 
@@ -151,7 +152,7 @@ function SignUp(props) {
 
               <div className={cx("login-back-wrapper")}>
                 Đã có tài khoản?{" "}
-                <Link className={cx("login-back")} to={"/dang-nhap"}>
+                <Link className={cx("login-back")} to={config.routes.signin}>
                   Đăng nhập ngay
                 </Link>
               </div>

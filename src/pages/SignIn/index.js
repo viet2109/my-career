@@ -9,6 +9,7 @@ import InputField from "~/components/InputField";
 import Button from "~/components/Button";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import config from "~/config";
 import Loading from "~/components/Loading";
 
 SignIn.propTypes = {};
@@ -102,7 +103,7 @@ function SignIn(props) {
 
               <p className={cx("signup-link")}>
                 Bạn chưa có tài khoản?{" "}
-                <Link className={cx("link")} to={"/dang-ki"}>
+                <Link className={cx("link")} to={config.routes.signup}>
                   Đăng kí ngay
                 </Link>
               </p>
