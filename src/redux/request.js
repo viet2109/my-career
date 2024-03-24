@@ -11,6 +11,7 @@ import {
     registerSuccess,
 } from "./authSlice";
 import { resultCal } from "./quizHollandSlice";
+import config from "~/config";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
@@ -38,7 +39,7 @@ export const  registerNewUser = async (user, dispatch, navigate) => {
   try {
     const res = await ax.post("auth/register", user);
     dispatch(registerSuccess(res.data));
-    navigate("/");
+    navigate(config.routes.home);
     const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse"
     const formData = new FormData();
     formData.append("entry.193002949", user.name);
