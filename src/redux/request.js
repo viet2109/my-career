@@ -28,7 +28,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     const res = await ax.post("auth/login", user);
 
     dispatch(loginSuccess(res.data));
-    navigate("/");
+    navigate(config.routes.home);
   } catch (error) {
     dispatch(loginFailed());
   }
