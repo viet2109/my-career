@@ -34,10 +34,6 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
-      state.login.currentUser = {
-        ...action.payload.data,
-        token: action.payload.token,
-      };
       state.error = false;
       state.success = true;
     },
