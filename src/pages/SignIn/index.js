@@ -27,7 +27,7 @@ function SignIn(props) {
   const isFetching = useSelector(state => state.auth.isFetching)
   return (
     <>
-    <Loading text="Đang đăng nhập..." isLoading={isFetching}/>
+    <Loading text="Login..." isLoading={isFetching}/>
       <AuthForm>
         <Formik
           initialValues={{
