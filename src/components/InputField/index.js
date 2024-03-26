@@ -1,7 +1,4 @@
-import {
-  faEye,
-  faEyeSlash
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { useRef } from "react";
@@ -12,11 +9,13 @@ InputField.propTypes = {};
 const cx = classNames.bind(styles);
 
 function InputField(props) {
-  const { type, label, field, children } = props;
+  const { type, label, field, children,id, className, list } = props;
+
   const { name } = field;
   const inputRef = useRef(null);
   const labelRef = useRef(null);
 
+  console.log(list);
   const handleShowHidePass = (e) => {
     e.currentTarget.classList.toggle(`${cx("active")}`);
     inputRef.current.type = e.currentTarget.classList.contains(
@@ -27,6 +26,7 @@ function InputField(props) {
   };
 
   const handleOnFocus = (e) => {
+    if (labelRef.current === null) return;
     if (e.target.value === "") {
       labelRef.current.style.top = "0";
       labelRef.current.style.zIndex = "0";
@@ -43,6 +43,7 @@ function InputField(props) {
   };
 
   const handleOnBlur = (e) => {
+    if (labelRef.current === null) return;
     if (e.target.value === "") {
       labelRef.current.style.top = "50%";
       labelRef.current.style.zIndex = "-1";
@@ -61,12 +62,14 @@ function InputField(props) {
     <div className={cx("input-wrapper")}>
       <div className={cx("input-relative")}>
         <input
-          className={cx("input", {
+          id={id}
+          className={cx("input", className, {
             error: children,
           })}
           name={name}
           ref={inputRef}
           type={type}
+          list={`list-${name}`}
           {...field}
           onBlur={(e) => {
             handleOnBlur(e);
@@ -75,16 +78,22 @@ function InputField(props) {
             handleOnFocus(e);
           }}
         />
-
-        <label
-          className={cx("label", { error: children, date: type === "date" })}
-          ref={labelRef}
-          onClick={(e) => {
-            handleOnFocus(e);
-          }}
-        >
-          {label}
-        </label>
+        {list && <datalist id={`list-${name}`}>
+          {list.map(listItem => (
+            <option value={listItem}>{listItem}</option>
+          ))}
+        </datalist>}
+        {label && (
+          <label
+            className={cx("label", { error: children, date: type === "date" })}
+            ref={labelRef}
+            onClick={(e) => {
+              handleOnFocus(e);
+            }}
+          >
+            {label}
+          </label>
+        )}
 
         {name.toLowerCase().includes("password") && (
           <div

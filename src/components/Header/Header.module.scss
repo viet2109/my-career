@@ -104,6 +104,7 @@
     }
 
     .user-login {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -114,6 +115,39 @@
       }
       img {
         width: fit-content;
+      }
+      .popper {
+        box-shadow: 0 2px 12px 0 rgba(153, 153, 153, 0.45);
+        .link-wrapper {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          column-gap: 10px;
+          padding: 20px;
+          transition: all 0.4s ease-in-out;
+          color: var(--red);
+          &.signup {
+            border-top: 1px solid var(--red);
+          }
+          &:hover {
+            background-color: var(--red);
+            color: var(--white);
+            span {
+              color: var(--white);
+            }
+          }
+          span {
+          transition: all 0.4s ease-in-out;
+
+          }
+          .icon {
+            width: 18px;
+            height: 18px;
+      
+            
+
+          }
+        }
       }
     }
   }
@@ -182,6 +216,7 @@
       }
 
       .user-login {
+        
         span {
           display: block;
         }

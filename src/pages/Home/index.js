@@ -1,11 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames/bind";
-import styles from "./Home.module.scss";
+import images from "~/assets/images";
 import Button from "~/components/Button";
 import routes from "~/config/routes";
-import Popper from "~/components/Popper";
-import images from "~/assets/images";
+import styles from "./Home.module.scss";
 
 Home.propTypes = {};
 

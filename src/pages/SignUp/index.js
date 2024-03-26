@@ -44,7 +44,7 @@ function SignUp(props) {
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error)
   const isFetching = useSelector(state => state.auth.isFetching)
-  console.log(isFetching)
+
   return (
     <>
     <Loading text="Đang đăng kí..." isLoading={isFetching}/>

@@ -98,3 +98,45 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+
+input[type="radio"],input[type="checkbox"] {
+  padding: 0;
+  height: 1px;
+  width: 1px;
+  margin-bottom: 0;
+
+  position: relative;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    border: 1px solid #e1e1e1;
+    background: #f0f0f0;
+    z-index: 2;
+  }
+
+  &:checked {
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      -webkit-transform: translateY(-50%) rotate(45deg);
+      -moz-transform: translateY(-50%) rotate(45deg);
+      width: 5px;
+      height: 9px;
+      border: solid red;
+      border-width: 0 2px 2px 0;
+      z-index: 3;
+    }
+  }
+}

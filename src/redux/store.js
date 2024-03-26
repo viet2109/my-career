@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   quiz: persistReducer(quizHollandPersistConfig, quizHollandReducer),
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const persistor = persistStore(store);
 
 export { store, persistor };
