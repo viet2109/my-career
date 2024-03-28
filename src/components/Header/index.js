@@ -25,10 +25,14 @@ function Header({ className }) {
   const menuButton = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user_login = useRef(null);
   const handleOnclick = (e) => {
     menuButton.current.firstChild.click();
+    console.log(user_login.current);
   };
-  const user_login = useRef(null);
+  const handleOnClickOutside = (e) => {
+    user_login.current?.click();
+  };
 
   const handleLogout = () => {
     logOutUser(user.token, dispatch, navigate);
@@ -144,36 +148,43 @@ function Header({ className }) {
             </ul>
 
             {user ? (
-              <div ref={user_login} className={cx("user-login")}>
-                <Tippy
-                  interactive
-                  arrow={false}
-                  
-                  content={
-                    <Popper className={cx("popper")}>
+              <Tippy
+                interactive
+                arrow={false}
+                reference={user_login}
+                trigger="click"
+                hideOnClick="toggle"
+                onClickOutside={handleOnClickOutside}
+                content={
+                  <Popper className={cx("popper")}>
+                    <div onClick={handleOnClickOutside}>
                       <Link to={routes.profile} className={cx("link-wrapper")}>
                         <FontAwesomeIcon icon={faUser} className={cx("icon")} />
                         <span>Hồ sơ</span>
                       </Link>
-                      <Link
-                        to={routes.signup}
-                        className={cx("link-wrapper", "signup")}
-                      >
-                        <FontAwesomeIcon
-                          icon={faRightFromBracket}
-                          className={cx("icon")}
-                        />
-                        <span onClick={handleLogout}>Đăng xuất</span>
-                      </Link>
-                    </Popper>
-                  }
-                >
-                  <div className={cx('user-login')}>
-                    <img src={images["user-avatar"]} alt="avatar" />
-                    {user ? <span>{user.name}</span> : <span>Đăng nhập</span>}
-                  </div>
-                </Tippy>
-              </div>
+                    </div>
+
+                    <div
+                      className={cx("link-wrapper", "signup")}
+                      onClick={(e) => {
+                        handleOnClickOutside(e);
+                        handleLogout(e);
+                      }}
+                    >
+                      <FontAwesomeIcon
+                        icon={faRightFromBracket}
+                        className={cx("icon")}
+                      />
+                      <span>Đăng xuất</span>
+                    </div>
+                  </Popper>
+                }
+              >
+                <div ref={user_login} className={cx("user-login")}>
+                  <img src={images["user-avatar"]} alt="avatar" />
+                  {user ? <span>{user.name}</span> : <span>Đăng nhập</span>}
+                </div>
+              </Tippy>
             ) : (
               <Link to={routes.signin} className={cx("user-login")}>
                 <img src={images["user-avatar"]} alt="avatar" />

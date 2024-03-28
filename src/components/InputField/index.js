@@ -15,7 +15,6 @@ function InputField(props) {
   const inputRef = useRef(null);
   const labelRef = useRef(null);
 
-  console.log(list);
   const handleShowHidePass = (e) => {
     e.currentTarget.classList.toggle(`${cx("active")}`);
     inputRef.current.type = e.currentTarget.classList.contains(
@@ -79,8 +78,8 @@ function InputField(props) {
           }}
         />
         {list && <datalist id={`list-${name}`}>
-          {list.map(listItem => (
-            <option value={listItem}>{listItem}</option>
+          {list.map((listItem, index) => (
+            <option key={index} value={listItem}>{listItem}</option>
           ))}
         </datalist>}
         {label && (

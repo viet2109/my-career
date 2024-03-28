@@ -30,6 +30,8 @@ const SignupSchema = yup.object().shape({
     .required("Bạn cần nhập địa chỉ email")
     .email("Địa chỉ email không hợp lệ"),
 
+  futureSchool: yup.string(),
+
   password: yup
     .string()
     .required("Bạn cần nhập mật khẩu")
@@ -42,18 +44,18 @@ const SignupSchema = yup.object().shape({
 function SignUp(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error)
-  const isFetching = useSelector(state => state.auth.isFetching)
+  const error = useSelector((state) => state.auth.error);
+  const isFetching = useSelector((state) => state.auth.isFetching);
 
   return (
     <>
-    <Loading text="Đang đăng kí..." isLoading={isFetching}/>
+      <Loading text="Đang đăng kí..." isLoading={isFetching} />
       <AuthForm>
         <Formik
           initialValues={{
             name: "",
             tel: "",
-            email: "",
+            futureSchool: "",
             password: "",
             confirmPassword: "",
           }}
@@ -61,7 +63,7 @@ function SignUp(props) {
           onSubmit={(values) => {
             const userInfo = {
               name: values.name,
-              email: values.email,
+              futureSchool: values.futureSchool,
               password: values.password,
               phoneNumber: values.tel,
             };
@@ -85,19 +87,6 @@ function SignUp(props) {
               </FastField>
 
               <FastField
-                error={errors.email && touched.email}
-                name="email"
-                label="Email"
-                component={InputField}
-              >
-                {errors.email && touched.email ? (
-                  <div style={{ color: "red", fontSize: "12px" }}>
-                    {errors.email}
-                  </div>
-                ) : null}
-              </FastField>
-
-              <FastField
                 error={errors.tel && touched.tel}
                 name="tel"
                 label="Số điện thoại"
@@ -109,22 +98,32 @@ function SignUp(props) {
                   </div>
                 ) : null}
               </FastField>
+              <FastField
+                error={errors.email && touched.email}
+                name="futureSchool"
+                label="Bạn dự định thi trường nào"
+                component={InputField}
+              >
+                {errors.futureSchool && touched.futureSchool ? (
+                  <div style={{ color: "red", fontSize: "12px" }}>
+                    {errors.futureSchool}
+                  </div>
+                ) : null}
+              </FastField>
 
-              
-                <FastField
-                  error={errors.password && touched.password}
-                  name="password"
-                  label="Mật khẩu"
-                  component={InputField}
-                  type="password"
-                >
-                  {errors.password && touched.password ? (
-                    <div style={{ color: "red", fontSize: "12px" }}>
-                      {errors.password}
-                    </div>
-                  ) : null}
-                </FastField>
-           
+              <FastField
+                error={errors.password && touched.password}
+                name="password"
+                label="Mật khẩu"
+                component={InputField}
+                type="password"
+              >
+                {errors.password && touched.password ? (
+                  <div style={{ color: "red", fontSize: "12px" }}>
+                    {errors.password}
+                  </div>
+                ) : null}
+              </FastField>
 
               <FastField
                 error={errors.confirmPassword && touched.confirmPassword}

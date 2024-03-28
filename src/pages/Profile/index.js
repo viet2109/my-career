@@ -84,11 +84,11 @@ const userSchema = yup.object().shape({
       /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/,
       "Số điện thoại không đúng"
     ),
-  email: yup.string().email("Địa chỉ email không hợp lệ"),
   class: yup.string(),
   other: yup.string(),
   school: yup.string(),
-  province: yup.string().oneOf(provinces, "Tỉnh/Thành phố không hợp lệ")
+  province: yup.string().oneOf(provinces, "Tỉnh/Thành phố không hợp lệ"),
+  futureSchool: yup.string(),
 });
 
 const cx = classNames.bind(styles);
@@ -116,12 +116,12 @@ function Profile(props) {
           initialValues={{
             name: user.name || "",
             tel: user.phoneNumber || "",
-            email: user.email || "",
             sex: user.sex || "",
             class: user.class || "",
             other: user.other || "",
             school: user.school || "",
             province: user.province || "",
+            futureSchool: user.futureSchool || "",
           }}
           validationSchema={userSchema}
           onSubmit={(values) => {
@@ -210,17 +210,17 @@ function Profile(props) {
                 </FastField>
               </div>
               <div className={cx("input-wrapper")}>
-                <p className={cx("label")}>Email:</p>
+                <p className={cx("label")}>Bạn dự định thi trường nào:</p>
                 <FastField
                   className={cx("input-field")}
-                  error={errors.email && touched.email}
-                  name="email"
+                  error={errors.futureSchool && touched.futureSchool}
+                  name="futureSchool"
                   type="text"
                   component={InputField}
                 >
-                  {errors.email && touched.email ? (
+                  {errors.futureSchool && touched.futureSchool ? (
                     <div style={{ color: "red", fontSize: "12px" }}>
-                      {errors.email}
+                      {errors.futureSchool}
                     </div>
                   ) : null}
                 </FastField>
@@ -301,7 +301,7 @@ function Profile(props) {
                 </FastField>
               </div>
               <div className={cx("input-wrapper")}>
-                <p className={cx("label")}>Trường:</p>
+                <p className={cx("label")}>Trường học hiện tại:</p>
                 <FastField
                   className={cx("input-field")}
                   error={errors.school && touched.school}
@@ -316,6 +316,7 @@ function Profile(props) {
                   ) : null}
                 </FastField>
               </div>
+
               <div className={cx("input-wrapper")}>
                 <p className={cx("label")}>Tỉnh/Thành phố:</p>
                 <FastField
@@ -334,7 +335,9 @@ function Profile(props) {
                 </FastField>
               </div>
               <div className={cx("button-wrapper")}>
-                <Button to={routes.home} className={cx("button")}>Quay về</Button>
+                <Button to={routes.home} className={cx("button")}>
+                  Quay về
+                </Button>
                 <Button type={"submit"} className={cx("button")}>
                   Cập nhật hồ sơ
                 </Button>
