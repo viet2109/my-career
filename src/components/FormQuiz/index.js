@@ -37,6 +37,8 @@ function FormQuiz(props) {
     return initialPageDisabled;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const nextEl = useRef(null);
+  const prevEl = useRef(null);
 
   const [pageDisabled, setPageDisabled] = useState(initData());
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -95,8 +97,8 @@ function FormQuiz(props) {
           ref={swiperRef}
           centeredSlides
           navigation={{
-            prevEl: `.${cx("prev-btn")}`,
-            nextEl: `.${cx("next-button")}`,
+            prevEl: prevEl.current,
+            nextEl: nextEl.current,
           }}
           modules={[Navigation]}
           onSlideChange={(e) => {
@@ -195,14 +197,14 @@ function FormQuiz(props) {
 
       <div className={cx("paginate")}>
         <div className={cx({ disabled: currentQuiz <= 1 })}>
-          <div className={cx("prev-btn")}>
+          <div ref={prevEl} className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
             Câu hỏi trước
           </div>
         </div>
 
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
-          <div className={cx("next-button")} onClick={handleSwipperScroll}>
+          <div ref={nextEl} className={cx("next-button")} onClick={handleSwipperScroll}>
             Câu hỏi tiếp theo
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
           </div>
