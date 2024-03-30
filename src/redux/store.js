@@ -15,7 +15,7 @@ const authPersistConfig = {
 };
 
 const apiGeneralPersistConfig = {
-  key: "api",
+  key: "apiGeneral",
   storage: storage,
   blacklist: ["isFetching", "error", "success"],
 };

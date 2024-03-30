@@ -18,36 +18,28 @@ const authSlice = createSlice({
     },
 
     registerSuccess: (state, action) => {
-      
       state.isSignUp = true;
     },
 
     logOutSuccess: (state, action) => {
-      
       state.login.currentUser = null;
     },
     updateUserSuccess: (state, action) => {
-      
       state.login.currentUser = {
         ...state.login.currentUser,
         ...action.payload,
       };
     },
-    getCurrentUserSucess: (state, action) => {
-      
-      
-    },
+    getCurrentUserSucess: (state, action) => {},
   },
 });
 
 export const {
   loginSuccess,
-
   registerSuccess,
-
   logOutSuccess,
   updateUserSuccess,
-  getCurrentUserSucess
+  getCurrentUserSucess,
 } = authSlice.actions;
 
 export default authSlice.reducer;

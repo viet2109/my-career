@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const apiGeneralSlice = createSlice({
-  name: "api",
+  name: "apiGeneral",
   initialState: {
     isFetching: false,
     error: false,
