@@ -34,7 +34,7 @@ function Result(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(initFullSkillList);
+
 
   const initPage = useCallback(() => {
     const result = Array.from({ length: numTop + 1 }, () => {

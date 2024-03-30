@@ -103,6 +103,7 @@ function FormQuiz(props) {
           modules={[Navigation]}
           onSlideChange={(e) => {
             setCurrentQuiz(e.realIndex + 1);
+            window.scrollTo(0, 0);
           }}
         >
           {questionList.map((ques, index) => {

@@ -45,11 +45,11 @@ function SignUp(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
-  const isFetching = useSelector((state) => state.auth.isFetching);
+
 
   return (
     <>
-      <Loading text="Đang đăng kí..." isLoading={isFetching} />
+
       <AuthForm>
         <Formik
           initialValues={{

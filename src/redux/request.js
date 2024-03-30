@@ -1,14 +1,14 @@
 import axios from "axios";
 import {
-    logOutFailed,
-    logOutStart,
-    logOutSuccess,
-    loginFailed,
-    loginStart,
-    loginSuccess,
-    registerFailed,
-    registerStart,
-    registerSuccess,
+  logOutFailed,
+  logOutStart,
+  logOutSuccess,
+  loginFailed,
+  loginStart,
+  loginSuccess,
+  registerFailed,
+  registerStart,
+  registerSuccess,
 } from "./authSlice";
 import { resultCal } from "./quizHollandSlice";
 import config from "~/config";
@@ -34,20 +34,21 @@ export const loginUser = async (user, dispatch, navigate) => {
   }
 };
 
-export const  registerNewUser = async (user, dispatch, navigate) => {
+export const registerNewUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
     const res = await ax.post("auth/register", user);
     dispatch(registerSuccess(res.data));
     navigate(config.routes.home);
-    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse"
+    const formUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse";
     const formData = new FormData();
     formData.append("entry.193002949", user.name);
     formData.append("entry.969596244", user.email);
     formData.append("entry.1385062621", user.phoneNumber);
     await fetch(formUrl, {
       method: "POST",
-      mode: 'no-cors',
+      mode: "no-cors",
       body: formData,
     });
   } catch (error) {

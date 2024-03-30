@@ -24,10 +24,10 @@ function SignIn(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error)
-  const isFetching = useSelector(state => state.auth.isFetching)
+
   return (
     <>
-    <Loading text="Login..." isLoading={isFetching}/>
+   
       <AuthForm>
         <Formik
           initialValues={{

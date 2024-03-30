@@ -79,6 +79,65 @@
       }
     }
   }
+
+  .result-grade {
+    width: 100%;
+    padding: 0 20px;
+    .title {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+      margin: 25px 0;
+    }
+    .progress-bar {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+      margin-bottom: 45px;
+      label {
+        text-transform: capitalize;
+      }
+      progress {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 25px;
+        width: 100%;
+        &::-webkit-progress-bar {
+          background-color: #f0f0f0;
+          border-radius: 6px;
+        }
+        &::-webkit-progress-value {
+          border-radius: 6px;
+          background-color: var(--color);
+        }
+      }
+
+      .progress {
+        position: relative;
+
+        .percent {
+          position: absolute;
+
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          font-size: 12px;
+        }
+
+        .per {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: grid;
+          place-items: center;
+          color: var(--white);
+
+          height: 25px;
+          text-align: center;
+          width: var(--width);
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 576px) {

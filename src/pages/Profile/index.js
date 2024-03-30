@@ -9,72 +9,74 @@ import InputField from "~/components/InputField";
 import { registerNewUser } from "~/redux/request";
 import styles from "./Profile.module.scss";
 import routes from "~/config/routes";
+import { useCallback, useState } from "react";
+import { jugeResult } from "~/api/jugeResultHolland";
 Profile.propTypes = {};
 
 const provinces = [
-  "Tiền Giang",
-  "Hưng Yên",
-  "Hà Nội",
-  "TP Hồ Chí Minh",
-  "Cà Mau",
-  "Đắc Lắc",
-  "Nam Định",
-  "Quảng Ninh",
-  "Đắk Nông",
-  "Đà Nẵng",
-  "Hải Dương",
-  "Long An",
-  "Bến Tre",
-  "Đồng Tháp",
-  "Vĩnh Long",
-  "Kiên Giang",
-  "Trà Vinh",
-  "Sóc Trăng",
-  "Bắc Ninh",
-  "Thanh Hoá",
-  "Vũng Tàu",
-  "Đồng Nai",
-  "Bình Dương",
-  "Thái Nguyên",
-  "Thái Bình",
-  "Cần Thơ",
-  "Nghệ An",
-  "Huế",
-  "Bình Phước",
-  "Quảng Nam",
-  "Quảng Ngãi",
-  "Ninh Thuận",
-  "Lào Cai",
-  "Hải Phòng",
-  "An Giang",
-  "Phú Thọ",
-  "Tây Ninh",
-  "Khánh Hòa",
-  "Phú Yên",
-  "Hòa Bình",
-  "Tuyên Quang",
-  "Lai Châu",
-  "Hậu Giang",
-  "Lâm Đồng",
-  "Lạng Sơn",
-  "Hà Nam",
-  "Bắc Cạn",
-  "Bình Định",
-  "Cao Bằng",
-  "Sơn La",
-  "Quảng Bình",
-  "Quảng Trị",
-  "Gia Lai",
-  "Bắc Giang",
-  "Hà Tĩnh",
-  "Ninh Bình",
-  "Bình Thuận",
-  "Kon Tum",
-  "Vĩnh Phúc",
-  "Bạc Liêu",
-  "Yên Bái",
-  "Điện Biên",
-  "Hà Giang",
+  { value: "Tiền Giang", label: "Tiền Giang" },
+  { value: "Hưng Yên", label: "Hưng Yên" },
+  { value: "Hà Nội", label: "Hà Nội" },
+  { value: "TP Hồ Chí Minh", label: "TP Hồ Chí Minh" },
+  { value: "Cà Mau", label: "Cà Mau" },
+  { value: "Đắc Lắc", label: "Đắc Lắc" },
+  { value: "Nam Định", label: "Nam Định" },
+  { value: "Quảng Ninh", label: "Quảng Ninh" },
+  { value: "Đắk Nông", label: "Đắk Nông" },
+  { value: "Đà Nẵng", label: "Đà Nẵng" },
+  { value: "Hải Dương", label: "Hải Dương" },
+  { value: "Long An", label: "Long An" },
+  { value: "Bến Tre", label: "Bến Tre" },
+  { value: "Đồng Tháp", label: "Đồng Tháp" },
+  { value: "Vĩnh Long", label: "Vĩnh Long" },
+  { value: "Kiên Giang", label: "Kiên Giang" },
+  { value: "Trà Vinh", label: "Trà Vinh" },
+  { value: "Sóc Trăng", label: "Sóc Trăng" },
+  { value: "Bắc Ninh", label: "Bắc Ninh" },
+  { value: "Thanh Hoá", label: "Thanh Hoá" },
+  { value: "Vũng Tàu", label: "Vũng Tàu" },
+  { value: "Đồng Nai", label: "Đồng Nai" },
+  { value: "Bình Dương", label: "Bình Dương" },
+  { value: "Thái Nguyên", label: "Thái Nguyên" },
+  { value: "Thái Bình", label: "Thái Bình" },
+  { value: "Cần Thơ", label: "Cần Thơ" },
+  { value: "Nghệ An", label: "Nghệ An" },
+  { value: "Huế", label: "Huế" },
+  { value: "Bình Phước", label: "Bình Phước" },
+  { value: "Quảng Nam", label: "Quảng Nam" },
+  { value: "Quảng Ngãi", label: "Quảng Ngãi" },
+  { value: "Ninh Thuận", label: "Ninh Thuận" },
+  { value: "Lào Cai", label: "Lào Cai" },
+  { value: "Hải Phòng", label: "Hải Phòng" },
+  { value: "An Giang", label: "An Giang" },
+  { value: "Phú Thọ", label: "Phú Thọ" },
+  { value: "Tây Ninh", label: "Tây Ninh" },
+  { value: "Khánh Hòa", label: "Khánh Hòa" },
+  { value: "Phú Yên", label: "Phú Yên" },
+  { value: "Hòa Bình", label: "Hòa Bình" },
+  { value: "Tuyên Quang", label: "Tuyên Quang" },
+  { value: "Lai Châu", label: "Lai Châu" },
+  { value: "Hậu Giang", label: "Hậu Giang" },
+  { value: "Lâm Đồng", label: "Lâm Đồng" },
+  { value: "Lạng Sơn", label: "Lạng Sơn" },
+  { value: "Hà Nam", label: "Hà Nam" },
+  { value: "Bắc Cạn", label: "Bắc Cạn" },
+  { value: "Bình Định", label: "Bình Định" },
+  { value: "Cao Bằng", label: "Cao Bằng" },
+  { value: "Sơn La", label: "Sơn La" },
+  { value: "Quảng Bình", label: "Quảng Bình" },
+  { value: "Quảng Trị", label: "Quảng Trị" },
+  { value: "Gia Lai", label: "Gia Lai" },
+  { value: "Bắc Giang", label: "Bắc Giang" },
+  { value: "Hà Tĩnh", label: "Hà Tĩnh" },
+  { value: "Ninh Bình", label: "Ninh Bình" },
+  { value: "Bình Thuận", label: "Bình Thuận" },
+  { value: "Kon Tum", label: "Kon Tum" },
+  { value: "Vĩnh Phúc", label: "Vĩnh Phúc" },
+  { value: "Bạc Liêu", label: "Bạc Liêu" },
+  { value: "Yên Bái", label: "Yên Bái" },
+  { value: "Điện Biên", label: "Điện Biên" },
+  { value: "Hà Giang", label: "Hà Giang" },
 ];
 const userSchema = yup.object().shape({
   name: yup.string(),
@@ -85,9 +87,12 @@ const userSchema = yup.object().shape({
       "Số điện thoại không đúng"
     ),
   class: yup.string(),
-  other: yup.string(),
+
   school: yup.string(),
-  province: yup.string().oneOf(provinces, "Tỉnh/Thành phố không hợp lệ"),
+  province: yup.string().oneOf(
+    provinces.map((province) => province.value),
+    "Tỉnh/Thành phố không hợp lệ"
+  ),
   futureSchool: yup.string(),
 });
 
@@ -95,7 +100,15 @@ const cx = classNames.bind(styles);
 function Profile(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const skills = useSelector((state) => state.quiz.result);
+  const initFullSkillList = useCallback(() => {
+    const maxSkills = Object.entries(skills)
+      .map(([key, value]) => ({ name: key, ...value }))
+      .sort((a, b) => b.value - a.value);
+    return maxSkills;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const [fullSkill] = useState(initFullSkillList());
   const user = useSelector((state) => state.auth.login.currentUser);
 
   return (
@@ -118,7 +131,6 @@ function Profile(props) {
             tel: user.phoneNumber || "",
             sex: user.sex || "",
             class: user.class || "",
-            other: user.other || "",
             school: user.school || "",
             province: user.province || "",
             futureSchool: user.futureSchool || "",
@@ -127,11 +139,15 @@ function Profile(props) {
           onSubmit={(values) => {
             const userInfo = {
               name: values.name,
-              email: values.email,
-              password: values.password,
-              phoneNumber: values.tel,
+              tel: values.tel,
+              sex: values.sex,
+              class: values.class,
+              school: values.school,
+              province: values.province,
+              futureSchool: values.futureSchool,
             };
-            registerNewUser(userInfo, dispatch, navigate);
+            // registerNewUser(userInfo, dispatch, navigate);
+            console.log(userInfo);
           }}
         >
           {({ errors, touched }) => (
@@ -284,22 +300,7 @@ function Profile(props) {
                   </div>
                 </div>
               </div>
-              <div className={cx("input-wrapper")}>
-                <p className={cx("label")}>Khác:</p>
-                <FastField
-                  className={cx("input-field")}
-                  error={errors.other && touched.other}
-                  name="other"
-                  type="text"
-                  component={InputField}
-                >
-                  {errors.other && touched.other ? (
-                    <div style={{ color: "red", fontSize: "12px" }}>
-                      {errors.other}
-                    </div>
-                  ) : null}
-                </FastField>
-              </div>
+
               <div className={cx("input-wrapper")}>
                 <p className={cx("label")}>Trường học hiện tại:</p>
                 <FastField
@@ -345,6 +346,37 @@ function Profile(props) {
             </Form>
           )}
         </Formik>
+      </div>
+      <div className={cx("result-grade", "form-wrapper")}>
+        <p className={cx("title")}>Kết quả trắc nghiệm holland</p>
+        {fullSkill.map((skill, index) => {
+          return (
+            <div key={index} className={cx("progress-bar")}>
+              <label>
+                {jugeResult[skill.name].group} (
+                {skill.name.charAt(0).toUpperCase()})
+              </label>
+              {`${skill.value}/ ${skill.maxValue}`}
+              <div className={cx("progress")}>
+                <progress
+                  style={{
+                    "--color": jugeResult[skill.name].color,
+                  }}
+                  value={skill.value}
+                  max={skill.maxValue}
+                ></progress>
+
+                <ul className={cx("percent")}>
+                  <li>0%</li>
+                  <li>25%</li>
+                  <li>50%</li>
+                  <li>75%</li>
+                  <li>100%</li>
+                </ul>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
