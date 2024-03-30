@@ -26,7 +26,7 @@ function FormQuiz(props) {
   const formRef = useRef(null);
   const questionList = quiz;
   const submitBtn = useRef(null);
-  const user = useSelector(state => state.auth.login.currentUser)
+  const user = useSelector((state) => state.auth.login.currentUser);
 
   const [isDisabledSubmit, setIsDisabledsubmit] = useState(true);
   const initData = useCallback(() => {
@@ -59,24 +59,24 @@ function FormQuiz(props) {
   const handleSubmit = (e) => {
     // eslint-disable-next-line no-restricted-globals
     e.preventDefault();
-   
-   const result =  inputRef.reduce((acc, obj) => {
+
+    const result = inputRef.reduce((acc, obj) => {
       const key = obj.current.name;
       const value = parseInt(obj.current.value);
-      
+
       if (!acc[key]) {
-          acc[key] = { name: key, value: 0, maxValue: 0 };
+        acc[key] = { name: key, value: 0, maxValue: 0 };
       }
-      
+
       acc[key].value += value;
       acc[key].maxValue++;
-      
+
       return acc;
-  }, {});
-  
+    }, {});
+
     const data = Object.values(result);
-    sendHollandResult(user.token, data, dispatch, navigate)
-    
+   
+    sendHollandResult(user.token, data, dispatch, navigate);
   };
 
   useEffect(() => {}, [currentQuiz, pageDisabled]);
@@ -87,10 +87,22 @@ function FormQuiz(props) {
 
   const swiperRef = useRef(null);
 
-  const handleSwipperScroll = () => {
-    
-  };
+  const handleSwipperScroll = () => {};
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Tab" || e.key === "Enter") {
+        e.preventDefault(); // Ngăn chặn hành động mặc định của tab
+      }
+    };
 
+    // Gắn sự kiện keydown cho document
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Trả về một hàm cleanup để gỡ bỏ sự kiện khi component bị unmount
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []); // Chạy chỉ một lần sau khi component mount
   return (
     <div className={cx("wrapper")}>
       <form
@@ -113,6 +125,7 @@ function FormQuiz(props) {
             setCurrentQuiz(e.realIndex + 1);
             window.scrollTo(0, 0);
           }}
+        
         >
           {questionList.map((ques, index) => {
             return (

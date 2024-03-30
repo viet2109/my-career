@@ -97,6 +97,7 @@ export const sendHollandResult = async (token, data, dispatch, navigate) => {
     });
     dispatch(fetchSuccess());
     dispatch(sendResultSuccess());
+    await getCurrentUser(token, dispatch);
     navigate(routes.result);
   } catch (error) {
     dispatch(fetchFailed());
