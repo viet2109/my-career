@@ -88,7 +88,7 @@ function FormQuiz(props) {
   const swiperRef = useRef(null);
 
   const handleSwipperScroll = () => {
-    console.log(swiperRef.current);
+    
   };
 
   return (

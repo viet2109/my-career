@@ -61,7 +61,7 @@ function Result(props) {
   };
 
   useEffect(() => {}, [currentPage]);
-  console.log(fullSkill);
+
 
   return (
     <div className={cx("frag")}>

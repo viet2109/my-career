@@ -26,6 +26,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(fetchSuccess());
     
     dispatch(loginSuccess(res.data));
+   
     navigate(config.routes.home);
   } catch (error) {
     dispatch(fetchFailed());
@@ -102,18 +103,19 @@ export const sendHollandResult = async (token, data, dispatch, navigate) => {
   }
 };
 
-export const getCurrentUser = async (token, dispatch, navigate) => {
+export const getCurrentUser = async (token, dispatch) => {
   dispatch(fetchStart());
 
   try {
-    await ax.post("auth/logout", null, {
+    const user = await ax.get("auth/current", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    
+       
     dispatch(fetchSuccess());
-    dispatch(getCurrentUserSucess());
-    navigate("/");
+    dispatch(getCurrentUserSucess(user.data));
   } catch (error) {
     dispatch(fetchFailed());
   }

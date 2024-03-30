@@ -6,10 +6,10 @@ import * as yup from "yup";
 import images from "~/assets/images";
 import Button from "~/components/Button";
 import InputField from "~/components/InputField";
-import { registerNewUser } from "~/redux/request";
+import { getCurrentUser, registerNewUser } from "~/redux/request";
 import styles from "./Profile.module.scss";
 import routes from "~/config/routes";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { jugeResult } from "~/api/jugeResultHolland";
 Profile.propTypes = {};
 
@@ -100,17 +100,19 @@ const cx = classNames.bind(styles);
 function Profile(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const skills = useSelector((state) => state.quiz.result);
-  const initFullSkillList = useCallback(() => {
-    const maxSkills = Object.entries(skills)
-      .map(([key, value]) => ({ name: key, ...value }))
-      .sort((a, b) => b.value - a.value);
-    return maxSkills;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const [fullSkill] = useState(initFullSkillList());
   const user = useSelector((state) => state.auth.login.currentUser);
 
+  const [fullSkill, setFullSkill] = useState();
+  console.log(fullSkill);
+  const initSkill = async () => {
+    await getCurrentUser(user.token, dispatch);
+    const result = user.hollandEntities
+    
+    setFullSkill(result)
+  };
+  useEffect(() => {
+    initSkill();
+  }, []);
   return (
     <div className={cx("wrapper")}>
       <div className={cx("form-wrapper")}>
@@ -127,22 +129,22 @@ function Profile(props) {
         </div>
         <Formik
           initialValues={{
-            name: user.name || "",
-            tel: user.phoneNumber || "",
-            sex: user.sex || "",
-            class: user.class || "",
-            school: user.school || "",
-            province: user.province || "",
-            futureSchool: user.futureSchool || "",
+            name: String(user.name).toLowerCase() || "",
+            tel: String(user.phoneNumber).toLowerCase() || "",
+            sex: String(user.gender).toLowerCase() || "",
+            class: String(user.grade).toLowerCase() || "",
+            school: String(user.currentSchool).toLowerCase() || "",
+            province: String(user.province).toLowerCase() || "",
+            futureSchool: String(user.futureSchool).toLowerCase() || "",
           }}
           validationSchema={userSchema}
           onSubmit={(values) => {
             const userInfo = {
               name: values.name,
-              tel: values.tel,
-              sex: values.sex,
-              class: values.class,
-              school: values.school,
+              phoneNumber: values.tel,
+              gender: values.sex,
+              grade: values.class,
+              currentSchool: values.school,
               province: values.province,
               futureSchool: values.futureSchool,
             };
@@ -349,7 +351,7 @@ function Profile(props) {
       </div>
       <div className={cx("result-grade", "form-wrapper")}>
         <p className={cx("title")}>Kết quả trắc nghiệm holland</p>
-        {fullSkill.map((skill, index) => {
+        {fullSkill?.map((skill, index) => {
           return (
             <div key={index} className={cx("progress-bar")}>
               <label>

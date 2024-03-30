@@ -10,7 +10,7 @@ const authSlice = createSlice({
   },
   reducers: {
     loginSuccess: (state, action) => {
-      console.log(action.payload);
+
       state.login.currentUser = {
         ...action.payload.data,
         token: action.payload.token,
@@ -30,7 +30,13 @@ const authSlice = createSlice({
         ...action.payload,
       };
     },
-    getCurrentUserSucess: (state, action) => {},
+    getCurrentUserSucess: (state, action) => {
+      
+      state.login.currentUser = {
+        ...state.login.currentUser,
+        'hollandEntities': action.payload.currentUser.hollandEntities
+      }
+    },
   },
 });
 
