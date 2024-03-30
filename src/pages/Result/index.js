@@ -12,29 +12,10 @@ Result.propTypes = {};
 const cx = classNames.bind(styles);
 function Result(props) {
   const numTop = 3;
-  const skills = useSelector((state) => state.quiz.result);
+
+  const user = useSelector((state) => state.auth.login.currentUser);
 
   const [currentPage, setCurrentPage] = useState(0);
-
-  const initSkillList = useCallback(() => {
-    const maxSkills = Object.entries(skills)
-      .map(([key, value]) => ({ name: key, ...value }))
-      .sort((a, b) => b.value - a.value)
-      .slice(0, numTop);
-
-    return maxSkills;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const initFullSkillList = useCallback(() => {
-    const maxSkills = Object.entries(skills)
-      .map(([key, value]) => ({ name: key, ...value }))
-      .sort((a, b) => b.value - a.value);
-    return maxSkills;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
 
   const initPage = useCallback(() => {
     const result = Array.from({ length: numTop + 1 }, () => {
@@ -49,9 +30,25 @@ function Result(props) {
   }, [currentPage]);
 
   const [page] = useState(initPage());
-  const [maxSkills] = useState(initSkillList());
-  const [fullSkill] = useState(initFullSkillList());
+  const [maxSkills] = useState(() => {
+    const result = user?.hollandEntities;
+    let sortedResult = result ? [...result] : null; // Tạo một bản sao của mảng trước khi sắp xếp
+    if (sortedResult) {
+      sortedResult = sortedResult
+        .sort((a, b) => b.value - a.value)
+        .slice(0, numTop);
+    }
+    return sortedResult;
+  });
 
+  const [fullSkill] = useState(() => {
+    const result = user?.hollandEntities;
+    const sortedResult = result ? [...result] : null; // Tạo một bản sao của mảng trước khi sắp xếp
+    if (sortedResult) {
+      sortedResult.sort((a, b) => b.value - a.value);
+    }
+    return sortedResult;
+  });
   const handleNav = (e) => {};
   const handlePageChange = (e) => {
     const nextPage = e.target.dataset.page;
@@ -61,7 +58,6 @@ function Result(props) {
   };
 
   useEffect(() => {}, [currentPage]);
-
 
   return (
     <div className={cx("frag")}>
@@ -100,7 +96,6 @@ function Result(props) {
                   name="nav"
                   className={cx("hidden")}
                   type="radio"
-                  
                   value={index + 1}
                   data-page={index + 1}
                   onChange={handlePageChange}
@@ -138,7 +133,7 @@ function Result(props) {
                               value={skill.value}
                               max={skill.maxValue}
                             ></progress>
-                            
+
                             <ul className={cx("percent")}>
                               <li>0%</li>
                               <li>25%</li>
@@ -193,8 +188,7 @@ function Result(props) {
 
                     <span>
                       Dựa trên Mật mã Holland của bạn, bạn có thể tìm kiếm các
-                      ngành phù hợp theo 2 hoặc 3 nhóm Holland tại trang
-                      web này
+                      ngành phù hợp theo 2 hoặc 3 nhóm Holland tại trang web này
                     </span>
                   </p>
                 </div>
@@ -223,7 +217,7 @@ function Result(props) {
                   </div>
 
                   <div className={cx("general")}>
-                    <div className={cx('item-wrapper')}>
+                    <div className={cx("item-wrapper")}>
                       <div className={cx("item")}>
                         <p className={cx("title")}>giá trị cốt lõi</p>
                         <p className={cx("content")}>
@@ -247,7 +241,7 @@ function Result(props) {
 
                     {jugeResult[skill.name].feature.map((item, index) => {
                       return (
-                        <li className={cx("item")}>
+                        <li className={cx("item")} key={index}>
                           <span>{index + 1}</span>
                           <p>{item}</p>
                         </li>
@@ -319,10 +313,10 @@ function Result(props) {
                     <Popper className={cx("popper")}>
                       <ul className={cx("list", "job")}>
                         <li className={cx("title")}>các nghề phù hợp</li>
-                        <div className={cx('item-wrapper')}>
-                        {jugeResult[skill.name].job.map((job) => {
-                          return <li className={cx("item")}>{job}</li>;
-                        })}
+                        <div className={cx("item-wrapper")}>
+                          {jugeResult[skill.name].job.map((job, ij) => {
+                            return <li className={cx("item")} key={ij}>{job}</li>;
+                          })}
                         </div>
                       </ul>
                     </Popper>
@@ -330,9 +324,9 @@ function Result(props) {
                     <Popper className={cx("popper")}>
                       <ul className={cx("list", "major")}>
                         <li className={cx("title")}>các nghề phù hợp</li>
-                        <div className={cx('item-wrapper')}>
-                          {jugeResult[skill.name].major.map((major) => {
-                            return <li className={cx("item")}>{major}</li>;
+                        <div className={cx("item-wrapper")}>
+                          {jugeResult[skill.name].major.map((major, im) => {
+                            return <li className={cx("item")} key={im}>{major}</li>;
                           })}
                         </div>
                       </ul>

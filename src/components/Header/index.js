@@ -28,7 +28,6 @@ function Header({ className }) {
   const user_login = useRef(null);
   const handleOnclick = (e) => {
     menuButton.current.firstChild.click();
-   
   };
   const handleOnClickOutside = (e) => {
     user_login.current?.click();

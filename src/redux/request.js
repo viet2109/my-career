@@ -9,6 +9,7 @@ import {
   updateUserSuccess
 } from "./authSlice";
 import { resultCal, sendResultSuccess } from "./quizHollandSlice";
+import routes from "~/config/routes";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
@@ -26,6 +27,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(fetchSuccess());
     
     dispatch(loginSuccess(res.data));
+    getCurrentUser(res.data.token, dispatch)
    
     navigate(config.routes.home);
   } catch (error) {
@@ -70,7 +72,7 @@ export const logOutUser = async (token, dispatch, navigate) => {
     navigate("/");
   } catch (error) {
     dispatch(fetchFailed());
-    dispatch(logOutSuccess());
+   
 
   }
 };
@@ -97,7 +99,7 @@ export const sendHollandResult = async (token, data, dispatch, navigate) => {
     });
     dispatch(fetchSuccess());
     dispatch(sendResultSuccess());
-    navigate("/");
+    navigate(routes.result);
   } catch (error) {
     dispatch(fetchFailed());
   }
@@ -107,15 +109,14 @@ export const getCurrentUser = async (token, dispatch) => {
   dispatch(fetchStart());
 
   try {
-    const user = await ax.get("auth/current", {
+    const result  = await ax.get("auth/current", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    
-       
+   
     dispatch(fetchSuccess());
-    dispatch(getCurrentUserSucess(user.data));
+    dispatch(getCurrentUserSucess(result.data));
   } catch (error) {
     dispatch(fetchFailed());
   }
@@ -123,7 +124,7 @@ export const getCurrentUser = async (token, dispatch) => {
 
 export const updateCurrentUser = async (token,user,  dispatch, navigate) => {
   dispatch(fetchStart());
-
+  console.log(token);
   try {
   await ax.post("auth/current", user, {
       headers: {
@@ -132,7 +133,7 @@ export const updateCurrentUser = async (token,user,  dispatch, navigate) => {
     });
     dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
-    navigate("/");
+    navigate(routes.profile);
   } catch (error) {
     dispatch(fetchFailed());
   }
