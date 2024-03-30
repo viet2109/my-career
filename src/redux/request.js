@@ -6,7 +6,7 @@ import {
   logOutSuccess,
   loginSuccess,
   registerSuccess,
-  updateUserSuccess
+  updateUserSuccess,
 } from "./authSlice";
 import { resultCal, sendResultSuccess } from "./quizHollandSlice";
 import routes from "~/config/routes";
@@ -25,10 +25,8 @@ export const loginUser = async (user, dispatch, navigate) => {
   try {
     const res = await ax.post("auth/login", user);
     dispatch(fetchSuccess());
-    
     dispatch(loginSuccess(res.data));
-    getCurrentUser(res.data.token, dispatch)
-   
+    await getCurrentUser(res.data.token, dispatch);
     navigate(config.routes.home);
   } catch (error) {
     dispatch(fetchFailed());
@@ -72,7 +70,7 @@ export const logOutUser = async (token, dispatch, navigate) => {
     navigate("/");
   } catch (error) {
     dispatch(fetchFailed());
-   
+    dispatch(logOutSuccess());
 
   }
 };
@@ -109,7 +107,7 @@ export const getCurrentUser = async (token, dispatch) => {
   dispatch(fetchStart());
 
   try {
-    const result  = await ax.get("auth/current", {
+    const result = await ax.get("auth/current", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -122,11 +120,11 @@ export const getCurrentUser = async (token, dispatch) => {
   }
 };
 
-export const updateCurrentUser = async (token,user,  dispatch, navigate) => {
+export const updateCurrentUser = async (token, user, dispatch, navigate) => {
   dispatch(fetchStart());
-  console.log(token);
+
   try {
-  await ax.post("auth/current", user, {
+    await ax.put("auth/current", user, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

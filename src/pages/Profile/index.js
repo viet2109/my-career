@@ -1,16 +1,16 @@
 import classNames from "classnames/bind";
 import { FastField, Form, Formik } from "formik";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { jugeResult } from "~/api/jugeResultHolland";
 import images from "~/assets/images";
 import Button from "~/components/Button";
 import InputField from "~/components/InputField";
-import { getCurrentUser, registerNewUser, updateCurrentUser } from "~/redux/request";
-import styles from "./Profile.module.scss";
 import routes from "~/config/routes";
-import { useCallback, useEffect, useState } from "react";
-import { jugeResult } from "~/api/jugeResultHolland";
+import { updateCurrentUser } from "~/redux/request";
+import styles from "./Profile.module.scss";
 Profile.propTypes = {};
 
 const provinces = [
@@ -103,13 +103,14 @@ function Profile(props) {
   const user = useSelector((state) => state.auth.login.currentUser);
   const [fullSkill] = useState(() => {
     const result = user?.hollandEntities;
+    console.log(user);
     const sortedResult = result ? [...result] : null; // Tạo một bản sao của mảng trước khi sắp xếp
     if (sortedResult) {
       sortedResult.sort((a, b) => b.value - a.value);
     }
     return sortedResult;
   });
-  
+  console.log(fullSkill);
 
   return (
     <div className={cx("wrapper")}>
@@ -146,7 +147,7 @@ function Profile(props) {
               province: values.province,
               futureSchool: values.futureSchool,
             };
-           updateCurrentUser(user?.token, userInfo, dispatch, navigate )
+            updateCurrentUser(user?.token, userInfo, dispatch, navigate);
           }}
         >
           {({ errors, touched }) => (

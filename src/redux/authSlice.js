@@ -35,8 +35,7 @@ const authSlice = createSlice({
         ...state.login.currentUser,
         'hollandEntities': action.payload.currentUser.hollandEntities
       }
-  
-
+      
     },
   },
 });

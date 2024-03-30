@@ -64,6 +64,13 @@ function InputField(props) {
         {list ? (
           <ReactSelect
             options={list}
+            defaultValue={{
+              ...list?.find((province) => {
+                return (
+                  String(province.value).toLowerCase() === String(field.value).toLowerCase()
+                );
+              }),
+            }}
             onChange={(option) => form.setFieldValue(field.name, option.value)}
             styles={{
               control: (baseStyles, state) => ({
