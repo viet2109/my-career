@@ -1,17 +1,14 @@
 import axios from "axios";
-import {
-  logOutFailed,
-  logOutStart,
-  logOutSuccess,
-  loginFailed,
-  loginStart,
-  loginSuccess,
-  registerFailed,
-  registerStart,
-  registerSuccess,
-} from "./authSlice";
-import { resultCal } from "./quizHollandSlice";
 import config from "~/config";
+import { fetchFailed, fetchStart, fetchSuccess } from "./apiGeneralSlice";
+import {
+  getCurrentUserSucess,
+  logOutSuccess,
+  loginSuccess,
+  registerSuccess,
+  updateUserSuccess
+} from "./authSlice";
+import { resultCal, sendResultSuccess } from "./quizHollandSlice";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
@@ -19,25 +16,27 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
-  baseURL: "https://be-zb3u.onrender.com/api/",
+  baseURL: "http://localhost:9999/api/",
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
-  dispatch(loginStart());
+  dispatch(fetchStart());
   try {
     const res = await ax.post("auth/login", user);
-
+    dispatch(fetchSuccess());
+    
     dispatch(loginSuccess(res.data));
     navigate(config.routes.home);
   } catch (error) {
-    dispatch(loginFailed());
+    dispatch(fetchFailed());
   }
 };
 
 export const registerNewUser = async (user, dispatch, navigate) => {
-  dispatch(registerStart());
+  dispatch(fetchStart());
   try {
     const res = await ax.post("auth/register", user);
+    dispatch(fetchSuccess());
     dispatch(registerSuccess(res.data));
     navigate(config.routes.home);
     const formUrl =
@@ -52,12 +51,12 @@ export const registerNewUser = async (user, dispatch, navigate) => {
       body: formData,
     });
   } catch (error) {
-    dispatch(registerFailed());
+    dispatch(fetchFailed());
   }
 };
 
 export const logOutUser = async (token, dispatch, navigate) => {
-  dispatch(logOutStart());
+  dispatch(fetchStart());
 
   try {
     await ax.post("auth/logout", null, {
@@ -65,10 +64,13 @@ export const logOutUser = async (token, dispatch, navigate) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    dispatch(fetchSuccess());
     dispatch(logOutSuccess());
     navigate("/");
   } catch (error) {
-    dispatch(logOutFailed());
+    dispatch(fetchFailed());
+    dispatch(logOutSuccess());
+
   }
 };
 
@@ -82,4 +84,54 @@ export const getAllQuestion = async (token) => {
 
     return res.data;
   } catch (error) {}
+};
+
+export const sendHollandResult = async (token, data, dispatch, navigate) => {
+  dispatch(fetchStart());
+  try {
+    await ax.post("holland", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(fetchSuccess());
+    dispatch(sendResultSuccess());
+    navigate("/");
+  } catch (error) {
+    dispatch(fetchFailed());
+  }
+};
+
+export const getCurrentUser = async (token, dispatch, navigate) => {
+  dispatch(fetchStart());
+
+  try {
+    await ax.post("auth/logout", null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(fetchSuccess());
+    dispatch(getCurrentUserSucess());
+    navigate("/");
+  } catch (error) {
+    dispatch(fetchFailed());
+  }
+};
+
+export const updateCurrentUser = async (token,user,  dispatch, navigate) => {
+  dispatch(fetchStart());
+
+  try {
+  await ax.post("auth/current", user, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(fetchSuccess());
+    dispatch(updateUserSuccess(user));
+    navigate("/");
+  } catch (error) {
+    dispatch(fetchFailed());
+  }
 };

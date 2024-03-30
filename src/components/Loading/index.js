@@ -5,8 +5,9 @@ Loading.propTypes = {};
 
 const cx = classNames.bind(styles);
 function Loading(props) {
-  const isFetching = useSelector(state => state.auth.isFetching)
-  console.log(isFetching);
+  
+  const isFetching = useSelector((state) => state.api.isFetching)
+  
   return (
     <div className={cx("loading-wrapper" , {none: !isFetching})}>
       <div className={cx("loading")}>

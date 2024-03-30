@@ -37,7 +37,7 @@ function SignIn(props) {
           validationSchema={LoginSchema}
           onSubmit={(values) => {
             const userInfo = {
-              email: values.tel,
+              phoneNumber: values.tel,
               password: values.password,
             };
             loginUser(userInfo, dispatch, navigate);

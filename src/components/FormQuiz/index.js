@@ -7,9 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { quizCal } from "~/redux/request";
+import { quizCal, sendHollandResult } from "~/redux/request";
 import Button from "../Button";
 import styles from "./FormQuiz.module.scss";
 import quiz from "~/api/fakeQuizAPI";
@@ -26,6 +26,7 @@ function FormQuiz(props) {
   const formRef = useRef(null);
   const questionList = quiz;
   const submitBtn = useRef(null);
+  const user = useSelector(state => state.auth.login.currentUser)
 
   const [isDisabledSubmit, setIsDisabledsubmit] = useState(true);
   const initData = useCallback(() => {
@@ -58,17 +59,24 @@ function FormQuiz(props) {
   const handleSubmit = (e) => {
     // eslint-disable-next-line no-restricted-globals
     e.preventDefault();
-
-    const data = {};
-    inputRef.forEach((input) => {
-      if (!(input.current.name in data)) {
-        data[input.current.name] = [];
+   
+   const result =  inputRef.reduce((acc, obj) => {
+      const key = obj.current.name;
+      const value = parseInt(obj.current.value);
+      
+      if (!acc[key]) {
+          acc[key] = { name: key, value: 0, maxValue: 0 };
       }
-
-      data[input.current.name].push(parseInt(input.current.value));
-    });
-
-    quizCal(data, dispatch, navigate);
+      
+      acc[key].value += value;
+      acc[key].maxValue++;
+      
+      return acc;
+  }, {});
+  
+    const data = Object.values(result);
+    sendHollandResult(user.token, data, dispatch, navigate)
+    
   };
 
   useEffect(() => {}, [currentQuiz, pageDisabled]);
@@ -205,7 +213,11 @@ function FormQuiz(props) {
         </div>
 
         <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
-          <div ref={nextEl} className={cx("next-button")} onClick={handleSwipperScroll}>
+          <div
+            ref={nextEl}
+            className={cx("next-button")}
+            onClick={handleSwipperScroll}
+          >
             Câu hỏi tiếp theo
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
           </div>
