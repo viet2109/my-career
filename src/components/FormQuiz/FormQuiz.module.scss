@@ -74,10 +74,10 @@
       font-family: TTNormsPro-Bold;
       span {
         max-width: 162px;
-        
         text-overflow: ellipsis;
         word-wrap: break-word;
         overflow: hidden;
+        display: block;
       }
       svg {
         width: fit-content;
