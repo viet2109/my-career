@@ -144,7 +144,7 @@ function Profile(props) {
               ? String(user?.futureSchool).toLowerCase()
               : "",
           }}
-          validate={(values) => {console.log(values);}}
+         
           validationSchema={userSchema}
           onSubmit={(values) => {
             const userInfo = {
