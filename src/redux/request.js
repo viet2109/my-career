@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "~/config";
+import routes from "~/config/routes";
 import { fetchFailed, fetchStart, fetchSuccess } from "./apiGeneralSlice";
 import {
   getCurrentUserSucess,
@@ -9,8 +10,6 @@ import {
   updateUserSuccess,
 } from "./authSlice";
 import { resultCal, sendResultSuccess } from "./quizHollandSlice";
-import routes from "~/config/routes";
-import { useSelector } from "react-redux";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
@@ -94,7 +93,7 @@ export const getAllQuestion = async (token) => {
 export const sendHollandResult = async (user, data, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
-    console.log(user)
+  
     await ax.post("holland", data, {
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -149,15 +148,14 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
   dispatch(fetchStart());
   
   try {
-    console.log(user)
-    console.log(token)
+    
     const response = await ax.put("auth/current", user, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     user = {...user, token: response.data.token}
-    console.log(response)
+    
     dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
     

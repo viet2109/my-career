@@ -102,7 +102,7 @@ function FormQuiz(props) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []); // Chạy chỉ một lần sau khi component mount
-  console.log(currentQuiz, questionList.length);
+
   return (
     <div className={cx("wrapper")}>
       <form

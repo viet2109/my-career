@@ -104,7 +104,7 @@ function Profile(props) {
   const user = useSelector((state) => state.auth.login.currentUser);
   const [fullSkill] = useState(() => {
     const result = user?.hollandEntities;
-    console.log(user);
+   
     const sortedResult = result ? [...result] : [];
     if (sortedResult) {
       sortedResult.sort((a, b) => b.value - a.value);
@@ -138,12 +138,13 @@ function Profile(props) {
               ? String(user?.currentSchool).toLowerCase()
               : "",
             province: user?.province
-              ? String(user?.province).toLowerCase()
+              ? user?.province
               : "",
             futureSchool: user?.futureSchool
               ? String(user?.futureSchool).toLowerCase()
               : "",
           }}
+          validate={(values) => {console.log(values);}}
           validationSchema={userSchema}
           onSubmit={(values) => {
             const userInfo = {
