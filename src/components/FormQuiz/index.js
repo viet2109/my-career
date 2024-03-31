@@ -103,6 +103,7 @@ function FormQuiz(props) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []); // Chạy chỉ một lần sau khi component mount
+  console.log(currentQuiz, questionList.length);
   return (
     <div className={cx("wrapper")}>
       <form
@@ -173,7 +174,7 @@ function FormQuiz(props) {
                                       index * orgArr.length + i
                                     ].current.value = e.target.value;
 
-                                    if (currentQuiz === questionList.length) {
+                                    if (inputRef.every(input => input.current.value)) {
                                       setIsDisabledsubmit(false);
                                     }
 
