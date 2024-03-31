@@ -21,9 +21,14 @@ const apiGeneralSlice = createSlice({
       state.success = true;
       state.error = false;
     },
+    resetBlackList: (state) => {
+      state.isFetching = false;
+      state.success = false;
+      state.error = false;
+    }
   },
 });
 
-export const { fetchFailed, fetchStart, fetchSuccess } = apiGeneralSlice.actions;
+export const { fetchFailed, fetchStart, fetchSuccess, resetBlackList } = apiGeneralSlice.actions;
 
 export default apiGeneralSlice.reducer;

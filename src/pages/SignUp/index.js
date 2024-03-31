@@ -25,11 +25,7 @@ const SignupSchema = yup.object().shape({
       /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/,
       "Số điện thoại không đúng"
     ),
-  email: yup
-    .string()
-    .required("Bạn cần nhập địa chỉ email")
-    .email("Địa chỉ email không hợp lệ"),
-
+  
   futureSchool: yup.string(),
 
   password: yup

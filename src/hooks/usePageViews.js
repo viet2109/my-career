@@ -1,24 +1,18 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate} from 'react-router-dom';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { resetBlackList } from "~/redux/apiGeneralSlice";
 
 function usePageViews() {
-  let location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation();
+
   const isSignUp = useSelector((state) => state.auth.isSignUp);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (location.pathname === '/') {
-        
-    }else {
-        if (!isSignUp) {
-            alert("Vui lòng đăng ký tài khoản để tiếp tục!");
-            if (location.pathname !== '/') {
-                navigate('/');
-            }
-        }
-    }
-  }, [location]);
+    // Gửi action để reset blacklist mỗi khi path thay đổi
+    dispatch(resetBlackList());
+  }, [location.pathname]);
 }
 
 export default usePageViews;
