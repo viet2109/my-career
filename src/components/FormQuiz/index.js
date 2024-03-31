@@ -217,14 +217,14 @@ function FormQuiz(props) {
       </form>
 
       <div className={cx("paginate")}>
-        <div className={cx({ disabled: currentQuiz <= 1 })}>
+        <div className={cx('pg-button',{ disabled: currentQuiz <= 1 })}>
           <div ref={prevEl} className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
             Câu hỏi trước
           </div>
         </div>
 
-        <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
+        <div className={cx('pg-button',{ disabled: pageDisabled[currentQuiz] })}>
           <div
             ref={nextEl}
             className={cx("next-button")}
