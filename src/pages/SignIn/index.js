@@ -23,11 +23,10 @@ const LoginSchema = yup.object().shape({
 function SignIn(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error)
+  const error = useSelector((state) => state.apiGeneral.error)
 
   return (
     <>
-   
       <AuthForm>
         <Formik
           initialValues={{

@@ -44,12 +44,11 @@ const SignupSchema = yup.object().shape({
 function SignUp(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error);
+  const error = useSelector((state) => state.apiGeneral.error);
 
 
   return (
     <>
-
       <AuthForm>
         <Formik
           initialValues={{
@@ -139,11 +138,7 @@ function SignUp(props) {
                 ) : null}
               </FastField>
 
-              {error ? (
-                <p className={cx("error-email")}>Địa chỉ email đã tồn tại</p>
-              ) : (
-                <Fragment></Fragment>
-              )}
+              {error && <p className={cx("error-email")}>Số điện thoại đã tồn tại</p>}
 
               <Button type={"submit"} className={cx("sigup-btn")} primary>
                 Đăng kí
