@@ -220,7 +220,7 @@ function FormQuiz(props) {
         <div className={cx('pg-button',{ disabled: currentQuiz <= 1 })}>
           <div ref={prevEl} className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
-            Câu hỏi trước
+            <span>Câu hỏi trước</span>
           </div>
         </div>
 
@@ -230,7 +230,7 @@ function FormQuiz(props) {
             className={cx("next-button")}
             onClick={handleSwipperScroll}
           >
-            Câu hỏi tiếp theo
+            <span>Câu hỏi tiếp theo</span>
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
           </div>
         </div>
