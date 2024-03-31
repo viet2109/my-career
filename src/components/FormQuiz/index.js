@@ -9,11 +9,11 @@ import "swiper/scss/navigation";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { quizCal, sendHollandResult } from "~/redux/request";
-import Button from "../Button";
-import styles from "./FormQuiz.module.scss";
 import quiz from "~/api/fakeQuizAPI";
 import { jugeResult } from "~/api/jugeResultHolland";
+import { sendHollandResult } from "~/redux/request";
+import Button from "../Button";
+import styles from "./FormQuiz.module.scss";
 
 FormQuiz.propTypes = {};
 
@@ -54,10 +54,9 @@ function FormQuiz(props) {
     return result;
   }, [questionList]);
 
-  const [inputRef, setInputRef] = useState(initInput());
+  const [inputRef] = useState(initInput());
 
   const handleSubmit = (e) => {
-    // eslint-disable-next-line no-restricted-globals
     e.preventDefault();
 
     const result = inputRef.reduce((acc, obj) => {
@@ -174,7 +173,11 @@ function FormQuiz(props) {
                                       index * orgArr.length + i
                                     ].current.value = e.target.value;
 
-                                    if (inputRef.every(input => input.current.value)) {
+                                    if (
+                                      inputRef.every(
+                                        (input) => input.current.value
+                                      )
+                                    ) {
                                       setIsDisabledsubmit(false);
                                     }
 
@@ -218,14 +221,16 @@ function FormQuiz(props) {
       </form>
 
       <div className={cx("paginate")}>
-        <div className={cx('pg-button',{ disabled: currentQuiz <= 1 })}>
+        <div className={cx("pg-button", { disabled: currentQuiz <= 1 })}>
           <div ref={prevEl} className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
             <span>Câu hỏi trước</span>
           </div>
         </div>
 
-        <div className={cx('pg-button',{ disabled: pageDisabled[currentQuiz] })}>
+        <div
+          className={cx("pg-button", { disabled: pageDisabled[currentQuiz] })}
+        >
           <div
             ref={nextEl}
             className={cx("next-button")}

@@ -13,7 +13,7 @@ import routes from "~/config/routes";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
-  navigate("/trac-nghiem-ban-than/ket-qua", {scrollOptions: { top: 0 }});
+  navigate("/trac-nghiem-ban-than/ket-qua", { scrollOptions: { top: 0 } });
 };
 
 const ax = axios.create({
@@ -27,9 +27,10 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(fetchSuccess());
     dispatch(loginSuccess(res.data));
     await getCurrentUser(res.data.token, dispatch);
-    navigate(config.routes.home, {scrollOptions: { top: 0 }});
+    navigate(config.routes.home, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
+    alert(error);
   }
 };
 
@@ -39,7 +40,7 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     const res = await ax.post("auth/register", user);
     dispatch(fetchSuccess());
     dispatch(registerSuccess(res.data));
-    navigate(config.routes.home, {scrollOptions: { top: 0 }});
+    navigate(config.routes.home, { scrollOptions: { top: 0 } });
     const formUrl =
       "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse";
     const formData = new FormData();
@@ -53,6 +54,7 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     });
   } catch (error) {
     dispatch(fetchFailed());
+    alert(error);
   }
 };
 
@@ -67,11 +69,11 @@ export const logOutUser = async (token, dispatch, navigate) => {
     });
     dispatch(fetchSuccess());
     dispatch(logOutSuccess());
-    navigate("/", {scrollOptions: { top: 0 }});
+    navigate("/", { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-    dispatch(logOutSuccess());
 
+    alert(error);
   }
 };
 
@@ -114,9 +116,10 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
       body: formData,
     });
     await getCurrentUser(user.token, dispatch);
-    navigate(routes.result, {scrollOptions: { top: 0 }});
+    navigate(routes.result, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
+    alert(error);
   }
 };
 
@@ -129,11 +132,12 @@ export const getCurrentUser = async (token, dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     });
-   
+
     dispatch(fetchSuccess());
     dispatch(getCurrentUserSucess(result.data));
   } catch (error) {
     dispatch(fetchFailed());
+    alert(error);
   }
 };
 
@@ -148,8 +152,9 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
     });
     dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
-    navigate(routes.profile, {scrollOptions: { top: 0 }});
+    navigate(routes.profile, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
+    alert(error);
   }
 };
