@@ -48,8 +48,9 @@
   }
   .paginate {
     display: flex;
-    justify-content: space-between;
-    
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 25px;
     margin-bottom: 25px;
     
     .prev-btn,
@@ -57,6 +58,7 @@
       cursor: pointer;
       display: flex;
       column-gap: 10px;
+      width: fit-content;
       align-items: center;
       padding: 10px 14px;
       color: var(--white);

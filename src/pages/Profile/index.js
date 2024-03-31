@@ -105,13 +105,12 @@ function Profile(props) {
   const [fullSkill] = useState(() => {
     const result = user?.hollandEntities;
     console.log(user);
-    const sortedResult = result ? [...result] : null; // Tạo một bản sao của mảng trước khi sắp xếp
+    const sortedResult = result ? [...result] : [];
     if (sortedResult) {
       sortedResult.sort((a, b) => b.value - a.value);
     }
     return sortedResult;
   });
-  console.log(fullSkill);
 
   return (
     <div className={cx("wrapper")}>
@@ -129,13 +128,21 @@ function Profile(props) {
         </div>
         <Formik
           initialValues={{
-            name: user?.name ? String(user?.name).toLowerCase() : '',
-            tel: user?.phoneNumber ? String(user?.phoneNumber).toLowerCase() : '',
-            sex: user?.gender ? String(user?.gender).toLowerCase() : '',
-            class: user?.grade ? String(user?.grade).toLowerCase() : '',
-            school: user?.currentSchool ? String(user?.currentSchool).toLowerCase() : '',
-            province: user?.province ? String(user?.province).toLowerCase() : '',
-            futureSchool: user?.futureSchool ? String(user?.futureSchool).toLowerCase() : '',
+            name: user?.name ? String(user?.name).toLowerCase() : "",
+            tel: user?.phoneNumber
+              ? String(user?.phoneNumber).toLowerCase()
+              : "",
+            sex: user?.gender ? String(user?.gender).toLowerCase() : "",
+            class: user?.grade ? String(user?.grade).toLowerCase() : "",
+            school: user?.currentSchool
+              ? String(user?.currentSchool).toLowerCase()
+              : "",
+            province: user?.province
+              ? String(user?.province).toLowerCase()
+              : "",
+            futureSchool: user?.futureSchool
+              ? String(user?.futureSchool).toLowerCase()
+              : "",
           }}
           validationSchema={userSchema}
           onSubmit={(values) => {
@@ -350,7 +357,7 @@ function Profile(props) {
       </div>
       <div className={cx("result-grade", "form-wrapper")}>
         <p className={cx("title")}>Kết quả trắc nghiệm holland</p>
-       {fullSkill && <span>Bạn chưa làm trắc nghiệm</span>}
+        {fullSkill?.length ? <></> : <span>Bạn chưa làm trắc nghiệm</span>}
         {fullSkill?.map((skill, index) => {
           return (
             <div key={index} className={cx("progress-bar")}>
