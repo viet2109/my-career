@@ -16,9 +16,12 @@ const quizHollandSlice = createSlice({
       }, {});
       state.result = skillTotals;
     },
+    sendResultSuccess: (state) => {
+      
+    }
   },
 });
 
-export const { resultCal } = quizHollandSlice.actions;
+export const { resultCal, sendResultSuccess } = quizHollandSlice.actions;
 
 export default quizHollandSlice.reducer;

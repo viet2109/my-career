@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "~/components/Button";
 import FormQuiz from "~/components/FormQuiz";
 import styles from "./QuizHolland.module.scss";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 QuizHolland.propTypes = {};
 

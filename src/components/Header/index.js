@@ -1,41 +1,42 @@
-import Tippy, { tippy } from "@tippyjs/react";
+import { faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Tippy from "@tippyjs/react";
 import classNames from "classnames/bind";
-import { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "tippy.js/animations/perspective.css";
 import "tippy.js/dist/tippy.css";
 import images from "~/assets/images";
 import routes from "~/config/routes";
+import { logOutUser } from "~/redux/request";
 import MenuButton from "../MenuButton";
 import Popper from "../Popper";
-import { logOutUser } from "~/redux/request";
 import styles from "./Header.module.scss";
-import { NavLink } from "react-router-dom";
 
 Header.propTypes = {};
 
 const cx = classNames.bind(styles);
 
 function Header({ className }) {
-  const handleClickMenuButton = (e) => {
-
-  };
+  const handleClickMenuButton = (e) => {};
   const user = useSelector((state) => state.auth.login.currentUser);
   const nav = useRef(null);
   const menuButton = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user_login = useRef(null);
   const handleOnclick = (e) => {
-  
     menuButton.current.firstChild.click();
-  }
+  };
+  const handleOnClickOutside = (e) => {
+    user_login.current?.click();
+  };
 
   const handleLogout = () => {
     logOutUser(user.token, dispatch, navigate);
-  }
+  };
 
-  
   return (
     <header className={cx("wrapper")}>
       <div className={cx("nav-wrapper")}>
@@ -45,7 +46,6 @@ function Header({ className }) {
             instance.popper.style.margin = "0 auto";
             instance.popper.style.width = "100%";
           }}
-          
           placement="bottom-start"
           trigger={"click"}
           arrow={false}
@@ -53,7 +53,7 @@ function Header({ className }) {
           offset={[0, 7]}
           reference={menuButton}
           interactive
-          hideOnClick='toggle'
+          hideOnClick="toggle"
           onClickOutside={handleOnclick}
           content={
             <Popper>
@@ -98,10 +98,8 @@ function Header({ className }) {
           }
         >
           <nav ref={nav} className={cx("nav", className)}>
-            <div className={cx("menu-button-wrapper")} ref={menuButton} >
+            <div className={cx("menu-button-wrapper")} ref={menuButton}>
               <MenuButton
-
-                
                 className={cx("menu-button")}
                 onClick={handleClickMenuButton}
               ></MenuButton>
@@ -148,10 +146,50 @@ function Header({ className }) {
               </li>
             </ul>
 
-            <Link to={user ? "/" : routes.signin} className={cx("user-login")} >
-              <img src={images["user-avatar"]} alt="avatar" />
-              {user ? <span onClick={handleLogout}>Đăng xuất</span> : <span>Đăng nhập</span>}
-            </Link>
+            {user ? (
+              <Tippy
+                interactive
+                arrow={false}
+                reference={user_login}
+                trigger="click"
+                hideOnClick="toggle"
+                onClickOutside={handleOnClickOutside}
+                content={
+                  <Popper className={cx("popper")}>
+                    <div onClick={handleOnClickOutside}>
+                      <Link to={routes.profile} className={cx("link-wrapper")}>
+                        <FontAwesomeIcon icon={faUser} className={cx("icon")} />
+                        <span>Hồ sơ</span>
+                      </Link>
+                    </div>
+
+                    <div
+                      className={cx("link-wrapper", "signup")}
+                      onClick={(e) => {
+                        handleOnClickOutside(e);
+                        handleLogout(e);
+                      }}
+                    >
+                      <FontAwesomeIcon
+                        icon={faRightFromBracket}
+                        className={cx("icon")}
+                      />
+                      <span>Đăng xuất</span>
+                    </div>
+                  </Popper>
+                }
+              >
+                <div ref={user_login} className={cx("user-login")}>
+                  <img src={images["user-avatar"]} alt="avatar" />
+                  {user ? <span>{user.name}</span> : <span>Đăng nhập</span>}
+                </div>
+              </Tippy>
+            ) : (
+              <Link to={routes.signin} className={cx("user-login")}>
+                <img src={images["user-avatar"]} alt="avatar" />
+                <span>Đăng nhập</span>
+              </Link>
+            )}
           </nav>
         </Tippy>
       </div>

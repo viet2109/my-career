@@ -8,6 +8,7 @@ const routes = {
   signin: "/dang-nhap",
   signup: "/",
   sigout: "/dang-xuat",
+  profile: '/chinh-sua-ho-so',
   'page-not-found': "*"
 };
 

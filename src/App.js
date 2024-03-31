@@ -1,18 +1,16 @@
 import { Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { publicRoutes } from "~/routes";
-import usePageViews from "./hooks/usePageViews";
-
-function PageViewLogger() {
-  usePageViews();
-  return null;
-}
+import Loading from "./components/Loading";
+import UserPageView from "~/hooks/usePageViews"
 
 function App() {
+
   return (
     <Router>
+      <Loading />
+      <UserPageView />
       <div className="app">
-      <PageViewLogger />
         <Routes>
           {publicRoutes.map((route, index) => {
             const Page = route.component;

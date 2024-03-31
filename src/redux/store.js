@@ -1,17 +1,22 @@
 import {
   combineReducers,
-  legacy_createStore as createStore,
+  legacy_createStore as createStore
 } from "@reduxjs/toolkit";
 
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import apiGeneralReducer from "./apiGeneralSlice";
 import authReducer from "./authSlice";
 import quizHollandReducer from "./quizHollandSlice";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 
 const authPersistConfig = {
   key: "auth",
   storage: storage,
-  blacklist: ["isFetching", "error", "success"],
+};
+
+const apiGeneralPersistConfig = {
+  key: "apiGeneral",
+  storage: storage
 };
 
 const quizHollandPersistConfig = {
@@ -20,6 +25,7 @@ const quizHollandPersistConfig = {
 };
 
 const rootReducer = combineReducers({
+  apiGeneral: persistReducer(apiGeneralPersistConfig, apiGeneralReducer),
   auth: persistReducer(authPersistConfig, authReducer),
   quiz: persistReducer(quizHollandPersistConfig, quizHollandReducer),
 });
@@ -27,4 +33,5 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 const persistor = persistStore(store);
 
-export { store, persistor };
+export { persistor, store };
+

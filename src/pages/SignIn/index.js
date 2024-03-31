@@ -17,27 +17,26 @@ SignIn.propTypes = {};
 const cx = classNames.bind(styles);
 
 const LoginSchema = yup.object().shape({
-  email: yup.string().required("Bạn cần nhập email"),
+  tel: yup.string().required("Bạn cần nhập số điện thoại"),
   password: yup.string().required("Bạn cần nhập mật khẩu"),
 });
 function SignIn(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error)
-  const isFetching = useSelector(state => state.auth.isFetching)
+  const error = useSelector((state) => state.apiGeneral.error)
+
   return (
     <>
-    <Loading text="Login..." isLoading={isFetching}/>
       <AuthForm>
         <Formik
           initialValues={{
-            email: "",
+            tel: "",
             password: "",
           }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
             const userInfo = {
-              email: values.email,
+              phoneNumber: values.tel,
               password: values.password,
             };
             loginUser(userInfo, dispatch, navigate);
@@ -48,14 +47,15 @@ function SignIn(props) {
               <h1 className={cx("title")}>Đăng nhập</h1>
               <div className={cx("input-field")}>
                 <FastField
-                  error={errors.email && touched.email}
-                  name="email"
-                  label="Email"
+                  error={errors.tel && touched.tel}
+                  name="tel"
+              
+                  label="Số điện thoại"
                   component={InputField}
                 >
-                  {errors.email && touched.email ? (
+                  {errors.tel && touched.tel ? (
                     <div style={{ color: "red", fontSize: "12px" }}>
-                      {errors.email}
+                      {errors.tel}
                     </div>
                   ) : null}
                 </FastField>
@@ -85,7 +85,7 @@ function SignIn(props) {
               </div>
               {error ? (
                 <p className={cx("notice")}>
-                  Địa chỉ email hoặc mật khẩu không đúng
+                  Số điện thoại hoặc mật khẩu không đúng
                 </p>
               ) : (
                 <Fragment></Fragment>

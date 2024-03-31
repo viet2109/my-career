@@ -1,18 +1,17 @@
-import {
-  faEye,
-  faEyeSlash
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { useRef } from "react";
 import styles from "./InputField.module.scss";
+import ReactSelect from "react-select";
 
 InputField.propTypes = {};
 
 const cx = classNames.bind(styles);
 
 function InputField(props) {
-  const { type, label, field, children } = props;
+  const { type, label, field, form, children, id, className, list } = props;
+
   const { name } = field;
   const inputRef = useRef(null);
   const labelRef = useRef(null);
@@ -27,6 +26,7 @@ function InputField(props) {
   };
 
   const handleOnFocus = (e) => {
+    if (labelRef.current === null) return;
     if (e.target.value === "") {
       labelRef.current.style.top = "0";
       labelRef.current.style.zIndex = "0";
@@ -43,6 +43,7 @@ function InputField(props) {
   };
 
   const handleOnBlur = (e) => {
+    if (labelRef.current === null) return;
     if (e.target.value === "") {
       labelRef.current.style.top = "50%";
       labelRef.current.style.zIndex = "-1";
@@ -60,45 +61,86 @@ function InputField(props) {
   return (
     <div className={cx("input-wrapper")}>
       <div className={cx("input-relative")}>
-        <input
-          className={cx("input", {
-            error: children,
-          })}
-          name={name}
-          ref={inputRef}
-          type={type}
-          {...field}
-          onBlur={(e) => {
-            handleOnBlur(e);
-          }}
-          onFocus={(e) => {
-            handleOnFocus(e);
-          }}
-        />
-
-        <label
-          className={cx("label", { error: children, date: type === "date" })}
-          ref={labelRef}
-          onClick={(e) => {
-            handleOnFocus(e);
-          }}
-        >
-          {label}
-        </label>
-
-        {name.toLowerCase().includes("password") && (
-          <div
-            className={cx("icon-wrapper")}
-            onClick={(e) => {
-              handleShowHidePass(e);
+        {list ? (
+          <ReactSelect
+            options={list}
+            defaultValue={{
+              ...list?.find((province) => {
+                if (!field.value) return true;
+                return (
+                  String(province.value).toLowerCase() ===
+                  String(field.value).toLowerCase()
+                );
+              }),
             }}
-          >
-            <FontAwesomeIcon icon={faEye} className={cx("icon", "showIcon")} />
-            <FontAwesomeIcon
-              icon={faEyeSlash}
-              className={cx("icon", "hideIcon")}
+            onChange={(option) => form.setFieldValue(field.name, option.value)}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                height: 50,
+                borderRadius: 10,
+                cursor: "pointer",
+                borderColor: "#d2d2d2",
+                // This line disable the blue border
+                boxShadow: "none",
+                "&:hover": {
+                  borderColor: "#d2d2d2 !important",
+                },
+              }),
+            }}
+          />
+        ) : (
+          <>
+            <input
+              id={id}
+              className={cx("input", className, {
+                error: children,
+              })}
+              name={name}
+              ref={inputRef}
+              type={type}
+              list={`list-${name}`}
+              {...field}
+              onBlur={(e) => {
+                handleOnBlur(e);
+              }}
+              onFocus={(e) => {
+                handleOnFocus(e);
+              }}
             />
-          </div>
+            {label && (
+              <label
+                className={cx("label", {
+                  error: children,
+                  date: type === "date",
+                })}
+                ref={labelRef}
+                onClick={(e) => {
+                  handleOnFocus(e);
+                }}
+              >
+                {label}
+              </label>
+            )}
+
+            {name.toLowerCase().includes("password") && (
+              <div
+                className={cx("icon-wrapper")}
+                onClick={(e) => {
+                  handleShowHidePass(e);
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faEye}
+                  className={cx("icon", "showIcon")}
+                />
+                <FontAwesomeIcon
+                  icon={faEyeSlash}
+                  className={cx("icon", "hideIcon")}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
       {children && <div className={cx("notice-error")}>{children}</div>}
