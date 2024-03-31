@@ -52,7 +52,7 @@
     gap: 25px;
     margin-bottom: 25px;
     .pg-button {
-      width: fit-content;
+   
       max-width: 185px;
       overflow: hidden;
     }
@@ -61,7 +61,7 @@
       cursor: pointer;
       display: flex;
       column-gap: 10px;
-      width: fit-content;
+      
       max-width: 185px;
       overflow: hidden;
       align-items: center;
@@ -80,7 +80,8 @@
         display: block;
       }
       svg {
-        width: fit-content;
+        width: 16px;
+        height: 16px;
       }
       &:disabled {
         visibility: hidden;
