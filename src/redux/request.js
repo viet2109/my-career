@@ -10,6 +10,7 @@ import {
 } from "./authSlice";
 import { resultCal, sendResultSuccess } from "./quizHollandSlice";
 import routes from "~/config/routes";
+import { useSelector } from "react-redux";
 
 export const quizCal = (formData, dispatch, navigate) => {
   dispatch(resultCal(formData));
@@ -17,7 +18,7 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
-  baseURL: "https://be-zb3u.onrender.com/api/",
+  baseURL: "http://localhost:9999/api/",
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
@@ -92,6 +93,7 @@ export const getAllQuestion = async (token) => {
 export const sendHollandResult = async (user, data, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
+    console.log(user)
     await ax.post("holland", data, {
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -143,15 +145,20 @@ export const getCurrentUser = async (token, dispatch) => {
 
 export const updateCurrentUser = async (token, user, dispatch, navigate) => {
   dispatch(fetchStart());
-
+  
   try {
-    await ax.put("auth/current", user, {
+    console.log(user)
+    console.log(token)
+    const response = await ax.put("auth/current", user, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    user = {...user, token: response.data.token}
+    console.log(response)
     dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
+    
     navigate(routes.profile, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
