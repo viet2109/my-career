@@ -31,7 +31,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     navigate(config.routes.home, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-    alert(error);
+     
   }
 };
 
@@ -56,7 +56,7 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     });
   } catch (error) {
     dispatch(fetchFailed());
-    alert(error);
+     
   }
 };
 
@@ -75,7 +75,7 @@ export const logOutUser = async (token, dispatch, navigate) => {
   } catch (error) {
     dispatch(fetchFailed());
 
-    alert(error);
+     
   }
 };
 
@@ -123,7 +123,7 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
     navigate(routes.result, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-    alert(error);
+     
   }
 };
 
@@ -141,7 +141,7 @@ export const getCurrentUser = async (token, dispatch) => {
     dispatch(getCurrentUserSucess(result.data));
   } catch (error) {
     dispatch(fetchFailed());
-    alert(error);
+     
   }
 };
 
@@ -164,6 +164,6 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
     navigate(routes.profile, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-    alert(error);
+     
   }
 };
