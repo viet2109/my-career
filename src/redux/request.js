@@ -46,8 +46,9 @@ export const registerNewUser = async (user, dispatch, navigate) => {
       "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse";
     const formData = new FormData();
     formData.append("entry.193002949", user.name);
-    formData.append("entry.969596244", user.email);
     formData.append("entry.1385062621", user.phoneNumber);
+    formData.append("entry.728956514", user.futureSchool);
+
     await fetch(formUrl, {
       method: "POST",
       mode: "no-cors",
@@ -106,6 +107,7 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
     const formData = new FormData();
     formData.append("entry.553266993", user.name);
     formData.append("entry.1383757729", user.phoneNumber);
+    formData.append("entry.93762182", user.futureSchool);
     formData.append("entry.463976797", data[0].value);
     formData.append("entry.1428557086", data[1].value);
     formData.append("entry.777566989", data[2].value);
