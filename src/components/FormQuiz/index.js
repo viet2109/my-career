@@ -75,7 +75,7 @@ function FormQuiz(props) {
     }, {});
 
     const data = Object.values(result);
-   
+
     sendHollandResult(user, data, dispatch, navigate);
   };
 
@@ -125,7 +125,6 @@ function FormQuiz(props) {
             setCurrentQuiz(e.realIndex + 1);
             window.scrollTo(0, 0);
           }}
-        
         >
           {questionList.map((ques, index) => {
             return (
