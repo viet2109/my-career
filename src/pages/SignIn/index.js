@@ -10,7 +10,6 @@ import Button from "~/components/Button";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import config from "~/config";
-import Loading from "~/components/Loading";
 
 SignIn.propTypes = {};
 
@@ -23,7 +22,7 @@ const LoginSchema = yup.object().shape({
 function SignIn(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.apiGeneral.error)
+  const error = useSelector((state) => state.auth.isSignInErr)
 
   return (
     <>
@@ -91,12 +90,7 @@ function SignIn(props) {
                 <Fragment></Fragment>
               )}
 
-              <Button
-                type={"submit"}
-                className={cx("login-button")}
-                primary
-                noneOutline
-              >
+              <Button type="submit" className={cx("login-button")}>
                 Đăng nhập
               </Button>
               <p className={cx("title-select-login")}>Hoặc</p>

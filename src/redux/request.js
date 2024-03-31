@@ -1,10 +1,13 @@
 import axios from "axios";
 import config from "~/config";
-import { fetchFailed, fetchStart, fetchSuccess } from "./apiGeneralSlice";
+import {fetchStart, fetchEnded } from "./apiGeneralSlice";
 import {
   getCurrentUserSucess,
+  logOutFailed,
   logOutSuccess,
+  loginFailed,
   loginSuccess,
+  registerFailed,
   registerSuccess,
   updateUserSuccess,
 } from "./authSlice";
@@ -24,20 +27,19 @@ export const loginUser = async (user, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
     const res = await ax.post("auth/login", user);
-    dispatch(fetchSuccess());
     dispatch(loginSuccess(res.data));
     await getCurrentUser(res.data.token, dispatch);
     navigate(config.routes.home);
   } catch (error) {
-    dispatch(fetchFailed());
+    dispatch(loginFailed());
   }
+  dispatch(fetchEnded());
 };
 
 export const registerNewUser = async (user, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
     const res = await ax.post("auth/register", user);
-    dispatch(fetchSuccess());
     dispatch(registerSuccess(res.data));
     navigate(config.routes.home);
     const formUrl =
@@ -52,39 +54,26 @@ export const registerNewUser = async (user, dispatch, navigate) => {
       body: formData,
     });
   } catch (error) {
-    dispatch(fetchFailed());
+    dispatch(registerFailed());
   }
+  dispatch(fetchEnded());
 };
 
 export const logOutUser = async (token, dispatch, navigate) => {
   dispatch(fetchStart());
-
   try {
     await ax.post("auth/logout", null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(fetchSuccess());
     dispatch(logOutSuccess());
-    navigate("/");
+    navigate(config.routes.signin);
   } catch (error) {
-    dispatch(fetchFailed());
-    dispatch(logOutSuccess());
+    dispatch(logOutFailed());
 
   }
-};
-
-export const getAllQuestion = async (token) => {
-  try {
-    const res = await ax.get("questions", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return res.data;
-  } catch (error) {}
+  dispatch(fetchEnded());
 };
 
 export const sendHollandResult = async (user, data, dispatch, navigate) => {
@@ -95,7 +84,6 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
         Authorization: `Bearer ${user.token}`,
       },
     });
-    dispatch(fetchSuccess());
     dispatch(sendResultSuccess());
     const formUrl =
       "https://docs.google.com/forms/d/e/1FAIpQLSfZJGyvZ6-U85g0ujQFiNcqZ95eZtdNspd1YBP5UwNfiDayjQ/formResponse";
@@ -116,8 +104,9 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
     await getCurrentUser(user.token, dispatch);
     navigate(routes.result);
   } catch (error) {
-    dispatch(fetchFailed());
+
   }
+  dispatch(fetchEnded());
 };
 
 export const getCurrentUser = async (token, dispatch) => {
@@ -130,11 +119,10 @@ export const getCurrentUser = async (token, dispatch) => {
       },
     });
    
-    dispatch(fetchSuccess());
     dispatch(getCurrentUserSucess(result.data));
   } catch (error) {
-    dispatch(fetchFailed());
   }
+  dispatch(fetchEnded());
 };
 
 export const updateCurrentUser = async (token, user, dispatch, navigate) => {
@@ -146,10 +134,9 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
     navigate(routes.profile);
   } catch (error) {
-    dispatch(fetchFailed());
   }
+  dispatch(fetchEnded());
 };
