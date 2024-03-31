@@ -87,17 +87,33 @@ export const getAllQuestion = async (token) => {
   } catch (error) {}
 };
 
-export const sendHollandResult = async (token, data, dispatch, navigate) => {
+export const sendHollandResult = async (user, data, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
     await ax.post("holland", data, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     });
     dispatch(fetchSuccess());
     dispatch(sendResultSuccess());
-    await getCurrentUser(token, dispatch);
+    const formUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLSfZJGyvZ6-U85g0ujQFiNcqZ95eZtdNspd1YBP5UwNfiDayjQ/formResponse";
+    const formData = new FormData();
+    formData.append("entry.553266993", user.name);
+    formData.append("entry.1383757729", user.phoneNumber);
+    formData.append("entry.463976797", data[0].value);
+    formData.append("entry.1428557086", data[1].value);
+    formData.append("entry.777566989", data[2].value);
+    formData.append("entry.1301575222", data[3].value);
+    formData.append("entry.1053946586", data[4].value);
+    formData.append("entry.1834707536", data[5].value);
+    await fetch(formUrl, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData,
+    });
+    await getCurrentUser(user.token, dispatch);
     navigate(routes.result);
   } catch (error) {
     dispatch(fetchFailed());

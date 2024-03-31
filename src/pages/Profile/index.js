@@ -128,13 +128,13 @@ function Profile(props) {
         </div>
         <Formik
           initialValues={{
-            name: String(user?.name).toLowerCase() || "",
-            tel: String(user?.phoneNumber).toLowerCase() || "",
-            sex: String(user?.gender).toLowerCase() || "",
-            class: String(user?.grade).toLowerCase() || "",
-            school: String(user?.currentSchool).toLowerCase() || "",
-            province: String(user?.province).toLowerCase() || "",
-            futureSchool: String(user?.futureSchool).toLowerCase() || "",
+            name: String(user?.name) || "",
+            tel: String(user?.phoneNumber) || "",
+            sex: String(user?.gender) || "",
+            class: String(user?.grade) || "",
+            school: String(user?.currentSchool) || "",
+            province: String(user?.province) || "",
+            futureSchool: String(user?.futureSchool) || "",
           }}
           validationSchema={userSchema}
           onSubmit={(values) => {

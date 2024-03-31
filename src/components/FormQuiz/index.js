@@ -76,7 +76,7 @@ function FormQuiz(props) {
 
     const data = Object.values(result);
    
-    sendHollandResult(user.token, data, dispatch, navigate);
+    sendHollandResult(user, data, dispatch, navigate);
   };
 
   useEffect(() => {}, [currentQuiz, pageDisabled]);
