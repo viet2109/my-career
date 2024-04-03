@@ -40,7 +40,7 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     const res = await ax.post("auth/register", user);
     dispatch(fetchSuccess());
     dispatch(registerSuccess(res.data));
-    navigate(config.routes.signin, { scrollOptions: { top: 0 } });
+    navigate(config.routes.home, { scrollOptions: { top: 0 } });
     const formUrl =
       "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse";
     const formData = new FormData();
