@@ -40,7 +40,7 @@ const SignupSchema = yup.object().shape({
 function SignUp(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.isSignUpErr);
+  const error = useSelector((state) => state.apiGeneral.error)
 
 
   return (

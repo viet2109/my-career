@@ -30,7 +30,6 @@ export const loginUser = async (user, dispatch, navigate) => {
     navigate(config.routes.home, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-     
   }
 };
 
@@ -55,7 +54,6 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     });
   } catch (error) {
     dispatch(fetchFailed());
-     
   }
 };
 
@@ -73,27 +71,12 @@ export const logOutUser = async (token, dispatch, navigate) => {
     navigate("/", { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-
-     
   }
-};
-
-export const getAllQuestion = async (token) => {
-  try {
-    const res = await ax.get("questions", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return res.data;
-  } catch (error) {}
 };
 
 export const sendHollandResult = async (user, data, dispatch, navigate) => {
   dispatch(fetchStart());
   try {
-  
     await ax.post("holland", data, {
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -122,7 +105,6 @@ export const sendHollandResult = async (user, data, dispatch, navigate) => {
     navigate(routes.result, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-     
   }
 };
 
@@ -140,28 +122,25 @@ export const getCurrentUser = async (token, dispatch) => {
     dispatch(getCurrentUserSucess(result.data));
   } catch (error) {
     dispatch(fetchFailed());
-     
   }
 };
 
 export const updateCurrentUser = async (token, user, dispatch, navigate) => {
   dispatch(fetchStart());
-  
+
   try {
-    
     const response = await ax.put("auth/current", user, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    user = {...user, token: response.data.token}
-    
+    user = { ...user, token: response.data.token };
+
     dispatch(fetchSuccess());
     dispatch(updateUserSuccess(user));
-    
+
     navigate(routes.profile, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
-     
   }
 };
