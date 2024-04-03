@@ -53,10 +53,17 @@ function App() {
               />
             );
           })}
-          <Route
-            path="/"
-            element={<Navigate replace to={routes["signup-role"]} />}
-          />
+          
+            <Route
+              path="/"
+              element={
+                <Navigate
+                  replace
+                  to={user ? routes.home : routes["signup-role"]}
+                />
+              }
+            />
+          
         </Routes>
       </div>
     </Router>
