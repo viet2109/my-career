@@ -1,5 +1,5 @@
 const routes = {
-  home: "/",
+  home: "/trang-chu",
   "about-us": "/ve-chung-toi",
   quiz: "/trac-nghiem-ban-than",
   result:"/trac-nghiem-ban-than/ket-qua",
