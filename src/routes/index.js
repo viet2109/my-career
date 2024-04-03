@@ -12,6 +12,7 @@ import Experience from "~/pages/Experience";
 import Result from "~/pages/Result";
 import PageNotFound from "~/pages/PageNotFound";
 import Profile from "~/pages/Profile";
+import SignUpRole from "~/pages/SignUpRole";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: DefaultLayout },
@@ -22,6 +23,7 @@ const publicRoutes = [
   { path: config.routes.advise, component: Advise, layout: DefaultLayout },
   { path: config.routes.signin, component: SignIn, layout: DefaultLayout },
   { path: config.routes.signup, component: SignUp, layout: DefaultLayout },
+  { path: config.routes["signup-role"], component: SignUpRole, layout: DefaultLayout },
   { path: config.routes.profile, component: Profile, layout: DefaultLayout},
   { path: config.routes["page-not-found"], component: PageNotFound}
   

@@ -24,7 +24,9 @@ const SignupSchema = yup.object().shape({
       "Số điện thoại không đúng"
     ),
 
+
   futureSchool: yup.string().required("Bạn cần nhập trường mong muốn"),
+
 
   password: yup
     .string()

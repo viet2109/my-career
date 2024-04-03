@@ -9,11 +9,11 @@ import "swiper/scss/navigation";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { quizCal, sendHollandResult } from "~/redux/request";
-import Button from "../Button";
-import styles from "./FormQuiz.module.scss";
 import quiz from "~/api/fakeQuizAPI";
 import { jugeResult } from "~/api/jugeResultHolland";
+import { sendHollandResult } from "~/redux/request";
+import Button from "../Button";
+import styles from "./FormQuiz.module.scss";
 
 FormQuiz.propTypes = {};
 
@@ -54,10 +54,9 @@ function FormQuiz(props) {
     return result;
   }, [questionList]);
 
-  const [inputRef, setInputRef] = useState(initInput());
+  const [inputRef] = useState(initInput());
 
   const handleSubmit = (e) => {
-    // eslint-disable-next-line no-restricted-globals
     e.preventDefault();
 
     const result = inputRef.reduce((acc, obj) => {
@@ -75,7 +74,7 @@ function FormQuiz(props) {
     }, {});
 
     const data = Object.values(result);
-   
+
     sendHollandResult(user, data, dispatch, navigate);
   };
 
@@ -103,6 +102,7 @@ function FormQuiz(props) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []); // Chạy chỉ một lần sau khi component mount
+
   return (
     <div className={cx("wrapper")}>
       <form
@@ -125,7 +125,6 @@ function FormQuiz(props) {
             setCurrentQuiz(e.realIndex + 1);
             window.scrollTo(0, 0);
           }}
-        
         >
           {questionList.map((ques, index) => {
             return (
@@ -174,7 +173,11 @@ function FormQuiz(props) {
                                       index * orgArr.length + i
                                     ].current.value = e.target.value;
 
-                                    if (currentQuiz === questionList.length) {
+                                    if (
+                                      inputRef.every(
+                                        (input) => input.current.value
+                                      )
+                                    ) {
                                       setIsDisabledsubmit(false);
                                     }
 
@@ -218,20 +221,22 @@ function FormQuiz(props) {
       </form>
 
       <div className={cx("paginate")}>
-        <div className={cx({ disabled: currentQuiz <= 1 })}>
+        <div className={cx("pg-button", { disabled: currentQuiz <= 1 })}>
           <div ref={prevEl} className={cx("prev-btn")}>
             <FontAwesomeIcon fill="#fff" icon={faBackward}></FontAwesomeIcon>
-            Câu hỏi trước
+            <span>Câu hỏi trước</span>
           </div>
         </div>
 
-        <div className={cx({ disabled: pageDisabled[currentQuiz] })}>
+        <div
+          className={cx("pg-button", { disabled: pageDisabled[currentQuiz] })}
+        >
           <div
             ref={nextEl}
             className={cx("next-button")}
             onClick={handleSwipperScroll}
           >
-            Câu hỏi tiếp theo
+            <span>Câu hỏi tiếp theo</span>
             <FontAwesomeIcon fill="#fff" icon={faForward}></FontAwesomeIcon>
           </div>
         </div>

@@ -1,15 +1,15 @@
 import classNames from "classnames/bind";
-import * as yup from "yup";
-import AuthForm from "~/components/AuthForm";
-import styles from "./SignIn.module.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "~/redux/request";
-import { Form, Formik, FastField } from "formik";
-import InputField from "~/components/InputField";
-import Button from "~/components/Button";
+import { FastField, Form, Formik } from "formik";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import AuthForm from "~/components/AuthForm";
+import Button from "~/components/Button";
+import InputField from "~/components/InputField";
 import config from "~/config";
+import { loginUser } from "~/redux/request";
+import styles from "./SignIn.module.scss";
 
 SignIn.propTypes = {};
 
@@ -22,7 +22,7 @@ const LoginSchema = yup.object().shape({
 function SignIn(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.isSignInErr)
+  const error = useSelector((state) => state.apiGeneral.error)
 
   return (
     <>
@@ -90,14 +90,19 @@ function SignIn(props) {
                 <Fragment></Fragment>
               )}
 
-              <Button type="submit" className={cx("login-button")}>
+              <Button
+                type={"submit"}
+                className={cx("login-button")}
+                primary
+                noneOutline
+              >
                 Đăng nhập
               </Button>
               <p className={cx("title-select-login")}>Hoặc</p>
 
               <p className={cx("signup-link")}>
                 Bạn chưa có tài khoản?{" "}
-                <Link className={cx("link")} to={config.routes.signup}>
+                <Link className={cx("link")} to={config.routes["signup-role"]}>
                   Đăng kí ngay
                 </Link>
               </p>

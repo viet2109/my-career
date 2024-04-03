@@ -66,8 +66,10 @@ function InputField(props) {
             options={list}
             defaultValue={{
               ...list?.find((province) => {
+                if (!field.value) return true;
                 return (
-                  String(province.value).toLowerCase() === String(field.value).toLowerCase()
+                  String(province.value).toLowerCase() ===
+                  String(field.value).toLowerCase()
                 );
               }),
             }}

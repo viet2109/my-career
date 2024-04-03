@@ -104,7 +104,7 @@ function Home(props) {
               </div>
 
               <div className={cx("form-group")}>
-                <label htmlFor={cx('nation')}>Nếu đi du lịch, bạn sẽ đi nước nào?</label>
+                <label htmlFor={cx('nation')}>Nếu có nhu cầu đi du học hay xuất khẩu lao động, bạn sẽ đi nước nào?</label>
                 <input id={cx("nation")} name="nation" />
               </div>
 

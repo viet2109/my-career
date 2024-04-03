@@ -1,46 +1,43 @@
 .form {
-    text-align: center;
-    .title {
-      
-      font-weight: 600;
-     
-      margin: 10px 0 16px 0;
-    }
+  text-align: center;
+  .title {
+    font-weight: 600;
 
-    .field-wrapper {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    &.account-info {
-      margin-top: 32px;
-    }
-  }
-  .error-email {
-    color: red;
-    font-size: 14px;
-    margin: 10px 0;
-    text-align: center;
-  }
-  .sigup-btn {
-    width: 100%;
-    margin-top: 24px;
-    padding: 10px 8px;
+    margin: 10px 0 16px 0;
   }
 
-  .error-email ~ .sigup-btn {
-    margin-top: 0px;
+  .field-wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 
-  .login-back-wrapper {
-    margin: 20px 0;
-    font-size: 16px;
-    .login-back {
+  &.account-info {
+    margin-top: 32px;
+  }
+}
+.error-email {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
+  text-align: center;
+}
+.sigup-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 10px 8px;
+}
 
-      color: var(--primary-color);
-      &:hover {
-        text-decoration: underline;
-      }
+.error-email ~ .sigup-btn {
+  margin-top: 0px;
+}
+
+.login-back-wrapper {
+  margin: 20px 0;
+  font-size: 16px;
+  .login-back {
+    color: var(--red);
+    &:hover {
+      text-decoration: underline;
     }
-
+  }
 }

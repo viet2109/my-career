@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "~/components/Button";
 import FormQuiz from "~/components/FormQuiz";
 import styles from "./QuizHolland.module.scss";
+import images from "~/assets/images";
 
 QuizHolland.propTypes = {};
 
@@ -59,7 +60,7 @@ function QuizHolland(props) {
             </p>
             <div className={cx("logo")}>
               <img
-                src={"https://rightpath.edu.vn/images/group-holland.png"}
+                src={images["banner-holland"]}
                 alt="logo"
               />
             </div>

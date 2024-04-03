@@ -14,6 +14,7 @@ import styles from "./Profile.module.scss";
 Profile.propTypes = {};
 
 const provinces = [
+  { value: "", label: "Chọn một tỉnh" },
   { value: "Tiền Giang", label: "Tiền Giang" },
   { value: "Hưng Yên", label: "Hưng Yên" },
   { value: "Hà Nội", label: "Hà Nội" },
@@ -103,14 +104,13 @@ function Profile(props) {
   const user = useSelector((state) => state.auth.login.currentUser);
   const [fullSkill] = useState(() => {
     const result = user?.hollandEntities;
-    console.log(user);
-    const sortedResult = result ? [...result] : null; // Tạo một bản sao của mảng trước khi sắp xếp
+   
+    const sortedResult = result ? [...result] : [];
     if (sortedResult) {
       sortedResult.sort((a, b) => b.value - a.value);
     }
     return sortedResult;
   });
-  console.log(fullSkill);
 
   return (
     <div className={cx("wrapper")}>
@@ -128,14 +128,23 @@ function Profile(props) {
         </div>
         <Formik
           initialValues={{
-            name: String(user?.name) || "",
-            tel: String(user?.phoneNumber) || "",
-            sex: String(user?.gender) || "",
-            class: String(user?.grade) || "",
-            school: String(user?.currentSchool) || "",
-            province: String(user?.province) || "",
-            futureSchool: String(user?.futureSchool) || "",
+            name: user?.name ? String(user?.name).toLowerCase() : "",
+            tel: user?.phoneNumber
+              ? String(user?.phoneNumber).toLowerCase()
+              : "",
+            sex: user?.gender ? String(user?.gender).toLowerCase() : "",
+            class: user?.grade ? String(user?.grade).toLowerCase() : "",
+            school: user?.currentSchool
+              ? String(user?.currentSchool).toLowerCase()
+              : "",
+            province: user?.province
+              ? user?.province
+              : "",
+            futureSchool: user?.futureSchool
+              ? String(user?.futureSchool).toLowerCase()
+              : "",
           }}
+         
           validationSchema={userSchema}
           onSubmit={(values) => {
             const userInfo = {
@@ -349,6 +358,7 @@ function Profile(props) {
       </div>
       <div className={cx("result-grade", "form-wrapper")}>
         <p className={cx("title")}>Kết quả trắc nghiệm holland</p>
+        {fullSkill?.length ? <></> : <span>Bạn chưa làm trắc nghiệm</span>}
         {fullSkill?.map((skill, index) => {
           return (
             <div key={index} className={cx("progress-bar")}>

@@ -14,7 +14,6 @@
         row-gap: 15px;
         margin-top: 10px;
         .input {
-        
           background: #fff;
 
           display: inline-flex;
@@ -22,11 +21,11 @@
           align-items: center;
           border: 1px solid #d2d2d2;
           border-radius: 3px;
-         
+
           padding: 5px 10px;
 
           cursor: pointer;
-          
+
           &:has(input:checked) {
             background-color: var(--red);
             color: var(--white);
@@ -42,21 +41,29 @@
 
     .title-group {
       text-transform: capitalize;
-      margin: 10px 0 13px ;
+      margin: 10px 0 13px;
       font-size: 17px;
     }
   }
   .paginate {
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
     margin-bottom: 25px;
-    
+    .pg-button {
+   
+      max-width: 185px;
+      overflow: hidden;
+    }
     .prev-btn,
     .next-button {
       cursor: pointer;
       display: flex;
       column-gap: 10px;
+      
+      max-width: 185px;
+      overflow: hidden;
       align-items: center;
       padding: 10px 14px;
       color: var(--white);
@@ -65,15 +72,21 @@
       font-size: 16px;
       font-weight: 400;
       font-family: TTNormsPro-Bold;
+      span {
+        max-width: 162px;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: block;
+      }
       svg {
-        width: fit-content;
+        width: 16px;
+        height: 16px;
       }
       &:disabled {
         visibility: hidden;
       }
     }
-
-    
   }
   .progress-bar {
     display: flex;
@@ -110,5 +123,5 @@
 }
 
 .disabled {
-    visibility: hidden!important;
+  visibility: hidden !important;
 }

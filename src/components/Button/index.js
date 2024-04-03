@@ -8,14 +8,17 @@ Button.propTypes = {
 
 const cx = classNames.bind(styles);
 
-function Button({children, to, className, type}) {
+function Button({children, to, href,  className, type}) {
 
     let Component = 'button';
     if (to) {
         Component = Link;
     }
+    if (href) {
+        Component =  'a'
+    }
     return (
-        <Component type={type} className={cx('wrapper', className)} to={to}>
+        <Component href={href} type={type} className={cx('wrapper', className)} to={to}>
             {children}
         </Component>
     );
