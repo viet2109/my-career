@@ -1,11 +1,9 @@
 import classNames from "classnames/bind";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import images from "~/assets/images";
 import Button from "~/components/Button";
 import FormQuiz from "~/components/FormQuiz";
 import styles from "./QuizHolland.module.scss";
-import images from "~/assets/images";
 
 QuizHolland.propTypes = {};
 
@@ -14,14 +12,9 @@ const cx = classNames.bind(styles);
 function QuizHolland(props) {
   const form = useRef(null);
   const tutorial = useRef(null);
-  const user = useSelector((state) => state.auth.login.currentUser);
-  const navigate = useNavigate();
 
   const handleStartDoExBtn = () => {
-    if (user === null) {
-      navigate("/dang-nhap");
-      return;
-    }
+
     tutorial.current?.classList.add(cx("disabled"));
     form.current?.classList.add(cx("enabled"));
   };

@@ -16,20 +16,32 @@ import SignUpRole from "~/pages/SignUpRole";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: DefaultLayout },
-  { path: config.routes["about-us"], component: AboutUs, layout: DefaultLayout },
-  { path: config.routes.quiz, component: QuizHolland, layout: DefaultLayout },
-  { path: config.routes.result, component: Result, layout: DefaultLayout },
-  { path: config.routes.experience, component: Experience, layout: DefaultLayout },
+  {
+    path: config.routes["about-us"],
+    component: AboutUs,
+    layout: DefaultLayout,
+  },
+
+  {
+    path: config.routes.experience,
+    component: Experience,
+    layout: DefaultLayout,
+  },
   { path: config.routes.advise, component: Advise, layout: DefaultLayout },
   { path: config.routes.signin, component: SignIn, layout: DefaultLayout },
   { path: config.routes.signup, component: SignUp, layout: DefaultLayout },
-  { path: config.routes["signup-role"], component: SignUpRole, layout: DefaultLayout },
-  { path: config.routes.profile, component: Profile, layout: DefaultLayout},
-  { path: config.routes["page-not-found"], component: PageNotFound}
-  
+  {
+    path: config.routes["signup-role"],
+    component: SignUpRole,
+    layout: DefaultLayout,
+  },
+  { path: config.routes.profile, component: Profile, layout: DefaultLayout },
+  { path: config.routes["page-not-found"], component: PageNotFound },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [
+  { path: config.routes.quiz, component: QuizHolland, layout: DefaultLayout },
+  { path: config.routes.result, component: Result, layout: DefaultLayout },
+];
 
 export { privateRoutes, publicRoutes };
-

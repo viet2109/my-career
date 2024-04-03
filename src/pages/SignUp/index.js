@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import { FastField, Form, Formik } from "formik";
-import { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerNewUser } from "~/redux/request";
 import InputField from "~/components/InputField";
@@ -9,7 +8,6 @@ import AuthForm from "~/components/AuthForm";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button";
-import Loading from "~/components/Loading";
 import config from "~/config";
 
 SignUp.propTypes = {};
@@ -22,11 +20,13 @@ const SignupSchema = yup.object().shape({
     .string()
     .required("Bạn cần nhập số điện thoại")
     .matches(
-      /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/,
+      /^(?:\+84)?\d{10,15}$/,
       "Số điện thoại không đúng"
     ),
-  
-  futureSchool: yup.string().required('Bạn cần nhập tên trường'),
+
+
+  futureSchool: yup.string().required("Bạn cần nhập trường mong muốn"),
+
 
   password: yup
     .string()
@@ -40,7 +40,7 @@ const SignupSchema = yup.object().shape({
 function SignUp(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.apiGeneral.error);
+  const error = useSelector((state) => state.auth.isSignUpErr);
 
 
   return (
@@ -94,7 +94,7 @@ function SignUp(props) {
                 ) : null}
               </FastField>
               <FastField
-                error={errors.email && touched.email}
+                error={errors.futureSchool && touched.futureSchool}
                 name="futureSchool"
                 label="Bạn dự định thi trường nào"
                 component={InputField}
@@ -136,7 +136,7 @@ function SignUp(props) {
 
               {error && <p className={cx("error-email")}>Số điện thoại đã tồn tại</p>}
 
-              <Button type={"submit"} className={cx("sigup-btn")} primary>
+              <Button type="submit" className={cx("sigup-btn")} primary>
                 Đăng kí
               </Button>
 
