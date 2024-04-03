@@ -1,16 +1,15 @@
 import classNames from "classnames/bind";
-import * as yup from "yup";
-import AuthForm from "~/components/AuthForm";
-import styles from "./SignIn.module.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "~/redux/request";
-import { Form, Formik, FastField } from "formik";
-import InputField from "~/components/InputField";
-import Button from "~/components/Button";
+import { FastField, Form, Formik } from "formik";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import AuthForm from "~/components/AuthForm";
+import Button from "~/components/Button";
+import InputField from "~/components/InputField";
 import config from "~/config";
-import Loading from "~/components/Loading";
+import { loginUser } from "~/redux/request";
+import styles from "./SignIn.module.scss";
 
 SignIn.propTypes = {};
 
@@ -103,7 +102,7 @@ function SignIn(props) {
 
               <p className={cx("signup-link")}>
                 Bạn chưa có tài khoản?{" "}
-                <Link className={cx("link")} to={config.routes.signup}>
+                <Link className={cx("link")} to={config.routes["signup-role"]}>
                   Đăng kí ngay
                 </Link>
               </p>
