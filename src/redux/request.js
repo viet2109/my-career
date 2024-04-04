@@ -7,6 +7,8 @@ import {
   logOutSuccess,
   loginSuccess,
   registerSuccess,
+  resetPasswordSuccess,
+  sendOTPSuccess,
   updateUserSuccess,
 } from "./authSlice";
 import { resultCal, sendResultSuccess } from "./quizHollandSlice";
@@ -140,6 +142,48 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
     dispatch(updateUserSuccess(user));
 
     navigate(routes.profile, { scrollOptions: { top: 0 } });
+  } catch (error) {
+    dispatch(fetchFailed());
+  }
+};
+
+export const sendOTP = async (user, dispatch, navigate) => {
+  
+  dispatch(fetchStart());
+
+  try {
+    // const response = await ax.put("auth/current", user, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+    
+
+    dispatch(fetchSuccess());
+    dispatch(sendOTPSuccess());
+
+    navigate(routes["reset-password"], { scrollOptions: { top: 0 }, state: {phoneNumber: user.phoneNumber} });
+  } catch (error) {
+    dispatch(fetchFailed());
+  }
+};
+
+export const resetPassword = async (user, dispatch, navigate) => {
+  
+  dispatch(fetchStart());
+
+  try {
+    // const response = await ax.put("auth/current", user, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+    
+
+    dispatch(fetchSuccess());
+    dispatch(resetPasswordSuccess());
+
+    navigate(routes.signin, { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());
   }

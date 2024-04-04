@@ -33,7 +33,18 @@ const authSlice = createSlice({
         ...state.login.currentUser,
         hollandEntities: action.payload.currentUser.hollandEntities,
       };
+      
     },
+    sendOTPSuccess: (state, action) => {
+      
+      
+    },
+
+    resetPasswordSuccess: (state, action) => {
+      
+      
+    },
+    
   },
 });
 
@@ -46,6 +57,8 @@ export const {
 
   updateUserSuccess,
   getCurrentUserSucess,
+  sendOTPSuccess,
+  resetPasswordSuccess
 } = authSlice.actions;
 
 export default authSlice.reducer;
