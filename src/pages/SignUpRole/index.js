@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import Button from "~/components/Button";
 import routes from "~/config/routes";
 import styles from "./SignUpRole.module.scss";
+import images from "~/assets/images";
 
 SignUpRole.propTypes = {};
 
@@ -21,7 +22,7 @@ function SignUpRole(props) {
         <img
           className={cx("image-select")}
           src={
-            "https://shub.edu.vn/images/illustrations/student-illustration.svg"
+            images["student-illustration"]
           }
           alt="student-select"
         />
@@ -33,7 +34,7 @@ function SignUpRole(props) {
         <img
           className={cx("image-select")}
           src={
-            "https://shub.edu.vn/images/illustrations/teacher-illustration.svg"
+           images["teacher-illustration"]
           }
           alt="teacher-select"
         />

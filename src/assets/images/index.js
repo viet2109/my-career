@@ -12,6 +12,8 @@ const images = {
   "slide-auth-2": require("./slide-auth-2.png"),
   "slide-auth-3": require("./slide-auth-3.png"),
   "banner-holland": require("./bannerHolland.png"),
+  'student-illustration': require('./student-illustration.png'),
+  'teacher-illustration': require('./teacher-illustration.png'),
 };
 
 export default images;

@@ -93,6 +93,7 @@ a[href] {
 img, svg {
   vertical-align: middle;
   width: 100%;
+  animation: fadeIn 1s linear 0s alternate forwards;
 }
 
 input::-ms-reveal,
@@ -149,5 +150,15 @@ input[type="radio"],input[type="checkbox"] {
       border-width: 0 2px 2px 0;
       z-index: 3;
     }
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
