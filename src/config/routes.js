@@ -10,6 +10,8 @@ const routes = {
   'signup-role': "/dang-ki/vai-tro",
   sigout: "/dang-xuat",
   profile: '/chinh-sua-ho-so',
+  'forgot-password': '/quen-mat-khau',
+  'reset-password': '/khoi-phuc-mat-khau',
   'page-not-found': "*"
 };
 

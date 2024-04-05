@@ -13,6 +13,8 @@ import Result from "~/pages/Result";
 import PageNotFound from "~/pages/PageNotFound";
 import Profile from "~/pages/Profile";
 import SignUpRole from "~/pages/SignUpRole";
+import ForgotPassword from "~/pages/ForgotPassword";
+import ResetPassword from "~/pages/ResetPassword";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: DefaultLayout },
@@ -36,6 +38,8 @@ const publicRoutes = [
     layout: DefaultLayout,
   },
   { path: config.routes.profile, component: Profile, layout: DefaultLayout },
+  { path: config.routes["forgot-password"], component: ForgotPassword, layout: DefaultLayout },
+  { path: config.routes["reset-password"], component: ResetPassword, layout: DefaultLayout },
   { path: config.routes["page-not-found"], component: PageNotFound },
 ];
 

@@ -10,6 +10,7 @@ import InputField from "~/components/InputField";
 import config from "~/config";
 import { loginUser } from "~/redux/request";
 import styles from "./SignIn.module.scss";
+import routes from "~/config/routes";
 
 SignIn.propTypes = {};
 
@@ -77,7 +78,7 @@ function SignIn(props) {
               </div>
 
               <div className={cx("forgot-pass")}>
-                <Link className={cx("link")} to={"/"}>
+                <Link className={cx("link")} to={routes["forgot-password"]}>
                   {" "}
                   Quên mật khẩu ?
                 </Link>
