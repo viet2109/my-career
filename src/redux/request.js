@@ -19,7 +19,7 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
-  baseURL: "https://be-zb3u.onrender.com/api/",
+  baseURL: "http://localhost:8080/api/",
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
@@ -148,38 +148,28 @@ export const updateCurrentUser = async (token, user, dispatch, navigate) => {
 };
 
 export const sendOTP = async (user, dispatch, navigate) => {
-  
   dispatch(fetchStart());
 
   try {
-    // const response = await ax.put("auth/current", user, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    
-
+    await ax.post("auth/user/password", user.phoneNumber);
+   
     dispatch(fetchSuccess());
     dispatch(sendOTPSuccess());
 
-    navigate(routes["reset-password"], { scrollOptions: { top: 0 }, state: {phoneNumber: user.phoneNumber} });
+    navigate(routes["reset-password"], {
+      scrollOptions: { top: 0 },
+      state: { phoneNumber: user.phoneNumber },
+    });
   } catch (error) {
     dispatch(fetchFailed());
   }
 };
 
 export const resetPassword = async (user, dispatch, navigate) => {
-  
   dispatch(fetchStart());
 
   try {
-    // const response = await ax.put("auth/current", user, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    
-
+    await ax.put("auth/current/pass", user);
     dispatch(fetchSuccess());
     dispatch(resetPasswordSuccess());
 
