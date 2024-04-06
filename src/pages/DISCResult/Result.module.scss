@@ -1,0 +1,533 @@
+.container {
+  margin: 0 auto;
+  .wrapper {
+    .juge-list-icon {
+      display: flex;
+
+      .juge-item-icon {
+        padding: 32px 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        align-items: center;
+        background-color: #f8f8fb;
+        border-top: 3.5px solid transparent;
+        flex: 1;
+        .icon {
+          height: 48px;
+          aspect-ratio: 1;
+          display: grid;
+          place-items: center;
+          svg {
+            color: #ccc;
+          }
+        }
+
+        span {
+          display: none;
+          font-family: TTNormsPro-Medium;
+          padding: 5px 8px;
+          margin: 0 10px;
+          font-size: 19px;
+          text-transform: capitalize;
+          width: fit-content;
+          border-bottom: 3px solid transparent;
+          color: #ccc;
+          &:hover {
+            border-bottom-color: #202455;
+          }
+        }
+
+        &:hover {
+          background-color: var(--white);
+        }
+
+        &:has(input:checked) {
+          background-color: var(--white);
+
+          border-top-color: var(--blue);
+          .icon {
+            svg {
+              color: var(--blue);
+            }
+          }
+          span {
+            color: var(--black);
+          }
+        }
+      }
+    }
+    .content-wrapper {
+      padding: 24px 24px;
+      .content {
+        animation: fadeIn ease 1.6s;
+        .title {
+          margin: 8px 0 16px;
+          font-size: 22px;
+        }
+        .overview {
+          .flex-overview {
+            display: flex;
+            flex-wrap: wrap;
+
+            .result-grade {
+              width: 100%;
+              padding: 8px;
+              .progress-bar {
+                display: flex;
+                flex-direction: column;
+                row-gap: 6px;
+                margin-bottom: 45px;
+                label {
+                  text-transform: capitalize;
+                }
+                progress {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  height: 25px;
+                  width: 100%;
+                  &::-webkit-progress-bar {
+                    background-color: #e9ecef;
+                    border-radius: 6px;
+                  }
+                  &::-webkit-progress-value {
+                    border-radius: 6px;
+                    background-color: var(--color);
+                  }
+                }
+
+                .progress {
+                  position: relative;
+
+                  .percent {
+                    position: absolute;
+
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    font-size: 12px;
+                  }
+
+                  .per {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: grid;
+                    place-items: center;
+                    color: var(--white);
+
+                    height: 25px;
+                    text-align: center;
+                    width: var(--width);
+                  }
+                }
+              }
+            }
+            .book-advise {
+              width: 100%;
+              padding: 8px;
+              background-color: #fff8ec;
+              .why-list {
+                display: flex;
+                flex-direction: column;
+
+                row-gap: 16px;
+                margin-bottom: 16px;
+                .why-item {
+                }
+              }
+              button {
+                margin-top: 16px;
+                font-weight: 400;
+                border: 1px solid #ffc107;
+                padding: 8px 12px;
+                color: #ffc107;
+                border-radius: 8px;
+                font-size: 16px;
+                font-family: TTNormsPro-Normal;
+                text-align: center;
+                vertical-align: middle;
+                transition: color 0.15s ease-in-out,
+                  background-color 0.15s ease-in-out,
+                  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                &:hover {
+                  background-color: #ffc107;
+                  color: var(--black);
+                }
+              }
+            }
+          }
+
+          .tutorial {
+            .des {
+              display: flex;
+              flex-direction: column;
+              row-gap: 10px;
+            }
+          }
+        }
+
+        &:not(:first-child) {
+          .title {
+            width: fit-content;
+            margin: 5px auto 15px;
+          }
+          > .title {
+            font-family: TTNormsPro-Medium;
+            text-align: center;
+            padding: 24px 0;
+            p {
+              span {
+                text-transform: uppercase;
+                color: var(--color, #344b64);
+                font-weight: 700;
+                font-family: TTNormsPro-Bold;
+              }
+            }
+            .en {
+              color: var(--color);
+              font-weight: 700;
+              font-family: TTNormsPro-Bold;
+              font-size: 18px;
+              text-transform: uppercase;
+              margin-top: 3px;
+            }
+          }
+          .general {
+            .item {
+              .title {
+                text-transform: uppercase;
+                margin: 0;
+                font-size: 15px;
+              }
+              .content {
+                margin-bottom: 18px;
+                font-size: 15px;
+              }
+            }
+
+            img {
+              object-fit: cover;
+            }
+          }
+          .feature {
+            margin-bottom: 24px;
+            
+            .item {
+              margin: 0 auto;
+              margin-bottom: 20px;
+              display: flex;
+             
+              p {
+                padding: 14px;
+              }
+              span {
+                display: none;
+                font-size: 60px;
+                color: #198754;
+                font-weight: bold;
+                min-width: 35px;
+                text-align: center;
+              }
+            }
+          }
+
+          .advise {
+            margin: 0 -24px;
+            > .title {
+              color: var(--white);
+              padding: 24px;
+              background-color: #344b64;
+              margin: 0;
+              width: 100%;
+              text-align: center;
+            }
+            .list {
+              .item {
+                display: flex;
+                span {
+                  width: 33.333%;
+                  display: grid;
+                  place-items: center;
+                  font-size: 85px;
+                }
+                .content {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-end;
+
+                  .title {
+                    margin: 0;
+                    text-align: left;
+                    padding: 0;
+                    padding-bottom: 18px;
+                    text-transform: uppercase;
+                    font-family: TTNormsPro-Bold;
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    margin: 48px 16px 0 16px;
+                  }
+                  .content {
+                    display: block;
+                    background: none;
+                    margin: 0 16px 48px;
+                  }
+                }
+                &:nth-child(odd) {
+                  flex-direction: row-reverse;
+                  > .content {
+                    background-image: url("https://rightpath.edu.vn/images/bg-custom-removebg-preview.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    object-fit: contain;
+                    background-position: bottom left;
+                    > * {
+                      width: calc(100% - 100px);
+                    }
+                    .title {
+                      text-align: right;
+                    }
+                    .content {
+                    }
+                  }
+                }
+
+                &:nth-child(even) {
+                  .content {
+                    align-items: flex-start;
+                  }
+                }
+                &:nth-child(1) {
+                  span {
+                    color: var(--white);
+                    background-color: #f26868;
+                  }
+                  .content {
+                    background-color: #62d3d3;
+                    .title,
+                    .content {
+                      color: #344b64;
+                    }
+                  }
+                }
+
+                &:nth-child(2) {
+                  span {
+                    color: #f26868;
+                  }
+                  .content {
+                    background-color: #344b64;
+                    .title {
+                      color: #62d3d3;
+                    }
+                    .content {
+                      color: var(--white);
+                    }
+                  }
+                }
+
+                &:nth-child(3) {
+                  span {
+                    color: #344b64;
+                  }
+                  .content {
+                    background-color: #f26868;
+                    .title {
+                      color: var(--white);
+                    }
+                    .content {
+                      color: #344b64;
+                    }
+                  }
+                }
+
+                &:nth-child(4) {
+                  span {
+                    color: #62d3d3;
+                    background-color: #344b64;
+                  }
+                  .content {
+                    background-color: #62d3d3;
+                    .title,
+                    .content {
+                      color: #344b64;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .suggest {
+            margin-top: 24px;
+            .title {
+              padding: 24px 0;
+            }
+            .popper {
+              padding: 24px;
+              margin-bottom: 72px;
+              object-fit: cover;
+              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+              background-size: contain;
+              background-position: bottom right;
+              background-image: url("https://rightpath.edu.vn/images/bg-custom-end-removebg.png");
+              background-repeat: no-repeat;
+              .list {
+                .title {
+                  text-transform: uppercase;
+                  font-weight: 700;
+                  padding: 0;
+                  margin: 0;
+                  margin-top: 30px;
+                  margin-bottom: 10px;
+                  text-align: left;
+                  font-size: 20px;
+                  font-family: TTNormsPro-Bold;
+                }
+                .item-wrapper {
+                  .item {
+                    margin-bottom: 3px;
+                  }
+                }
+              }
+
+              .major {
+                .title {
+                  color: #344b64;
+                }
+              }
+
+              .job {
+                .title {
+                  color: #bea576;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.frag {
+  padding: 48px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 740px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+    .wrapper {
+      .juge-list-icon {
+        .juge-item-icon {
+          span {
+            display: block;
+          }
+        }
+      }
+      .content-wrapper {
+        .content {
+          .overview {
+            .flex-overview {
+              flex-wrap: nowrap;
+              column-gap: 20px;
+              .result-grade {
+                width: 50%;
+                .progress-bar {
+                  flex-direction: row;
+                  column-gap: 30px;
+                  label {
+                    width: 25%;
+                  }
+                  .progress {
+                    flex: 1;
+                  }
+                }
+              }
+              .book-advise {
+                width: 50%;
+              }
+            }
+          }
+          &:not(:first-child) {
+            .suggest {
+              .popper {
+                .list {
+                  .item-wrapper {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                  }
+                }
+              }
+            }
+          }
+          .general {
+            display: flex;
+            .item-wrapper {
+              padding-top: 80px;
+              width: 50%;
+              flex: 1;
+              .item {
+                .title,
+                .content {
+                  font-size: 18px;
+                }
+              }
+            }
+            img {
+              width: 50%;
+            }
+          }
+
+          .feature {
+            .item {
+              width: 83.333%;
+              span {
+                display: block!important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

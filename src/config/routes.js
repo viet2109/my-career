@@ -12,6 +12,7 @@ const routes = {
   profile: '/chinh-sua-ho-so',
   'forgot-password': '/quen-mat-khau',
   'reset-password': '/khoi-phuc-mat-khau',
+  disc: '/trac-nghiem-tinh-cach/ket-qua',
   'page-not-found': "*"
 };
 

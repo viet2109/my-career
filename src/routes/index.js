@@ -15,6 +15,7 @@ import Profile from "~/pages/Profile";
 import SignUpRole from "~/pages/SignUpRole";
 import ForgotPassword from "~/pages/ForgotPassword";
 import ResetPassword from "~/pages/ResetPassword";
+import { DISCResult } from "~/pages/DISCResult";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: DefaultLayout },
@@ -46,6 +47,7 @@ const publicRoutes = [
 const privateRoutes = [
   { path: config.routes.quiz, component: QuizHolland, layout: DefaultLayout },
   { path: config.routes.result, component: Result, layout: DefaultLayout },
+  { path: config.routes.disc, component: DISCResult, layout: DefaultLayout }
 ];
 
 export { privateRoutes, publicRoutes };
