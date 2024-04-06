@@ -151,7 +151,11 @@ export const sendOTP = async (user, dispatch, navigate) => {
   dispatch(fetchStart());
 
   try {
-    await ax.post("auth/user/password", user.phoneNumber);
+    await ax.get("auth/user/password", {
+      params: {
+        phoneNumber: user.phoneNumber
+      }
+    });
    
     dispatch(fetchSuccess());
     dispatch(sendOTPSuccess());
