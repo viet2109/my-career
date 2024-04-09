@@ -1,0 +1,230 @@
+.wrapper {
+  margin-top: 3px;
+
+  .ques {
+    margin-top: 20px;
+    margin-bottom: 16px;
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  .form {
+    margin: 0 auto 20px;
+    width: 400px;
+    .title {
+      font-size: 20px;
+      font-family: TTNormsPro-DemiBold;
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      span {
+        &:first-child {
+          color: #1f2356;
+        }
+        &:last-child {
+          color: var(--red);
+        }
+      }
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 24px;
+      background-color: #f8f9fa;
+      margin-bottom: 18px;
+      .input {
+        width: 1.25em;
+        height: 1.25em;
+        margin: 0;
+        vertical-align: top;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: 0.3px solid rgba(0, 0, 0, 0.25);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        border-radius: 50%;
+
+        &::before {
+          display: none;
+        }
+        &::after {
+          display: none;
+        }
+
+        &:disabled {
+          pointer-events: none;
+          filter: none;
+          opacity: 0.5;
+        }
+
+        &:checked {
+          background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3E%3Ccircle r="2" fill="%23fff" /%3E%3C/svg%3E');
+        }
+
+        &.same {
+          &:checked {
+            background-color: #0d6efd;
+          }
+          &:focus {
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+          }
+        }
+
+        &.diff {
+          &:checked {
+            background-color: #fd0d0d;
+          }
+
+          &:focus {
+            border-color: #fe8686;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(253, 13, 13, 0.25);
+          }
+        }
+      }
+
+      .ans {
+      }
+    }
+    .form-group {
+      .ques {
+        font-size: 17px;
+        span {
+          text-decoration: underline;
+        }
+      }
+      .input-wrapper {
+        display: grid;
+        row-gap: 15px;
+        margin-top: 10px;
+        .input {
+          background: #fff;
+
+          display: inline-flex;
+          justify-content: flex-start;
+          align-items: center;
+          border: 1px solid #d2d2d2;
+          border-radius: 3px;
+
+          padding: 5px 10px;
+
+          cursor: pointer;
+
+          &:has(input:checked) {
+            background-color: var(--red);
+            color: var(--white);
+          }
+          label {
+            width: 100%;
+            cursor: pointer;
+            padding-left: 24px;
+          }
+        }
+      }
+    }
+
+    .title-group {
+      text-transform: capitalize;
+      margin: 10px 0 13px;
+      font-size: 17px;
+    }
+  }
+  .paginate {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 25px;
+    .pg-button {
+      max-width: 185px;
+      overflow: hidden;
+    }
+    .prev-btn,
+    .next-button {
+      cursor: pointer;
+      display: flex;
+      column-gap: 10px;
+
+      max-width: 185px;
+      overflow: hidden;
+      align-items: center;
+      padding: 10px 14px;
+      color: var(--white);
+      background-color: #1f2356;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: TTNormsPro-Bold;
+      span {
+        max-width: 162px;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: block;
+      }
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+      &:disabled {
+        visibility: hidden;
+      }
+    }
+  }
+  .progress-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .bar {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 10px;
+
+      &::-webkit-progress-bar {
+        background-color: #e9ecef;
+        border-radius: 30px;
+      }
+
+      &::-webkit-progress-value {
+        background-color: #34c38f;
+
+        border-radius: 30px;
+      }
+    }
+
+    .label {
+    }
+  }
+  .submit-button {
+    margin: 12px auto;
+    width: fit-content;
+    a {
+      padding: 8px 20px;
+    }
+  }
+}
+
+.disabled {
+  visibility: hidden !important;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    .form {
+      .title {
+        column-gap: 96px;
+      }
+    }
+  }
+}

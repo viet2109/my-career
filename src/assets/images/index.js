@@ -14,6 +14,8 @@ const images = {
   "banner-holland": require("./bannerHolland.png"),
   'student-illustration': require('./student-illustration.png'),
   'teacher-illustration': require('./teacher-illustration.png'),
+  'banner-disc-quiz': require('./discTool1.png'),
+  
 };
 
 export default images;

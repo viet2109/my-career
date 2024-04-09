@@ -29,6 +29,7 @@ const authSlice = createSlice({
       };
     },
     getCurrentUserSucess: (state, action) => {
+      console.log(action.payload.currentUser);
       state.login.currentUser = {
         ...state.login.currentUser,
         hollandEntities: action.payload.currentUser.hollandEntities,

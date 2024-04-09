@@ -19,7 +19,7 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "http://localhost:9999/api/",
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
@@ -151,7 +151,9 @@ export const sendOTP = async (user, dispatch, navigate) => {
   dispatch(fetchStart());
 
   try {
-    await ax.post("auth/user/password", user.phoneNumber);
+    await ax.get("auth/user/password", {params: {
+      phoneNumber: user.phoneNumber
+    }});
    
     dispatch(fetchSuccess());
     dispatch(sendOTPSuccess());

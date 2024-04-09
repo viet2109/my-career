@@ -79,6 +79,15 @@ function Header({ className }) {
                 <li className={cx("item-mobile")} onClick={handleOnclick}>
                   <NavLink
                     className={(nav) => cx({ active: nav.isActive })}
+                    to={routes["disc-quiz"]}
+                  >
+                    Trắc nghiệm tính cách
+                  </NavLink>
+                </li>
+
+                <li className={cx("item-mobile")} onClick={handleOnclick}>
+                  <NavLink
+                    className={(nav) => cx({ active: nav.isActive })}
                     to={routes.advise}
                   >
                     Tư vấn chuyên gia
@@ -124,6 +133,15 @@ function Header({ className }) {
                   to={routes.quiz}
                 >
                   <span>Trắc nghiệm bản thân</span>
+                </NavLink>
+              </li>
+
+              <li className={cx("item")}>
+                <NavLink
+                  className={(nav) => cx({ active: nav.isActive })}
+                  to={routes["disc-quiz"]}
+                >
+                  <span>Trắc nghiệm tính cách</span>
                 </NavLink>
               </li>
 

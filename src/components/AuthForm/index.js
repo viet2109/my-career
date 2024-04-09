@@ -1,12 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames/bind";
-import styles from "./AuthForm.module.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import images from "~/assets/images";
-import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import images from "~/assets/images";
+import styles from "./AuthForm.module.scss";
 
 AuthForm.propTypes = {};
 

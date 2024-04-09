@@ -1,0 +1,152 @@
+.wrapper {
+    background-color: #e2eff5;
+    line-height: 1.6;
+  
+    .container {
+      padding: 45px 15px 15px;
+      margin: 0 auto;
+      > .title {
+        margin-bottom: 24px;
+        .title-1,
+        .title-2 {
+          text-transform: uppercase;
+          text-align: center;
+        }
+        .title-1 {
+          padding-bottom: 14px;
+          font-size: 24px;
+          color: #1f2356;
+        }
+        .title-2 {
+          color: var(--red);
+          font-weight: 700;
+          line-height: 1.2;
+  
+          font-family: TTNormsPro-Bold;
+        }
+      }
+      .intro {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+       .des {
+        span {
+            margin-bottom: 16px;
+            display: block;
+        }
+       }
+        img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+        }
+      }
+      .explaine {
+        .item {
+          strong {
+            color: #0d6efd;
+          }
+        }
+      }
+  
+      .tutorial {
+        .title {
+          color: var(--red);
+          text-align: center;
+          text-transform: uppercase;
+          margin-top: 20px;
+          font-weight: 700;
+          margin-bottom: 6px;
+        }
+        
+      }
+  
+      .button-wrapper {
+        width: fit-content;
+        margin: 0 auto;
+        .button {
+          min-width: 120px;
+          width: fit-content;
+          padding: 8px 16px;
+          font-size: 14px;
+          margin: 24px auto 0;
+          &:hover {
+            scale: 1.05;
+          }
+        }
+      }
+    }
+  }
+  
+  .question-wrapper {
+    display: none;
+  
+    .help {
+      .help-list {
+        padding-left: 30px;
+  
+        .help-item {
+          list-style-type: disc;
+        }
+      }
+    }
+  }
+  
+  .disabled {
+    display: none;
+  }
+  
+  .enabled {
+    display: block;
+  }
+  
+  @media (min-width: 768px) {
+    .wrapper {
+      .container {
+        padding: 25px;
+        max-width: 720px;
+      }
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .wrapper {
+      .container {
+        max-width: 960px;
+        width: 72%;
+        .intro {
+          flex-wrap: nowrap;
+          gap: 0;
+          margin-bottom: 45px;
+          .des {
+           width: 66.666%;
+          }
+          .logo {
+            width: 33.333%;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .wrapper {
+      .container {
+        max-width: 1140px;
+  
+        
+      }
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .wrapper {
+      .container {
+        max-width: 1320px;
+  
+       
+      }
+    }
+  }
+  

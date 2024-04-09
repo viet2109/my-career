@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { resetBlackList } from "~/redux/apiGeneralSlice";
 
@@ -15,7 +15,8 @@ function usePageViews() {
       top: 0,
       behavior: "smooth",
     });
-  }, [location.pathname]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname])
 }
 
 export default usePageViews;

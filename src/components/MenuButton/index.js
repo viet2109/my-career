@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from "./MenuButton.module.scss"
+import { useRef } from 'react';
+import styles from "./MenuButton.module.scss";
 
 MenuButton.propTypes = {
     

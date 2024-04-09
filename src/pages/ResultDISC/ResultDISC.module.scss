@@ -1,0 +1,224 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 48px;
+  padding: 56px 0;
+  .popper {
+    margin: 0 auto;
+    padding: 0 12px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+  
+      .left {
+        width: 100%;
+        .group,
+        .type,
+        .sub-des {
+        text-align: center;
+
+          text-transform: uppercase;
+          color: var(--color);
+          text-transform: uppercase;
+          font-weight: 700;
+          font-family: TTNormsPro-Bold;
+          font-size: 24px;
+        }
+        .sub-des {
+          font-size: 18px;
+
+          text-transform: none;
+          margin-bottom: 24px;
+        }
+      }
+
+      .right {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+        width: 100%;
+   
+      }
+    }
+
+    
+  }
+  .detail {
+    padding: 56px 20px;
+  }
+  .overview {
+    padding: 0 20px;
+
+    .overview-on {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      .des-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .header {
+          font-family: TTNormsPro-Medium;
+          font-weight: 500;
+          font-size: 24px;
+          margin: 16px 0;
+        }
+        .title {
+          background-color: #0d6efdbf;
+          font-family: TTNormsPro-Medium;
+          font-weight: 500;
+          border-radius: 10px;
+          color: var(--white);
+          font-size: 16px;
+          padding: 16px;
+          margin-bottom: 16px;
+        }
+
+        .des {
+          width: 100%;
+          padding: 0 16px;
+          .group {
+            &:first-child {
+              margin-top: 24px;
+            }
+          }
+
+          .general {
+            margin-top: 4px;
+            margin-bottom: 24px;
+          }
+        }
+      }
+      .chart {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        canvas {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .sub-des {
+      background-color: #fff9e6;
+      padding: 20px;
+      margin-bottom: 24px;
+      .advise-btn {
+        width: fit-content;
+        font-family: TTNormsPro-Medium;
+        font-weight: 400;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #ffc107 !important;
+        margin: 13px 0;
+        border: 1px solid #ffc107;
+        background-color: transparent;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:hover {
+          color: var(--black) !important;
+          background-color: #ffc107;
+        }
+      }
+    }
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: TTNormsPro-Bold;
+}
+
+.container {
+  margin-top: 16px;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  .container {
+    width: 100%;
+
+  }
+}
+@media (min-width: 576px) {
+  .wrapper {
+    .popper {
+      max-width: 540px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .wrapper {
+    .popper {
+
+      max-width: 720px;
+    }
+    .detail {
+      padding: 32px;
+    }
+  }
+
+  .container-wrapper {
+    flex-wrap: nowrap;
+  column-gap: 20px;
+    .container {
+      width: 50%;
+    }
+  }
+}
+@media (min-width: 992px) {
+  .wrapper {
+    .popper {
+      max-width: 960px;
+      .top {
+        flex-wrap: nowrap;
+        column-gap: 20px;
+        .left {
+          width: 58.333%;
+        }
+        .right {
+          width: 41.667%;
+        }
+      }
+    }
+    .overview {
+      .overview-on {
+        flex-wrap: nowrap;
+        .des-wrapper {
+          width: 58.333%;
+          .header {
+            margin-top: 24px;
+          }
+        }
+        .chart {
+          width: 41.667%;
+        }
+      }
+      .sub-des {
+        margin-bottom: 48px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    .popper {
+      max-width: 1140px;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .wrapper {
+    .popper {
+      max-width: 1320px;
+    }
+  }
+}

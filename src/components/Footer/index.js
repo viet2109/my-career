@@ -1,10 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import styles from "./Footer.module.scss";
-import images from "~/assets/images";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames/bind";
+import images from "~/assets/images";
+import styles from "./Footer.module.scss";
 
 Footer.propTypes = {};
 

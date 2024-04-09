@@ -12,6 +12,7 @@ const cx = classNames.bind(styles);
 function QuizHolland(props) {
   const form = useRef(null);
   const tutorial = useRef(null);
+  
 
   const handleStartDoExBtn = () => {
 
@@ -105,7 +106,7 @@ function QuizHolland(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 export default QuizHolland;

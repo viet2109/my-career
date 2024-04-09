@@ -12,6 +12,7 @@ DefaultLayout.propTypes = {
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
+  
   return (
     <div className={cx('wrapper')}>
       <Header className={cx('header')}></Header>
@@ -20,7 +21,7 @@ function DefaultLayout({ children }) {
       </div>
       <Footer className={cx('footer')}></Footer>
     </div>
-  );
+  )
 }
 
 export default DefaultLayout;

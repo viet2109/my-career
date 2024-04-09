@@ -1,19 +1,19 @@
-import { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { Fragment } from "react"
+import { useSelector } from "react-redux"
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
-} from "react-router-dom";
-import UserPageView from "~/hooks/usePageViews";
-import { privateRoutes, publicRoutes } from "~/routes";
-import Loading from "./components/Loading";
-import PrivateRoute from "./components/PrivateRoute";
-import routes from "./config/routes";
+} from "react-router-dom"
+import UserPageView from "~/hooks/usePageViews"
+import { privateRoutes, publicRoutes } from "~/routes"
+import Loading from "./components/Loading"
+import PrivateRoute from "./components/PrivateRoute"
+import routes from "./config/routes"
 
 function App() {
-  const user = useSelector((state) => state.auth.login.currentUser);
+  const user = useSelector((state) => state.auth.login.currentUser)
   return (
     <Router>
       <Loading />
@@ -21,8 +21,8 @@ function App() {
       <div className="app">
         <Routes>
           {publicRoutes.map((route, index) => {
-            const Page = route.component;
-            const Layout = route.layout ? route.layout : Fragment;
+            const Page = route.component
+            const Layout = route.layout ? route.layout : Fragment
             return (
               <Route
                 key={index}
@@ -33,12 +33,12 @@ function App() {
                   </Layout>
                 }
               />
-            );
+            )
           })}
 
           {privateRoutes.map((route, index) => {
-            const Page = route.component;
-            const Layout = route.layout ? route.layout : Fragment;
+            const Page = route.component
+            const Layout = route.layout ? route.layout : Fragment
             return (
               <Route
                 key={index}
@@ -51,7 +51,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-            );
+            )
           })}
           
             <Route
@@ -67,7 +67,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

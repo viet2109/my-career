@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 function Experience(props) {
   
   return (
-    <div>experience</div>
+    <div className={cx('wrapper')}>experience</div>
   );
 }
 
