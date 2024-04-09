@@ -19,7 +19,9 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
+
   baseURL: "http://localhost:9999/api/",
+
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
@@ -41,7 +43,7 @@ export const registerNewUser = async (user, dispatch, navigate) => {
     const res = await ax.post("auth/register", user);
     dispatch(fetchSuccess());
     dispatch(registerSuccess(res.data));
-    navigate(config.routes.signin, { scrollOptions: { top: 0 } });
+    navigate(config.routes.home, { scrollOptions: { top: 0 } });
     const formUrl =
       "https://docs.google.com/forms/d/e/1FAIpQLSfXsghyFMoWgDF-yZ1_h-Al1YH7aRnqMr0-9Shloczzn7alfg/formResponse";
     const formData = new FormData();
@@ -151,10 +153,11 @@ export const sendOTP = async (user, dispatch, navigate) => {
   dispatch(fetchStart());
 
   try {
+
     await ax.get("auth/user/password", {params: {
       phoneNumber: user.phoneNumber
     }});
-   
+
     dispatch(fetchSuccess());
     dispatch(sendOTPSuccess());
 

@@ -14,6 +14,7 @@ import PageNotFound from "~/pages/PageNotFound";
 import Profile from "~/pages/Profile";
 import QuizDISC from "~/pages/QuizDISC";
 import ResetPassword from "~/pages/ResetPassword";
+
 import Result from "~/pages/Result";
 import SignUpRole from "~/pages/SignUpRole";
 
@@ -57,8 +58,10 @@ const publicRoutes = [
 const privateRoutes = [
   { path: config.routes.quiz, component: QuizHolland, layout: DefaultLayout },
   { path: config.routes.result, component: Result, layout: DefaultLayout },
+
   { path: config.routes["disc-quiz"], component: QuizDISC, layout: DefaultLayout },
   { path: config.routes["disc-result"], component: ResultDISC, layout: DefaultLayout },
+
 ];
 
 export { privateRoutes, publicRoutes };
