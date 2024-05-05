@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   Navigate,
@@ -14,6 +14,9 @@ import routes from "./config/routes";
 
 function App() {
   const user = useSelector((state) => state.auth.login.currentUser);
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   return (
     <Router>
       <Loading />
