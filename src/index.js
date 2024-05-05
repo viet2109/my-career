@@ -4,7 +4,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import App from "~/App";
 import GlobalStyles from "./components/GlobalStyles";
 import { persistor, store } from "./redux/store";
-persistor.purge();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
