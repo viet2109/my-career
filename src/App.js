@@ -14,9 +14,6 @@ import routes from "./config/routes";
 
 function App() {
   const user = useSelector((state) => state.auth.login.currentUser);
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
   return (
     <Router>
       <Loading />
