@@ -19,7 +19,7 @@ export const quizCal = (formData, dispatch, navigate) => {
 };
 
 const ax = axios.create({
-  baseURL: "https://be-8dl2.onrender.com/api/",
+  baseURL: "https://be-oy7w.onrender.com/api/",
 });
 
 export const loginUser = async (user, dispatch, navigate) => {
