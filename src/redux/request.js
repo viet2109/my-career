@@ -61,15 +61,9 @@ export const registerNewUser = async (user, dispatch, navigate) => {
 
 export const logOutUser = async (token, dispatch, navigate) => {
   dispatch(fetchStart());
-dispatch(logOutSuccess());
+  dispatch(logOutSuccess());
   try {
-    await ax.post("auth/logout", null, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
     dispatch(fetchSuccess());
-    
     navigate("/", { scrollOptions: { top: 0 } });
   } catch (error) {
     dispatch(fetchFailed());

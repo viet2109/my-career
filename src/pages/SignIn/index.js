@@ -18,7 +18,6 @@ const cx = classNames.bind(styles);
 
 const LoginSchema = yup.object().shape({
   tel: yup.string().required("Bạn cần nhập số điện thoại"),
-  password: yup.string().required("Bạn cần nhập mật khẩu"),
 });
 function SignIn(props) {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ function SignIn(props) {
         <Formik
           initialValues={{
             tel: "",
-            password: "",
+            password: "test",
           }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
@@ -61,7 +60,7 @@ function SignIn(props) {
                 </FastField>
               </div>
 
-              <div className={cx("input-field")}>
+              {/* <div className={cx("input-field")}>
                 <FastField
                   error={errors.password && touched.password}
                   name="password"
@@ -75,14 +74,14 @@ function SignIn(props) {
                     </div>
                   ) : null}
                 </FastField>
-              </div>
+              </div> */}
 
-              <div className={cx("forgot-pass")}>
+              {/* <div className={cx("forgot-pass")}>
                 <Link className={cx("link")} to={routes["forgot-password"]}>
                   {" "}
                   Quên mật khẩu ?
                 </Link>
-              </div>
+              </div> */}
               {error ? (
                 <p className={cx("notice")}>
                   Số điện thoại hoặc mật khẩu không đúng

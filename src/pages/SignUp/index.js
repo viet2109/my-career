@@ -26,16 +26,6 @@ const SignupSchema = yup.object().shape({
 
 
   futureSchool: yup.string().required("Bạn cần nhập trường mong muốn"),
-
-
-  password: yup
-    .string()
-    .required("Bạn cần nhập mật khẩu")
-    .min(6, "Mật khẩu cần ít nhất 6 kí tự"),
-  confirmPassword: yup
-    .string()
-    .required("Bạn cần xác nhận lại mật khẩu")
-    .oneOf([yup.ref("password")], "Mật khẩu nhập lại không đúng"),
 });
 function SignUp(props) {
   const dispatch = useDispatch();
@@ -102,34 +92,6 @@ function SignUp(props) {
                 {errors.futureSchool && touched.futureSchool ? (
                   <div style={{ color: "red", fontSize: "12px" }}>
                     {errors.futureSchool}
-                  </div>
-                ) : null}
-              </FastField>
-
-              <FastField
-                error={errors.password && touched.password}
-                name="password"
-                label="Mật khẩu"
-                component={InputField}
-                type="password"
-              >
-                {errors.password && touched.password ? (
-                  <div style={{ color: "red", fontSize: "12px" }}>
-                    {errors.password}
-                  </div>
-                ) : null}
-              </FastField>
-
-              <FastField
-                error={errors.confirmPassword && touched.confirmPassword}
-                name="confirmPassword"
-                label="Xác nhận mật khẩu"
-                type="password"
-                component={InputField}
-              >
-                {errors.confirmPassword && touched.confirmPassword ? (
-                  <div style={{ color: "red", fontSize: "12px" }}>
-                    {errors.confirmPassword}
                   </div>
                 ) : null}
               </FastField>
