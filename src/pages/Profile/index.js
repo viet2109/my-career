@@ -11,6 +11,7 @@ import InputField from "~/components/InputField";
 import routes from "~/config/routes";
 import { updateCurrentUser } from "~/redux/request";
 import styles from "./Profile.module.scss";
+import Result from "../Result";
 Profile.propTypes = {};
 
 const provinces = [
@@ -358,8 +359,8 @@ function Profile(props) {
       </div>
       <div className={cx("result-grade", "form-wrapper")}>
         <p className={cx("title")}>Kết quả trắc nghiệm holland</p>
-        {fullSkill?.length ? <></> : <span>Bạn chưa làm trắc nghiệm</span>}
-        {fullSkill?.map((skill, index) => {
+        {fullSkill?.length ? <Result />: <span>Bạn chưa làm trắc nghiệm</span>}
+        {/* {fullSkill?.map((skill, index) => {
           return (
             <div key={index} className={cx("progress-bar")}>
               <label>
@@ -386,7 +387,7 @@ function Profile(props) {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
